@@ -1,0 +1,6 @@
+[tool.pytest.ini_options]
+# Adds the project root to Python's import path when running pytest, so
+# test files can do things like `from config.settings import get_settings`
+# no matter which folder you run the `pytest` command from.
+pythonpath = ["."]
+testpaths = ["tests"]

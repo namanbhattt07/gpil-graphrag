@@ -1,0 +1,35 @@
+# --- Secrets: never commit real API keys ---
+.env
+
+# --- Python bytecode/cache ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+
+# --- Virtual environment (everyone creates their own locally; see README) ---
+venv/
+.venv/
+env/
+
+# --- Generated data & GraphRAG artifacts ---
+# These are all *regenerated* by running the phase scripts (Phase 2 makes
+# the CSVs, Phase 5 builds the GraphRAG index), and fixed random seeds make
+# that regeneration reproducible. Keeping them out of git keeps the repo
+# small and avoids noisy diffs on large binary/CSV files.
+data/*.csv
+data/**/*.csv
+data/graphrag_input/
+graphrag_workspace/
+*.parquet
+*.lance/
+
+# --- OS / editor clutter ---
+.DS_Store
+.vscode/
+.idea/
+
+# --- Streamlit local secrets (if ever used instead of .env) ---
+.streamlit/secrets.toml

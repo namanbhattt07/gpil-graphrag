@@ -1,0 +1,32 @@
+# Dependencies for the GPIL S&D GraphRAG Chat System.
+#
+# Install with:  pip install -r requirements.txt   (after activating venv/)
+#
+# Versions are pinned to exactly what was tested during Phase 1 setup, so
+# `pip install` gives everyone the same environment instead of "works on my
+# machine" surprises. If you ever need to upgrade a package, change the
+# version here and re-test rather than editing installed packages by hand.
+
+# --- Data generation (Phase 2) ---
+faker==40.28.1          # generates realistic fake names/addresses/companies for synthetic data
+numpy==2.4.6             # fast numeric arrays, random distributions for seasonality/noise
+
+# --- KPI computation (Phase 3) ---
+pandas==2.3.3             # tables + group-by aggregation, used from Phase 2 onward
+
+# --- Knowledge graph + retrieval (Phases 4-6) ---
+graphrag==3.1.0           # Microsoft GraphRAG: entity/relationship extraction, indexing, search
+
+# --- LLM access (Phases 5 and 7) ---
+openai==2.45.0            # official client for calling OpenAI-compatible chat/embedding APIs
+tiktoken==0.13.0          # tokenizer, used to count/limit tokens before calling the LLM
+
+# --- UI (Phase 8) ---
+streamlit==1.59.2         # chat web app framework
+
+# --- Config / secrets (all phases) ---
+python-dotenv==1.2.2      # loads OPENAI_API_KEY etc. from a local .env file
+pyyaml==6.0.3              # reads/writes YAML config files (including GraphRAG's settings.yaml)
+
+# --- Testing (Phase 9, but usable from Phase 1 onward) ---
+pytest==9.1.1              # test runner used by tests/
