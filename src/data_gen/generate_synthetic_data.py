@@ -12,12 +12,15 @@ WHY IT LOOKS THE WAY IT DOES:
 GPIL's real structure is State -> Zone -> WD (Wholesale Distributor) ->
 SE (Sales Executive, who runs a fixed "beat" of retail outlets) -> Outlet.
 Applied at GPIL's real ratios (28 states, 3-5 zones/state, ... 50-150
-outlets/SE) this would produce ~600,000 outlets, which is unnecessarily
-huge for a demo and would make the GraphRAG indexing step in Phase 5
-slow and expensive. So we keep all 28 real states (cheap, and needed for
-believable state-vs-state comparison questions later) but shrink the
-zone/WD/SE/outlet multipliers so the whole thing lands around ~8,000-9,000
-outlets — same shape, smaller size.
+outlets/SE) this would produce ~600,000 outlets. We keep all 28 real
+states (cheap, and needed for believable state-vs-state comparison
+questions later); zones/state and WD/zone stay shrunk (2 and 2-3), but
+SE/WD and outlets/SE were widened back up close to GPIL's real ratios,
+landing around ~110,000-120,000 outlets. This is still safe for Phase 5
+GraphRAG indexing cost: indexing runs on Phase 4's narrative documents,
+which are built one per State x month (28 x 24 = 672 documents) regardless
+of how many outlets sit underneath — outlet count only affects how long
+Phase 2/3 take to run, not GraphRAG's token spend.
 
 The data is not random noise: it has DELIBERATE, seeded imperfections
 (distributor stock-outs, partially-fulfilled orders, festive-season spikes,
@@ -68,23 +71,25 @@ INDIAN_STATES = [
 # sampled per node so the hierarchy isn't perfectly uniform.
 ZONES_PER_STATE = 2
 WD_PER_ZONE_RANGE = (2, 3)      # inclusive
-SE_PER_WD_RANGE = (3, 5)        # inclusive
-OUTLETS_PER_SE_RANGE = (12, 20)  # inclusive
+SE_PER_WD_RANGE = (5, 15)        # inclusive
+OUTLETS_PER_SE_RANGE = (70, 100)  # inclusive
 
 # Retail channel types an outlet can be, with roughly how common each is.
 # Paan shops/tobacconists are the classic cigarette outlet in India, hence
 # the higher weight.
-CHANNEL_TYPES = ["Paan/Tobacconist", "Kirana/General Store", "Modern Trade", "Wholesale"]
+CHANNEL_TYPES = ["Paan/Tobacconist", "Kirana/General Store", "Modern Trade", "Dealer"]
 CHANNEL_WEIGHTS = [0.35, 0.40, 0.15, 0.10]
 
-# Which product categories each channel type typically carries. Paan shops
-# mostly sell tobacco + a bit of candy; Kirana/Modern Trade/Wholesale carry
-# everything. This creates a realistic category mix per channel.
+# Which product categories each channel type typically carries. All four
+# channels now carry all four categories (Paan/Tobacconist picked up
+# Ferrero too, e.g. Tic Tac/Kinder Joy as impulse-buy counter items) —
+# the dict is kept per-channel rather than collapsed to one shared list so
+# a future channel-specific restriction is a one-line change, not a rewrite.
 CHANNEL_CATEGORY_ELIGIBILITY = {
-    "Paan/Tobacconist": ["GPI", "IPM", "Candy"],
+    "Paan/Tobacconist": ["GPI", "IPM", "Candy", "Ferrero"],
     "Kirana/General Store": ["GPI", "IPM", "Ferrero", "Candy"],
     "Modern Trade": ["GPI", "IPM", "Ferrero", "Candy"],
-    "Wholesale": ["GPI", "IPM", "Ferrero", "Candy"],
+    "Dealer": ["GPI", "IPM", "Ferrero", "Candy"],
 }
 
 # Outlet "weight" tier, used later (Phase 3) to compute ACV as a
@@ -94,12 +99,12 @@ OUTLET_TIERS = ["Gold", "Silver", "Bronze"]
 TIER_WEIGHTS = [0.15, 0.35, 0.50]
 
 # Product hierarchy: Category -> Franchise. Franchise names are generic
-# placeholders EXCEPT Marlboro (IPM) and TicTac (Ferrero), which the user
-# already named directly rather than us guessing them.
+# placeholders EXCEPT Marlboro (IPM), TicTac and Kinder_Joy (Ferrero),
+# which the user named directly rather than us guessing them.
 CATEGORY_FRANCHISES = {
     "GPI": [f"GPI_Franchise_{i}" for i in range(1, 7)],       # 6 franchises
     "IPM": ["Marlboro"],                                       # 1 franchise, many SKUs
-    "Ferrero": ["TicTac", "Ferrero_Franchise_2"],              # 2 franchises
+    "Ferrero": ["TicTac", "Kinder_Joy"],                       # 2 franchises
     "Candy": ["Candy_Franchise_1", "Candy_Franchise_2"],       # 2 franchises
 }
 
@@ -215,10 +220,10 @@ def build_geography(rng: np.random.Generator, fake: Faker) -> pd.DataFrame:
 
 def build_outlets(geography: pd.DataFrame, rng: np.random.Generator, fake: Faker) -> pd.DataFrame:
     """
-    Generate 12-20 retail outlets under every SE. Each outlet also carries
-    a denormalised wd_id/zone_id/state_id so downstream tables (visits,
-    orders) don't need a 4-way join just to find out which state an outlet
-    is in.
+    Generate OUTLETS_PER_SE_RANGE retail outlets under every SE. Each
+    outlet also carries a denormalised wd_id/zone_id/state_id so downstream
+    tables (visits, orders) don't need a 4-way join just to find out which
+    state an outlet is in.
     """
     # Build a quick lookup: unit_id -> row, so we can walk SE -> WD -> Zone.
     lookup = geography.set_index("unit_id").to_dict(orient="index")
