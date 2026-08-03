@@ -30,3 +30,6 @@ pyyaml==6.0.3              # reads/writes YAML config files (including GraphRAG'
 
 # --- Testing (Phase 9, but usable from Phase 1 onward) ---
 pytest==9.1.1              # test runner used by tests/
+
+# --- Ad-hoc reporting (src/reports) ---
+openpyxl==3.1.5            # writes formatted .xlsx workbooks (GPIL_Pan_India_Analysis.xlsx)

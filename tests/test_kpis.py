@@ -62,11 +62,11 @@ def test_no_missing_values(kpi_state_month, kpi_state_month_category):
 
 
 def test_ratio_kpis_are_bounded_zero_to_one(kpi_state_month, kpi_state_month_category):
-    """Strike Rate, Service Level, Numeric Distribution, ACV and OOS%
+    """Productivity, Service Level, Numeric Distribution, ACV and OOS%
     are all "part over whole" ratios -- they must land in [0, 1]. (Range
     Billing and Inventory Turns are NOT bounded by 1, so they're
     excluded here.)"""
-    for col in ["strike_rate", "service_level"]:
+    for col in ["productivity", "service_level"]:
         assert kpi_state_month[col].between(0, 1).all(), f"{col} escaped [0, 1]"
 
     for col in ["numeric_distribution", "acv", "oos_pct"]:
@@ -74,10 +74,10 @@ def test_ratio_kpis_are_bounded_zero_to_one(kpi_state_month, kpi_state_month_cat
 
 
 def test_positive_kpis_are_never_negative(kpi_state_month, kpi_state_month_category):
-    """SKUs/Transaction, ACL, Inventory Turns/Days and Range Billing
+    """SKUs/Transaction, Dropsize, Inventory Turns/Days and Range Billing
     aren't ratios capped at 1, but they can never be negative or zero
     given every state has real visits/orders/inventory in every month."""
-    for col in ["skus_per_transaction", "acl", "inventory_turns", "inventory_days"]:
+    for col in ["skus_per_transaction", "dropsize", "inventory_turns", "inventory_days"]:
         assert (kpi_state_month[col] > 0).all(), f"{col} was <= 0"
 
     assert (kpi_state_month_category["range_billing"] > 0).all()
@@ -86,10 +86,10 @@ def test_positive_kpis_are_never_negative(kpi_state_month, kpi_state_month_categ
 def test_state_performance_factor_produces_real_spread(kpi_state_month):
     """Phase 2 seeded a per-state performance factor specifically so
     states differ consistently in order-placement rate. If every
-    state's average strike rate came out identical, that signal would
+    state's average productivity came out identical, that signal would
     have been lost somewhere in the KPI rollup."""
-    state_avg = kpi_state_month.groupby("state_name")["strike_rate"].mean()
-    assert state_avg.max() - state_avg.min() > 0.05, "no meaningful state-to-state spread in strike rate"
+    state_avg = kpi_state_month.groupby("state_name")["productivity"].mean()
+    assert state_avg.max() - state_avg.min() > 0.05, "no meaningful state-to-state spread in productivity"
 
 
 def test_kpi_computation_is_reproducible(tables):

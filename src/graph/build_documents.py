@@ -17,8 +17,8 @@ Each document:
      the graph, nothing else anchors it in time, so the time reference has
      to live in the sentence itself.
   2. Describes that state's overall KPIs for that month (from
-     kpi_state_month.csv): Strike Rate, SKUs/Transaction, Service Level,
-     ACL, Inventory Turns, Inventory Days.
+     kpi_state_month.csv): Productivity, SKUs/Transaction, Service Level,
+     Dropsize, Inventory Turns, Inventory Days.
   3. Names the Wholesale Distributors (WDs) operating in that state (from
      geography.csv), so GraphRAG has a state->WD relationship to extract
      even though we don't have WD-level KPIs yet.
@@ -164,14 +164,14 @@ def render_document(
 
     # 2. State-level (category-agnostic) KPI paragraph.
     lines.append(
-        f"In {state_name} during {month_words}, the Strike Rate "
+        f"In {state_name} during {month_words}, Productivity "
         f"(share of sales visits that resulted in an order) was "
-        f"{_format_pct(state_row['strike_rate'])}, and the average "
+        f"{_format_pct(state_row['productivity'])}, and the average "
         f"Service Level (share of ordered quantity actually delivered) "
         f"was {_format_pct(state_row['service_level'])}. "
         f"Sales executives averaged {state_row['skus_per_transaction']:.2f} "
-        f"SKUs per transaction and an Average Case Load (ACL) of "
-        f"{state_row['acl']:.2f} units per productive visit. "
+        f"SKUs per transaction and a Dropsize of "
+        f"{state_row['dropsize']:.2f} units per productive visit. "
         f"Distributor inventory turned over {state_row['inventory_turns']:.2f} "
         f"times during the month, equivalent to {state_row['inventory_days']:.1f} "
         f"days of stock on hand on average."
@@ -231,9 +231,9 @@ def build_all_documents(data_dir: Path, output_dir: Path) -> pd.DataFrame:
 
     # Iterate the state x month grain in a fixed, sorted order so output
     # is deterministic regardless of the source CSV's row order.
-    for _, state_row in kpi_state_month.sort_values(
-        ["state_name", "month"]
-    ).iterrows():
+    sorted_rows = kpi_state_month.sort_values(["state_name", "month"])
+    total = len(sorted_rows)
+    for i, (_, state_row) in enumerate(sorted_rows.iterrows(), start=1):
         state_name = state_row["state_name"]
         month_str = state_row["month"]
 
@@ -253,6 +253,12 @@ def build_all_documents(data_dir: Path, output_dir: Path) -> pd.DataFrame:
 
         filename = _safe_filename(state_name, month_str)
         (output_dir / filename).write_text(document_text, encoding="utf-8")
+
+        # Print progress for every document so a rerun is never a silent
+        # black box -- with 672 files, seeing each one written (and the
+        # running count) makes it obvious the script is alive and exactly
+        # how far it's gotten.
+        print(f"[{i}/{total}] wrote {filename}", flush=True)
 
         manifest_rows.append(
             {"filename": filename, "state_name": state_name, "month": month_str}

@@ -99,9 +99,9 @@ every command used in this repo.
 | # | Phase | Status |
 |---|-------|--------|
 | 1 | Project Setup & Scaffolding | ✅ done |
-| 2 | Synthetic Data Generation | ⬜ not started |
-| 3 | KPI Computation | ⬜ not started |
-| 4 | Graph-Ready Document Construction | ⬜ not started |
+| 2 | Synthetic Data Generation | ✅ done |
+| 3 | KPI Computation | ✅ done |
+| 4 | Graph-Ready Document Construction | ✅ done |
 | 5 | GraphRAG Indexing | ⬜ not started |
 | 6 | Retrieval Layer | ⬜ not started |
 | 7 | Inference Layer | ⬜ not started |

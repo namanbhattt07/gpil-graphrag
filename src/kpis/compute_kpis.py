@@ -10,7 +10,7 @@ the raw rows up into the business KPIs the requirements doc asks for,
 at State x month grain (State is GPIL's real top geography level).
 
 WHY TWO OUTPUT TABLES INSTEAD OF ONE:
-Some KPIs (Strike Rate, Service Level, Inventory Turns/Days, ACL,
+Some KPIs (Productivity, Service Level, Inventory Turns/Days, Dropsize,
 SKUs/Transaction) describe overall S&D health for a state in a month --
 they don't refer to any one product category. Others (Numeric
 Distribution, ACV, Out-of-Stock %, Range Billing) are only meaningful
@@ -23,13 +23,13 @@ vs Ferrero vs Candy differences later "why" questions need). So:
     kpi_state_month_category.csv  - State x Month x Category grain
 
 ASSUMPTIONS FLAGGED FOR GPIL CONFIRMATION (per the requirements doc's
-own instruction to flag rather than silently guess -- ACL and Range
+own instruction to flag rather than silently guess -- Dropsize and Range
 Billing definitions vary by company):
-  - ACL (Average Case Load) is computed here as the average QUANTITY
-    (units) ordered per productive visit -- a volume metric. This is
-    deliberately different from SKUs/Transaction (a line-count metric),
-    since "average line per call" and "average case load" are two
-    different things some companies conflate.
+  - Dropsize (formerly "ACL"/Average Case Load) is computed here as the
+    average QUANTITY (units) ordered per productive visit -- a volume
+    metric. This is deliberately different from SKUs/Transaction (a
+    line-count metric), since "average line per call" and "average case
+    load" are two different things some companies conflate.
   - Range Billing is computed here as: for each outlet that billed
     anything in a category that month, what fraction of that category's
     full SKU range did it buy? Averaged across billed outlets.
@@ -87,14 +87,16 @@ def _month_start(series: pd.Series) -> pd.Series:
     'month' bucket for aggregation. pd.to_datetime() normalises both
     CSV-loaded datetime64 columns and the plain Python date objects
     generate_all() returns in-memory (used directly by the test suite)
-    to the same dtype before extracting the period."""
+    to the same dtype before extracting the period.exact dates ko month buckets mein
+    convert karta hai taaki monthly KPI nikale ja sake."""
     return pd.to_datetime(series).dt.to_period("M")
 
 
 def _wd_to_state(geography: pd.DataFrame) -> pd.Series:
     """Build a wd_id -> state_name lookup. Inventory snapshots are keyed
     by wd_id, not state, so every inventory-based KPI needs this to roll
-    stock positions up to State grain."""
+    stock positions up to State grain.Warehouse Distributor ID ko State ke saath connect karta hai taaki 
+    inventory ko state level pe aggregate kar sake."""
     wd_rows = geography[geography["unit_type"] == "WD"]
     return wd_rows.set_index("unit_id")["state_name"]
 
@@ -103,11 +105,12 @@ def _wd_to_state(geography: pd.DataFrame) -> pd.Series:
 # Table A: State x Month KPIs (category-agnostic overall health metrics)
 # ---------------------------------------------------------------------------
 
-def compute_strike_rate(visits: pd.DataFrame, outlets: pd.DataFrame) -> pd.DataFrame:
+def compute_productivity(visits: pd.DataFrame, outlets: pd.DataFrame) -> pd.DataFrame:
     """
-    Strike Rate = productive (Order Placed) visits / total visits.
-    Answers: "of all the calls an SE made, what fraction resulted in
-    an order?" -- the single clearest visits-to-orders conversion KPI.
+    Productivity (formerly "Strike Rate") = productive (Order Placed)
+    visits / total visits. Answers: "of all the calls an SE made, what
+    fraction resulted in an order?" -- the single clearest visits-to-orders
+    conversion KPI.
     """
     v = visits.merge(outlets[["outlet_id", "state_name"]], on="outlet_id", how="left")
     v["month"] = _month_start(v["visit_date"])
@@ -117,7 +120,7 @@ def compute_strike_rate(visits: pd.DataFrame, outlets: pd.DataFrame) -> pd.DataF
     productive_visits = grouped["visit_outcome"].apply(lambda s: (s == "Order Placed").sum()).rename("productive_visits")
 
     out = pd.concat([total_visits, productive_visits], axis=1).reset_index()
-    out["strike_rate"] = out["productive_visits"] / out["total_visits"]
+    out["productivity"] = out["productive_visits"] / out["total_visits"]
     return out
 
 
@@ -144,12 +147,12 @@ def compute_order_level_kpis(orders: pd.DataFrame, outlets: pd.DataFrame) -> pd.
     return out
 
 
-def compute_acl(orders: pd.DataFrame, outlets: pd.DataFrame, visits: pd.DataFrame) -> pd.DataFrame:
+def compute_dropsize(orders: pd.DataFrame, outlets: pd.DataFrame, visits: pd.DataFrame) -> pd.DataFrame:
     """
-    ACL (Average Case Load) -- NEEDS GPIL CONFIRMATION on definition.
-    Computed here as: total quantity ordered / number of productive
-    (Order Placed) visits, i.e. average UNITS sold per successful call.
-    This is a volume metric, deliberately distinct from
+    Dropsize (formerly "ACL"/Average Case Load) -- NEEDS GPIL CONFIRMATION
+    on definition. Computed here as: total quantity ordered / number of
+    productive (Order Placed) visits, i.e. average UNITS sold per
+    successful call. This is a volume metric, deliberately distinct from
     SKUs/Transaction (which counts SKU lines, not units).
     """
     o = orders.merge(outlets[["outlet_id", "state_name"]], on="outlet_id", how="left")
@@ -162,8 +165,8 @@ def compute_acl(orders: pd.DataFrame, outlets: pd.DataFrame, visits: pd.DataFram
     productive_by_group = productive.groupby(["state_name", "month"]).size().rename("productive_visits")
 
     out = pd.concat([qty_by_group, productive_by_group], axis=1).reset_index()
-    out["acl"] = out["total_qty_ordered"] / out["productive_visits"]
-    return out[["state_name", "month", "acl"]]
+    out["dropsize"] = out["total_qty_ordered"] / out["productive_visits"]
+    return out[["state_name", "month", "dropsize"]]
 
 
 def compute_inventory_kpis(inventory: pd.DataFrame, geography: pd.DataFrame, days_in_month: int = 30) -> pd.DataFrame:
@@ -195,15 +198,15 @@ def compute_inventory_kpis(inventory: pd.DataFrame, geography: pd.DataFrame, day
 def build_kpi_state_month(tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
     """Assemble Table A by joining every category-agnostic KPI piece on
     (state_name, month)."""
-    strike = compute_strike_rate(tables["visits"], tables["outlets"])
+    productivity = compute_productivity(tables["visits"], tables["outlets"])
     order_kpis = compute_order_level_kpis(tables["orders"], tables["outlets"])
-    acl = compute_acl(tables["orders"], tables["outlets"], tables["visits"])
+    dropsize = compute_dropsize(tables["orders"], tables["outlets"], tables["visits"])
     inventory_kpis = compute_inventory_kpis(tables["inventory_snapshots"], tables["geography"])
 
-    out = strike[["state_name", "month", "strike_rate"]]
+    out = productivity[["state_name", "month", "productivity"]]
     out = out.merge(order_kpis[["state_name", "month", "skus_per_transaction", "service_level"]],
                      on=["state_name", "month"], how="outer")
-    out = out.merge(acl, on=["state_name", "month"], how="outer")
+    out = out.merge(dropsize, on=["state_name", "month"], how="outer")
     out = out.merge(inventory_kpis[["state_name", "month", "inventory_turns", "inventory_days"]],
                      on=["state_name", "month"], how="outer")
 

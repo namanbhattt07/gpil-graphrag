@@ -14,6 +14,9 @@ venv/
 .venv/
 env/
 
+# --- Phase 5 Ollama test workspace (throwaway, branch-local) ---
+data/graphrag_index_ollama_test/
+
 # --- Generated data & GraphRAG artifacts ---
 # These are all *regenerated* by running the phase scripts (Phase 2 makes
 # the CSVs, Phase 5 builds the GraphRAG index), and fixed random seeds make
