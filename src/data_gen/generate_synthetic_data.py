@@ -106,22 +106,33 @@ CHANNEL_WEIGHTS_BY_VOLUME = [0.35, 0.09, 0.03, 0.53]
 # strict 12-way cascade (Gold Dealer > ... > Bronze Retail) holds by
 # construction, regardless of outlet counts.
 #
-# The cross-channel TOTAL-units order (Dealer > Retail > Hawkers > Modern
-# Trade) also has to hold given CHANNEL_WEIGHTS_BY_COUNT above, which pins
-# Retail at 93.85% of all outlets vs Dealer's 4.69%. Since
-# total_units(channel) ~= count_share(channel) * base_multiplier(channel)
-# (tier/visit/state effects average out roughly evenly across channels),
-# Dealer's total only beats Retail's if
-#   base_mult_Dealer > count_share_Retail / count_share_Dealer * base_mult_Retail
-#                     = 0.9385 / 0.0469 * 1 = ~20.0
-# so Dealer's multiplier is set to 24 (not the naive 15) for a ~20% safety
-# margin. Modern Trade (8) vs Hawkers (3) only need Hawkers' total to beat
-# Modern Trade's, which holds easily at these outlet-count shares
-# (0.0117*3=0.0351 > 0.0029*8=0.0232).
+# 2026-08-03 retune: the previous 24/8/3/1 set satisfied the cascade with a
+# lot of room to spare (adjacent-channel margin ~1.78-2x against the 1.5x
+# Gold:Bronze tier spread) but left Hawkers/Modern Trade's realised volume
+# share badly short of target (measured ~1.65%/1.09% vs the 9%/3% ambition)
+# because their outlet-count share is so tiny (1.17%/0.29%) that only a much
+# bigger multiplier moves their aggregate share at all. Re-solved by grid
+# search over (Dealer, Modern Trade, Hawkers) holding Retail=1 fixed,
+# maximising closeness to the 53/35/9/3 target subject to keeping every
+# adjacent-channel cascade margin >= 1.2x (i.e. mult_higher > 1.2 * 1.5 *
+# mult_lower for every step Dealer>MT>Hawkers>Retail) — tight enough to move
+# the needle, but still a real safety buffer over the 1.0x line
+# verify_cascade() treats as a hard failure, not the 1.01-1.05x knife-edge
+# the same search found if pushed further. Landed at Dealer=33/MT=18/
+# Hawkers=10 (Retail=1), projected shares Retail 35.3% / Dealer 58.3% /
+# Hawkers 4.4% / Modern Trade 2.0% -- Retail and Dealer now much closer to
+# target, Hawkers/MT meaningfully improved (~2.7x / ~1.8x closer) though
+# still short of 9%/3% exactly, because hitting those exactly would need
+# multipliers whose ratios violate the 1.5x tier spread (worked out
+# analytically: the exact-fit multipliers are only ~1.09x-1.35x apart
+# channel-to-channel, less than the 1.5x the tier spread needs, so an exact
+# fit and a passing cascade are mutually exclusive at these outlet-count
+# shares). Dealer overshooting to ~58% stays comfortably under the "no
+# channel > 80%" realism guardrail.
 CHANNEL_BASE_MULTIPLIER = {
-    "Dealer": 24.0,
-    "Modern Trade": 8.0,
-    "Hawkers": 3.0,
+    "Dealer": 33.0,
+    "Modern Trade": 18.0,
+    "Hawkers": 10.0,
     "Retail": 1.0,
 }
 
@@ -188,15 +199,17 @@ HERO_SKU_WEIGHT_BOOST = 25.0     # multiplies a Hero SKU's chance of being picke
 HERO_SKU_QTY_MULTIPLIER = 1.4    # multiplies qty_ordered once a Hero SKU is picked
 
 # Channel, tier and Hero multipliers can all land on the same order line
-# (e.g. a Gold-tier Dealer ordering a Hero SKU) and compound — up to
-# ~channel_mult(24) x tier_mult(1.5) x hero_mult(1.4) x base_qty(24) =
-# ~1,210 in the worst case. Cap the final qty_ordered as a backstop against
-# that stacking producing unrealistic extreme values, but keep the cap well
-# above that worst case (was 250 at one point, which clipped 12-20% of
-# Dealer/Hawkers/Modern Trade lines and systematically suppressed their
-# aggregate volume share while inflating Retail's, since Retail's
-# multiplier is below 1 and never hits the cap).
-MAX_QTY_ORDERED_PER_LINE = 1500
+# (e.g. a Gold-tier Dealer ordering a Hero SKU) and compound — with the
+# 2026-08-03 CHANNEL_BASE_MULTIPLIER retune (Dealer now 33, was 24), the
+# worst case is ~channel_mult(33) x tier_mult(1.5) x hero_mult(1.4) x
+# base_qty(24) = ~1,663, which would already exceed the old 1500 cap. Cap
+# raised to 2000 to keep clear of that new worst case (was 250 at one point,
+# which clipped 12-20% of Dealer/Hawkers/Modern Trade lines and
+# systematically suppressed their aggregate volume share while inflating
+# Retail's, since Retail's multiplier is below 1 and never hits the cap —
+# exactly the failure mode this retune is trying to fix, so leaving the cap
+# too tight here would quietly undo it).
+MAX_QTY_ORDERED_PER_LINE = 2000
 
 # Weight on state_factor (vs. independent per-state noise) when deriving
 # each state's Dropsize scaling factor in build_orders() (see DROPSIZE_STATE_FACTOR_WEIGHT

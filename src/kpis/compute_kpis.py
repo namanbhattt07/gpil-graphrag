@@ -233,6 +233,7 @@ def _eligible_outlets_by_category(outlets: pd.DataFrame) -> pd.DataFrame:
         for category in categories:
             expanded = subset[["outlet_id", "state_name", "outlet_tier"]].copy()
             expanded["category_name"] = category
+            expanded["channel_type"] = channel
             rows.append(expanded)
     return pd.concat(rows, ignore_index=True)
 
@@ -320,6 +321,97 @@ def compute_range_billing(orders: pd.DataFrame, outlets: pd.DataFrame, products:
     return out
 
 
+# ---------------------------------------------------------------------------
+# Table B2 (Step 3, GraphRAG doc pipeline): State x Month x Category x
+# Channel Type KPIs -- same category-scoped formulas as Table B, with
+# channel_type added as an extra grouping key, so documents can eventually
+# compare e.g. Retail vs Dealer channel performance within a
+# state/category/month.
+#
+# OOS% is deliberately NOT included here. Its only source,
+# inventory_snapshots.csv, is keyed by (wd_id, sku_id, month) -- a
+# distributor's warehouse stock position -- and carries no outlet_id or
+# channel_type at all. A WD's stock isn't attributable to any one channel
+# it serves downstream, so there is no real per-channel OOS% to compute
+# from current data; inventing one would mean redefining the KPI on a
+# dimension it doesn't have, which this step's brief explicitly rules out.
+# ---------------------------------------------------------------------------
+
+def compute_distribution_kpis_channel(
+    orders: pd.DataFrame, outlets: pd.DataFrame, products: pd.DataFrame
+) -> pd.DataFrame:
+    """
+    Same Numeric Distribution / ACV formulas as compute_distribution_kpis(),
+    grouped by (state_name, month, category_name, channel_type) instead of
+    (state_name, month, category_name). _eligible_outlets_by_category()
+    already knows each row's channel_type (that's how it applies
+    CHANNEL_CATEGORY_ELIGIBILITY), so this only adds channel_type to the
+    two groupby calls -- the eligible/billed counting logic is unchanged.
+    """
+    eligible = _eligible_outlets_by_category(outlets)
+    eligible["tier_weight"] = eligible["outlet_tier"].map(OUTLET_TIER_WEIGHT)
+
+    eligible_counts = eligible.groupby(["state_name", "category_name", "channel_type"]).agg(
+        eligible_outlets=("outlet_id", "nunique"),
+        eligible_weight=("tier_weight", "sum"),
+    ).reset_index()
+
+    o = orders.merge(outlets[["outlet_id", "state_name", "outlet_tier", "channel_type"]], on="outlet_id", how="left")
+    o = o.merge(products[["sku_id", "category_name"]], on="sku_id", how="left")
+    o["month"] = _month_start(o["order_date"])
+    o["tier_weight"] = o["outlet_tier"].map(OUTLET_TIER_WEIGHT)
+
+    billed = o.groupby(["state_name", "month", "category_name", "channel_type", "outlet_id"]).agg(
+        tier_weight=("tier_weight", "first"),
+    ).reset_index()
+    billed_counts = billed.groupby(["state_name", "month", "category_name", "channel_type"]).agg(
+        billed_outlets=("outlet_id", "nunique"),
+        billed_weight=("tier_weight", "sum"),
+    ).reset_index()
+
+    out = billed_counts.merge(eligible_counts, on=["state_name", "category_name", "channel_type"], how="left")
+    out["numeric_distribution"] = out["billed_outlets"] / out["eligible_outlets"]
+    out["acv"] = out["billed_weight"] / out["eligible_weight"]
+    return out
+
+
+def compute_range_billing_channel(
+    orders: pd.DataFrame, outlets: pd.DataFrame, products: pd.DataFrame
+) -> pd.DataFrame:
+    """Same Range Billing formula as compute_range_billing(), grouped by
+    (state_name, month, category_name, channel_type) instead of
+    (state_name, month, category_name)."""
+    skus_per_category = products.groupby("category_name")["sku_id"].nunique().rename("skus_in_category")
+
+    o = orders.merge(outlets[["outlet_id", "state_name", "channel_type"]], on="outlet_id", how="left")
+    o = o.merge(products[["sku_id", "category_name"]], on="sku_id", how="left")
+    o["month"] = _month_start(o["order_date"])
+
+    per_outlet = o.groupby(["state_name", "month", "category_name", "channel_type", "outlet_id"])["sku_id"].nunique().rename(
+        "distinct_skus_billed").reset_index()
+    per_outlet = per_outlet.merge(skus_per_category, on="category_name", how="left")
+    per_outlet["outlet_range_ratio"] = per_outlet["distinct_skus_billed"] / per_outlet["skus_in_category"]
+
+    out = per_outlet.groupby(["state_name", "month", "category_name", "channel_type"])["outlet_range_ratio"].mean().rename(
+        "range_billing").reset_index()
+    return out
+
+
+def build_kpi_state_month_channel(tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
+    """Assemble Table B2 by joining the channel-scoped KPI pieces on
+    (state_name, month, category_name, channel_type). No OOS% column --
+    see the module comment above compute_distribution_kpis_channel."""
+    dist = compute_distribution_kpis_channel(tables["orders"], tables["outlets"], tables["products"])
+    range_billing = compute_range_billing_channel(tables["orders"], tables["outlets"], tables["products"])
+
+    out = dist[["state_name", "month", "category_name", "channel_type", "numeric_distribution", "acv"]]
+    out = out.merge(range_billing, on=["state_name", "month", "category_name", "channel_type"], how="outer")
+
+    out = out.sort_values(["state_name", "month", "category_name", "channel_type"]).reset_index(drop=True)
+    out["month"] = out["month"].astype(str)
+    return out
+
+
 def build_kpi_state_month_category(tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
     """Assemble Table B by joining every category-scoped KPI piece on
     (state_name, month, category_name)."""
@@ -338,15 +430,367 @@ def build_kpi_state_month_category(tables: dict[str, pd.DataFrame]) -> pd.DataFr
 
 
 # ---------------------------------------------------------------------------
+# Table C: WD (distributor) x Month KPIs (category-agnostic overall health
+# metrics, same formulas as Table A but rolled up to the individual
+# distributor instead of the whole state -- this is what unlocks "why did
+# this specific distributor underperform" questions).
+# ---------------------------------------------------------------------------
+
+def _wd_info(geography: pd.DataFrame) -> pd.DataFrame:
+    """wd_id -> (wd_name, state_name) lookup, purely for attaching
+    descriptive context columns to WD-grain KPI tables (not part of the
+    grouping grain itself)."""
+    wd_rows = geography[geography["unit_type"] == "WD"]
+    return wd_rows.rename(columns={"unit_id": "wd_id", "unit_name": "wd_name"})[
+        ["wd_id", "wd_name", "state_name"]
+    ]
+
+
+def compute_productivity_wd(visits: pd.DataFrame, geography: pd.DataFrame) -> pd.DataFrame:
+    """
+    Same Productivity formula as compute_productivity(), grouped by
+    (wd_id, month) instead of (state_name, month). visits.csv only carries
+    se_id, not wd_id, so each visit is attributed to a distributor via the
+    SE's parent_unit_id in geography.csv (SE -> WD).
+    """
+    se_to_wd = geography[geography["unit_type"] == "SE"].set_index("unit_id")["parent_unit_id"]
+    v = visits.copy()
+    v["wd_id"] = v["se_id"].map(se_to_wd)
+    v["month"] = _month_start(v["visit_date"])
+
+    grouped = v.groupby(["wd_id", "month"])
+    total_visits = grouped.size().rename("total_visits")
+    productive_visits = grouped["visit_outcome"].apply(lambda s: (s == "Order Placed").sum()).rename("productive_visits")
+
+    out = pd.concat([total_visits, productive_visits], axis=1).reset_index()
+    out["productivity"] = out["productive_visits"] / out["total_visits"]
+    return out
+
+
+def compute_order_level_kpis_wd(orders: pd.DataFrame) -> pd.DataFrame:
+    """
+    Same SKUs/Transaction and Service Level formulas as
+    compute_order_level_kpis(), grouped by (wd_id, month) using the wd_id
+    orders.csv already carries on every line (verified identical to the
+    outlet's own wd_id on outlets.csv, so no join is needed here).
+    """
+    o = orders.copy()
+    o["month"] = _month_start(o["order_date"])
+
+    grouped = o.groupby(["wd_id", "month"])
+    n_lines = grouped.size().rename("total_order_lines")
+    n_orders = grouped["order_id"].nunique().rename("total_orders")
+    qty_ordered = grouped["qty_ordered"].sum().rename("total_qty_ordered")
+    qty_delivered = grouped["qty_delivered"].sum().rename("total_qty_delivered")
+
+    out = pd.concat([n_lines, n_orders, qty_ordered, qty_delivered], axis=1).reset_index()
+    out["skus_per_transaction"] = out["total_order_lines"] / out["total_orders"]
+    out["service_level"] = out["total_qty_delivered"] / out["total_qty_ordered"]
+    return out
+
+
+def compute_dropsize_wd(
+    orders: pd.DataFrame, visits: pd.DataFrame, geography: pd.DataFrame
+) -> pd.DataFrame:
+    """Same Dropsize formula as compute_dropsize(), grouped by (wd_id, month).
+    orders.csv already carries wd_id on every line, so no outlets join is
+    needed for the order side."""
+    o = orders.copy()
+    o["month"] = _month_start(o["order_date"])
+    qty_by_group = o.groupby(["wd_id", "month"])["qty_ordered"].sum().rename("total_qty_ordered")
+
+    se_to_wd = geography[geography["unit_type"] == "SE"].set_index("unit_id")["parent_unit_id"]
+    v = visits.copy()
+    v["wd_id"] = v["se_id"].map(se_to_wd)
+    v["month"] = _month_start(v["visit_date"])
+    productive = v[v["visit_outcome"] == "Order Placed"]
+    productive_by_group = productive.groupby(["wd_id", "month"]).size().rename("productive_visits")
+
+    out = pd.concat([qty_by_group, productive_by_group], axis=1).reset_index()
+    out["dropsize"] = out["total_qty_ordered"] / out["productive_visits"]
+    return out[["wd_id", "month", "dropsize"]]
+
+
+def compute_inventory_kpis_wd(inventory: pd.DataFrame, days_in_month: int = 30) -> pd.DataFrame:
+    """
+    Same Inventory Turns/Days formulas as compute_inventory_kpis(), grouped
+    by (wd_id, month). No state lookup needed here -- inventory_snapshots.csv
+    is already keyed by wd_id directly.
+    """
+    inv = inventory.copy()
+    inv["month"] = _month_start(inv["snapshot_month"])
+    inv["avg_stock"] = (inv["opening_stock"] + inv["closing_stock"]) / 2
+
+    grouped = inv.groupby(["wd_id", "month"])
+    qty_sold = grouped["qty_sold"].sum().rename("total_qty_sold")
+    avg_stock = grouped["avg_stock"].sum().rename("total_avg_stock")
+
+    out = pd.concat([qty_sold, avg_stock], axis=1).reset_index()
+    out["inventory_turns"] = out["total_qty_sold"] / out["total_avg_stock"]
+    out["inventory_days"] = days_in_month / out["inventory_turns"]
+    return out
+
+
+def build_kpi_wd_month(tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
+    """Assemble Table C by joining every category-agnostic KPI piece on
+    (wd_id, month), mirroring build_kpi_state_month() at WD grain. Adds
+    wd_name/state_name as descriptive context columns (not part of the
+    grouping grain) so a WD row can still be traced back to its state."""
+    productivity = compute_productivity_wd(tables["visits"], tables["geography"])
+    order_kpis = compute_order_level_kpis_wd(tables["orders"])
+    dropsize = compute_dropsize_wd(tables["orders"], tables["visits"], tables["geography"])
+    inventory_kpis = compute_inventory_kpis_wd(tables["inventory_snapshots"])
+
+    out = productivity[["wd_id", "month", "productivity"]]
+    out = out.merge(order_kpis[["wd_id", "month", "skus_per_transaction", "service_level"]],
+                     on=["wd_id", "month"], how="outer")
+    out = out.merge(dropsize, on=["wd_id", "month"], how="outer")
+    out = out.merge(inventory_kpis[["wd_id", "month", "inventory_turns", "inventory_days"]],
+                     on=["wd_id", "month"], how="outer")
+
+    out = out.merge(_wd_info(tables["geography"]), on="wd_id", how="left")
+    out = out[["wd_id", "wd_name", "state_name", "month", "productivity", "skus_per_transaction",
+               "service_level", "dropsize", "inventory_turns", "inventory_days"]]
+
+    out = out.sort_values(["state_name", "wd_id", "month"]).reset_index(drop=True)
+    out["month"] = out["month"].astype(str)
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Table D: WD (distributor) x Month x Category KPIs (product-scoped
+# distribution KPIs, same formulas as Table B but rolled up to the
+# individual distributor instead of the whole state).
+# ---------------------------------------------------------------------------
+
+def _eligible_outlets_by_category_wd(outlets: pd.DataFrame) -> pd.DataFrame:
+    """Same eligibility expansion as _eligible_outlets_by_category(), but
+    keyed by wd_id instead of state_name."""
+    rows = []
+    for channel, categories in CHANNEL_CATEGORY_ELIGIBILITY.items():
+        subset = outlets[(outlets["channel_type"] == channel) & (outlets["is_active"])]
+        for category in categories:
+            expanded = subset[["outlet_id", "wd_id", "outlet_tier"]].copy()
+            expanded["category_name"] = category
+            rows.append(expanded)
+    return pd.concat(rows, ignore_index=True)
+
+
+def compute_distribution_kpis_wd(orders: pd.DataFrame, outlets: pd.DataFrame, products: pd.DataFrame) -> pd.DataFrame:
+    """Same ND and ACV formulas as compute_distribution_kpis(), grouped by
+    (wd_id, month, category_name)."""
+    eligible = _eligible_outlets_by_category_wd(outlets)
+    eligible["tier_weight"] = eligible["outlet_tier"].map(OUTLET_TIER_WEIGHT)
+
+    eligible_counts = eligible.groupby(["wd_id", "category_name"]).agg(
+        eligible_outlets=("outlet_id", "nunique"),
+        eligible_weight=("tier_weight", "sum"),
+    ).reset_index()
+
+    o = orders.merge(outlets[["outlet_id", "outlet_tier"]], on="outlet_id", how="left")
+    o = o.merge(products[["sku_id", "category_name"]], on="sku_id", how="left")
+    o["month"] = _month_start(o["order_date"])
+    o["tier_weight"] = o["outlet_tier"].map(OUTLET_TIER_WEIGHT)
+
+    billed = o.groupby(["wd_id", "month", "category_name", "outlet_id"]).agg(
+        tier_weight=("tier_weight", "first"),
+    ).reset_index()
+    billed_counts = billed.groupby(["wd_id", "month", "category_name"]).agg(
+        billed_outlets=("outlet_id", "nunique"),
+        billed_weight=("tier_weight", "sum"),
+    ).reset_index()
+
+    out = billed_counts.merge(eligible_counts, on=["wd_id", "category_name"], how="left")
+    out["numeric_distribution"] = out["billed_outlets"] / out["eligible_outlets"]
+    out["acv"] = out["billed_weight"] / out["eligible_weight"]
+    return out
+
+
+def compute_oos_pct_wd(inventory: pd.DataFrame, products: pd.DataFrame) -> pd.DataFrame:
+    """
+    Same OOS% formula as compute_oos_pct(), grouped by (wd_id, month,
+    category_name). No state lookup needed -- inventory_snapshots.csv is
+    already keyed by wd_id directly.
+    """
+    inv = inventory.merge(products[["sku_id", "category_name"]], on="sku_id", how="left")
+    inv["month"] = _month_start(inv["snapshot_month"])
+
+    grouped = inv.groupby(["wd_id", "month", "category_name"])
+    total_snapshots = grouped.size().rename("total_snapshots")
+    stockout_snapshots = grouped["stockout_flag"].sum().rename("stockout_snapshots")
+
+    out = pd.concat([total_snapshots, stockout_snapshots], axis=1).reset_index()
+    out["oos_pct"] = out["stockout_snapshots"] / out["total_snapshots"]
+    return out
+
+
+def compute_range_billing_wd(orders: pd.DataFrame, products: pd.DataFrame) -> pd.DataFrame:
+    """Same Range Billing formula as compute_range_billing(), grouped by
+    (wd_id, month, category_name). orders.csv already carries wd_id on
+    every line, so no outlets join is needed here."""
+    skus_per_category = products.groupby("category_name")["sku_id"].nunique().rename("skus_in_category")
+
+    o = orders.merge(products[["sku_id", "category_name"]], on="sku_id", how="left")
+    o["month"] = _month_start(o["order_date"])
+
+    per_outlet = o.groupby(["wd_id", "month", "category_name", "outlet_id"])["sku_id"].nunique().rename(
+        "distinct_skus_billed").reset_index()
+    per_outlet = per_outlet.merge(skus_per_category, on="category_name", how="left")
+    per_outlet["outlet_range_ratio"] = per_outlet["distinct_skus_billed"] / per_outlet["skus_in_category"]
+
+    out = per_outlet.groupby(["wd_id", "month", "category_name"])["outlet_range_ratio"].mean().rename(
+        "range_billing").reset_index()
+    return out
+
+
+def build_kpi_wd_month_category(tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
+    """Assemble Table D by joining every category-scoped KPI piece on
+    (wd_id, month, category_name), mirroring build_kpi_state_month_category()
+    at WD grain."""
+    dist = compute_distribution_kpis_wd(tables["orders"], tables["outlets"], tables["products"])
+    oos = compute_oos_pct_wd(tables["inventory_snapshots"], tables["products"])
+    range_billing = compute_range_billing_wd(tables["orders"], tables["products"])
+
+    out = dist[["wd_id", "month", "category_name", "numeric_distribution", "acv"]]
+    out = out.merge(oos[["wd_id", "month", "category_name", "oos_pct"]],
+                     on=["wd_id", "month", "category_name"], how="outer")
+    out = out.merge(range_billing, on=["wd_id", "month", "category_name"], how="outer")
+
+    out = out.merge(_wd_info(tables["geography"]), on="wd_id", how="left")
+    out = out[["wd_id", "wd_name", "state_name", "month", "category_name",
+               "numeric_distribution", "acv", "oos_pct", "range_billing"]]
+
+    out = out.sort_values(["state_name", "wd_id", "month", "category_name"]).reset_index(drop=True)
+    out["month"] = out["month"].astype(str)
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Table E: State x Month x SKU KPIs (Problem 1 -- SKU-level business
+# diagnostics). Same KPI DEFINITIONS as Tables B/C/D (Numeric Distribution,
+# Out-of-Stock %, Service Level), just re-scoped from "any SKU in the
+# category" down to ONE SKU -- no new metric is invented here. Adds Units
+# Delivered and Revenue (delivered units x the order line's OWN unit_price,
+# both real fields already on every orders.csv row -- no price assumption
+# made here), since raw sales volume/value is what "top N SKUs" / "which
+# SKU sells the most" questions actually ask about, and neither exists at
+# any coarser grain (Table B describes distribution/OOS%, never volume).
+#
+# GRAIN AND SCALE: State x Month x SKU. products.csv has ~59 SKUs total (a
+# small, fixed catalogue -- see build_products()), so this table is
+# 28 states x 24 months x ~59 SKUs ~= 39,600 rows -- the same order of
+# magnitude as kpi_wd_month_category.csv, never a raw-row dump of
+# orders.csv's tens of millions of order lines. This is what makes a
+# SKU-level narrative document corpus (src/graph/build_sku_documents.py)
+# and a deterministic evidence lookup (src/inference/sku_evidence.py)
+# tractable without ever feeding a raw order line into anything.
+# ---------------------------------------------------------------------------
+
+
+def _eligible_outlets_by_sku_state(outlets: pd.DataFrame) -> pd.DataFrame:
+    """(state_name, category_name) -> count of outlets eligible to carry
+    that category -- every SKU in a category shares the same eligible
+    population (Numeric Distribution's denominator doesn't vary by SKU
+    within a category, only by category, exactly like Table B's ND). Reuses
+    _eligible_outlets_by_category() unchanged rather than re-deriving the
+    channel/category eligibility rule a second time."""
+    eligible = _eligible_outlets_by_category(outlets)
+    return (
+        eligible.groupby(["state_name", "category_name"])["outlet_id"]
+        .nunique()
+        .rename("eligible_outlets")
+        .reset_index()
+    )
+
+
+def compute_sku_sales_kpis(orders: pd.DataFrame, outlets: pd.DataFrame) -> pd.DataFrame:
+    """
+    Per (state, month, sku_id): total units ordered/delivered, Service
+    Level (delivered/ordered -- same formula as compute_order_level_kpis()),
+    Revenue (delivered units x the order line's own unit_price), and the
+    count of distinct outlets that billed >=1 unit of that SKU that month
+    (the numerator for SKU-level Numeric Distribution below).
+    """
+    o = orders.merge(outlets[["outlet_id", "state_name"]], on="outlet_id", how="left")
+    o["month"] = _month_start(o["order_date"])
+    o["revenue"] = o["qty_delivered"] * o["unit_price"]
+
+    grouped = o.groupby(["state_name", "month", "sku_id"])
+    qty_ordered = grouped["qty_ordered"].sum().rename("qty_ordered")
+    qty_delivered = grouped["qty_delivered"].sum().rename("qty_delivered")
+    revenue = grouped["revenue"].sum().rename("revenue")
+    billed_outlets = grouped["outlet_id"].nunique().rename("billed_outlets")
+
+    out = pd.concat([qty_ordered, qty_delivered, revenue, billed_outlets], axis=1).reset_index()
+    out["service_level"] = out["qty_delivered"] / out["qty_ordered"]
+    return out
+
+
+def compute_sku_oos_pct(inventory: pd.DataFrame, geography: pd.DataFrame) -> pd.DataFrame:
+    """
+    Same Out-of-Stock % formula as compute_oos_pct(), grouped by (state,
+    month, sku_id) instead of (state, month, category) -- inventory_snapshots
+    is already keyed by (wd_id, sku_id, month), so no category join is
+    needed to compute this at SKU grain.
+    """
+    wd_state = _wd_to_state(geography)
+    inv = inventory.copy()
+    inv["state_name"] = inv["wd_id"].map(wd_state)
+    inv["month"] = _month_start(inv["snapshot_month"])
+
+    grouped = inv.groupby(["state_name", "month", "sku_id"])
+    total_snapshots = grouped.size().rename("total_snapshots")
+    stockout_snapshots = grouped["stockout_flag"].sum().rename("stockout_snapshots")
+
+    out = pd.concat([total_snapshots, stockout_snapshots], axis=1).reset_index()
+    out["oos_pct"] = out["stockout_snapshots"] / out["total_snapshots"]
+    return out[["state_name", "month", "sku_id", "oos_pct"]]
+
+
+def build_kpi_state_month_sku(tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
+    """Assemble Table E: State x Month x SKU. Joins products.csv for the
+    SKU's descriptive columns (name/franchise/category -- fixed, don't vary
+    by state/month) and the category's eligible-outlet count (for Numeric
+    Distribution's denominator), then merges in sales and OOS% KPIs."""
+    products = tables["products"][["sku_id", "sku_name", "franchise_name", "category_name"]]
+    sales = compute_sku_sales_kpis(tables["orders"], tables["outlets"])
+    oos = compute_sku_oos_pct(tables["inventory_snapshots"], tables["geography"])
+    eligible = _eligible_outlets_by_sku_state(tables["outlets"])
+
+    out = sales.merge(products, on="sku_id", how="left")
+    out = out.merge(eligible, on=["state_name", "category_name"], how="left")
+    out = out.merge(oos, on=["state_name", "month", "sku_id"], how="outer")
+
+    out["numeric_distribution"] = out["billed_outlets"] / out["eligible_outlets"]
+
+    out = out[[
+        "state_name", "month", "sku_id", "sku_name", "franchise_name", "category_name",
+        "qty_ordered", "qty_delivered", "revenue", "service_level",
+        "billed_outlets", "eligible_outlets", "numeric_distribution", "oos_pct",
+    ]]
+    out = out.sort_values(["state_name", "month", "sku_id"]).reset_index(drop=True)
+    out["month"] = out["month"].astype(str)
+    return out
+
+
+# ---------------------------------------------------------------------------
 # Orchestration
 # ---------------------------------------------------------------------------
 
 def compute_all(data_dir: Path) -> dict[str, pd.DataFrame]:
-    """Load Phase 2's CSVs and compute both KPI tables."""
+    """Load Phase 2's CSVs and compute all six KPI tables (State and WD
+    grain, each split into a category-agnostic and a category-scoped
+    table; the State x Category x Channel Type table added in Step 3 of
+    the GraphRAG doc pipeline; and the State x Month x SKU table added for
+    SKU-level diagnostics)."""
     tables = _load_tables(data_dir)
     return {
         "kpi_state_month": build_kpi_state_month(tables),
         "kpi_state_month_category": build_kpi_state_month_category(tables),
+        "kpi_state_month_channel": build_kpi_state_month_channel(tables),
+        "kpi_wd_month": build_kpi_wd_month(tables),
+        "kpi_wd_month_category": build_kpi_wd_month_category(tables),
+        "kpi_state_month_sku": build_kpi_state_month_sku(tables),
     }
 
 

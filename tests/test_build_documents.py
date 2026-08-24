@@ -16,7 +16,13 @@ import pandas as pd
 import pytest
 
 from src.data_gen.generate_synthetic_data import generate_all, INDIAN_STATES, N_MONTHS
-from src.kpis.compute_kpis import build_kpi_state_month, build_kpi_state_month_category
+from src.kpis.compute_kpis import (
+    build_kpi_state_month,
+    build_kpi_state_month_category,
+    build_kpi_state_month_channel,
+    build_kpi_wd_month,
+    build_kpi_wd_month_category,
+)
 from src.graph.build_documents import (
     build_all_documents,
     _month_to_words,
@@ -47,9 +53,10 @@ def kpi_state_month_category(tables):
 @pytest.fixture(scope="module")
 def built(tmp_path_factory, tables, kpi_state_month, kpi_state_month_category):
     """
-    Write the four source CSVs build_documents.py expects into a
-    temporary data_dir, run build_all_documents(), and return everything
-    a test might want: the manifest, the data_dir, and the output_dir.
+    Write every source CSV build_documents.py's load_source_tables()
+    expects into a temporary data_dir, run build_all_documents(), and
+    return everything a test might want: the manifest, the data_dir, and
+    the output_dir.
     """
     data_dir = tmp_path_factory.mktemp("data")
     output_dir = data_dir / "graphrag_input"
@@ -59,6 +66,13 @@ def built(tmp_path_factory, tables, kpi_state_month, kpi_state_month_category):
     kpi_state_month.to_csv(data_dir / "kpi_state_month.csv", index=False)
     kpi_state_month_category.to_csv(
         data_dir / "kpi_state_month_category.csv", index=False
+    )
+    build_kpi_state_month_channel(tables).to_csv(
+        data_dir / "kpi_state_month_channel.csv", index=False
+    )
+    build_kpi_wd_month(tables).to_csv(data_dir / "kpi_wd_month.csv", index=False)
+    build_kpi_wd_month_category(tables).to_csv(
+        data_dir / "kpi_wd_month_category.csv", index=False
     )
 
     manifest = build_all_documents(data_dir, output_dir)
@@ -160,6 +174,13 @@ def test_build_is_reproducible(built, tables, kpi_state_month, kpi_state_month_c
     kpi_state_month.to_csv(data_dir_2 / "kpi_state_month.csv", index=False)
     kpi_state_month_category.to_csv(
         data_dir_2 / "kpi_state_month_category.csv", index=False
+    )
+    build_kpi_state_month_channel(tables).to_csv(
+        data_dir_2 / "kpi_state_month_channel.csv", index=False
+    )
+    build_kpi_wd_month(tables).to_csv(data_dir_2 / "kpi_wd_month.csv", index=False)
+    build_kpi_wd_month_category(tables).to_csv(
+        data_dir_2 / "kpi_wd_month_category.csv", index=False
     )
 
     manifest_2 = build_all_documents(data_dir_2, output_dir_2)

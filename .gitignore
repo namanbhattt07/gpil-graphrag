@@ -25,6 +25,7 @@ data/graphrag_index_ollama_test/
 data/*.csv
 data/**/*.csv
 data/graphrag_input/
+data/graphrag_sku_input/
 graphrag_workspace/
 *.parquet
 *.lance/

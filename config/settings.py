@@ -73,7 +73,7 @@ def get_settings() -> Settings:
     return Settings(
         openai_api_key=os.getenv("OPENAI_API_KEY", ""),
         openai_api_base=os.getenv("OPENAI_API_BASE", "https://api.openai.com/v1"),
-        llm_model=os.getenv("LLM_MODEL", "gpt-4o-mini"),
+        llm_model=os.getenv("LLM_MODEL", "gpt-4o"),
         embedding_model=os.getenv("EMBEDDING_MODEL", "text-embedding-3-small"),
         random_seed=int(os.getenv("RANDOM_SEED", "42")),
         project_root=PROJECT_ROOT,

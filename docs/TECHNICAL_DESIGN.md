@@ -76,7 +76,7 @@ A `.env` file like this:
 ```
 OPENAI_API_KEY=sk-...
 OPENAI_API_BASE=https://api.openai.com/v1
-LLM_MODEL=gpt-4o-mini
+LLM_MODEL=gpt-4o
 EMBEDDING_MODEL=text-embedding-3-small
 RANDOM_SEED=42
 ```
