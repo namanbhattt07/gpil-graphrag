@@ -1,0 +1,36 @@
+State: Himachal Pradesh
+Period: January 2026
+
+Himachal Pradesh is divided into 2 zones: Himachal Pradesh Zone 1, Himachal Pradesh Zone 2.
+
+This document reports Sales & Distribution performance for Himachal Pradesh in January 2026.
+
+Productivity for Himachal Pradesh in January 2026 was 60.0%. Service Level for Himachal Pradesh in January 2026 was 92.4%. SKUs per Transaction for Himachal Pradesh in January 2026 was 3.00. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Himachal Pradesh in January 2026 was 156.86. Inventory Turns for Himachal Pradesh in January 2026 was 2.63 times. Inventory Days for Himachal Pradesh in January 2026 was 11.4 days.
+
+Himachal Pradesh Zone 1 distributors: Carter Group Distributors, Franklin Group Distributors, Mendez Group Distributors, Pittman-Morgan Distributors, Mcclain, Flores and Lee Distributors, Chavez-Johnson Distributors, Brown, Robinson and Taylor Distributors.
+Himachal Pradesh Zone 2 distributors: Hanson-Gibson Distributors, Mooney, Lamb and Weber Distributors, Stewart, Moreno and Blanchard Distributors, Scott-Norman Distributors, Norman, Floyd and Fernandez Distributors, Johnson Inc Distributors.
+
+Distributor-level deviations, January 2026:
+No distributor deviation this month for: Productivity, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Stewart, Moreno and Blanchard Distributors showed a significant deviation on Service Level in January 2026: 77.0% vs. the state average of 92.4%, a gap of 15.3 percentage points.
+Distributor Mcclain, Flores and Lee Distributors showed a significant deviation on Dropsize in January 2026: 174.94 vs. the state average of 156.86, a gap of 11.5 percent.
+Distributor Pittman-Morgan Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in January 2026: 20.0% vs. the state average of 9.2%, a gap of 10.8 percentage points.
+Distributor Mcclain, Flores and Lee Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in January 2026: 20.0% vs. the state average of 9.2%, a gap of 10.8 percentage points.
+Distributor Chavez-Johnson Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in January 2026: 20.0% vs. the state average of 9.2%, a gap of 10.8 percentage points.
+Distributor Brown, Robinson and Taylor Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in January 2026: 20.0% vs. the state average of 9.2%, a gap of 10.8 percentage points.
+Distributor Mooney, Lamb and Weber Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in January 2026: 20.0% vs. the state average of 9.2%, a gap of 10.8 percentage points.
+Distributor Stewart, Moreno and Blanchard Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in January 2026: 20.0% vs. the state average of 9.2%, a gap of 10.8 percentage points.
+Distributor Stewart, Moreno and Blanchard Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in January 2026: 28.6% vs. the state average of 8.8%, a gap of 19.8 percentage points.
+Distributor Hanson-Gibson Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in January 2026: 28.6% vs. the state average of 9.9%, a gap of 18.7 percentage points.
+Distributor Norman, Floyd and Fernandez Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in January 2026: 28.6% vs. the state average of 9.9%, a gap of 18.7 percentage points.
+
+Channel-level performance, January 2026:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Himachal Pradesh during January 2026: Numeric Distribution was 51.7%, ACV (weighted distribution — definition pending GPIL confirmation) was 51.6%, Out-of-Stock rate was 8.3%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 4.8%.
+
+For the IPM category (franchises: Marlboro) in Himachal Pradesh during January 2026: Numeric Distribution was 62.6%, ACV (weighted distribution — definition pending GPIL confirmation) was 62.5%, Out-of-Stock rate was 9.2%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 32.6%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Himachal Pradesh during January 2026: Numeric Distribution was 12.8%, ACV (weighted distribution — definition pending GPIL confirmation) was 12.8%, Out-of-Stock rate was 8.8%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 15.6%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Himachal Pradesh during January 2026: Numeric Distribution was 11.4%, ACV (weighted distribution — definition pending GPIL confirmation) was 11.4%, Out-of-Stock rate was 9.9%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 15.5%.

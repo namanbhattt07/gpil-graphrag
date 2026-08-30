@@ -1,0 +1,31 @@
+State: Haryana
+Period: October 2024
+
+Haryana is divided into 2 zones: Haryana Zone 1, Haryana Zone 2.
+
+This document reports Sales & Distribution performance for Haryana in October 2024.
+
+Productivity for Haryana in October 2024 was 82.6%. Service Level for Haryana in October 2024 was 93.4%. SKUs per Transaction for Haryana in October 2024 was 4.01. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Haryana in October 2024 was 187.93. Inventory Turns for Haryana in October 2024 was 2.38 times. Inventory Days for Haryana in October 2024 was 12.6 days.
+
+Haryana Zone 1 distributors: Nelson, Wong and Patel Distributors, Nguyen-Jackson Distributors, Cole LLC Distributors, Owen-Brown Distributors, Smith-Short Distributors.
+Haryana Zone 2 distributors: Rogers Group Distributors, Williamson, Brown and Pena Distributors, Taylor, Blair and Meyer Distributors, Johnson Inc Distributors.
+
+Distributor-level deviations, October 2024:
+No distributor deviation this month for: Productivity, Service Level, Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Taylor, Blair and Meyer Distributors showed a significant deviation on Dropsize in October 2024: 214.12 vs. the state average of 187.93, a gap of 13.9 percent.
+Distributor Williamson, Brown and Pena Distributors showed a significant deviation on Out-of-Stock Rate for the GPI category in October 2024: 22.5% vs. the state average of 10.6%, a gap of 11.9 percentage points.
+Distributor Johnson Inc Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in October 2024: 20.0% vs. the state average of 2.2%, a gap of 17.8 percentage points.
+Distributor Taylor, Blair and Meyer Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in October 2024: 28.6% vs. the state average of 11.1%, a gap of 17.5 percentage points.
+Distributor Johnson Inc Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in October 2024: 28.6% vs. the state average of 11.1%, a gap of 17.5 percentage points.
+Distributor Johnson Inc Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in October 2024: 28.6% vs. the state average of 7.9%, a gap of 20.6 percentage points.
+
+Channel-level performance, October 2024:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Haryana during October 2024: Numeric Distribution was 71.6%, ACV (weighted distribution — definition pending GPIL confirmation) was 71.4%, Out-of-Stock rate was 10.6%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 6.2%.
+
+For the IPM category (franchises: Marlboro) in Haryana during October 2024: Numeric Distribution was 80.7%, ACV (weighted distribution — definition pending GPIL confirmation) was 80.6%, Out-of-Stock rate was 2.2%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 38.6%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Haryana during October 2024: Numeric Distribution was 32.4%, ACV (weighted distribution — definition pending GPIL confirmation) was 32.5%, Out-of-Stock rate was 11.1%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 18.0%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Haryana during October 2024: Numeric Distribution was 29.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 29.8%, Out-of-Stock rate was 7.9%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 17.8%.

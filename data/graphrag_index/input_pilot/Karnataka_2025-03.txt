@@ -1,0 +1,31 @@
+State: Karnataka
+Period: March 2025
+
+Karnataka is divided into 2 zones: Karnataka Zone 1, Karnataka Zone 2.
+
+This document reports Sales & Distribution performance for Karnataka in March 2025.
+
+Productivity for Karnataka in March 2025 was 73.9%. Service Level for Karnataka in March 2025 was 92.9%. SKUs per Transaction for Karnataka in March 2025 was 4.51. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Karnataka in March 2025 was 217.51. Inventory Turns for Karnataka in March 2025 was 2.60 times. Inventory Days for Karnataka in March 2025 was 11.5 days.
+
+Karnataka Zone 1 distributors: Dyer-Martin Distributors, Rogers PLC Distributors, Walters Group Distributors, Young Inc Distributors.
+Karnataka Zone 2 distributors: Suarez-Wang Distributors, Richardson-Long Distributors, Mccann-Sanders Distributors, Camacho, Martinez and Davis Distributors.
+
+Distributor-level deviations, March 2025:
+No distributor deviation this month for: Productivity, Service Level, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Out-of-Stock Rate (Candy), Range Billing (Candy).
+Distributor Rogers PLC Distributors showed a significant deviation on Dropsize in March 2025: 242.20 vs. the state average of 217.51, a gap of 11.4 percent.
+Distributor Richardson-Long Distributors showed a significant deviation on Dropsize in March 2025: 192.64 vs. the state average of 217.51, a gap of 11.4 percent.
+Distributor Young Inc Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in March 2025: 40.0% vs. the state average of 7.5%, a gap of 32.5 percentage points.
+Distributor Suarez-Wang Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in March 2025: 20.0% vs. the state average of 7.5%, a gap of 12.5 percentage points.
+Distributor Suarez-Wang Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in March 2025: 14.3% vs. the state average of 3.6%, a gap of 10.7 percentage points.
+Distributor Richardson-Long Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in March 2025: 14.3% vs. the state average of 3.6%, a gap of 10.7 percentage points.
+
+Channel-level performance, March 2025:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Karnataka during March 2025: Numeric Distribution was 68.3%, ACV (weighted distribution — definition pending GPIL confirmation) was 68.3%, Out-of-Stock rate was 8.8%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 7.3%.
+
+For the IPM category (franchises: Marlboro) in Karnataka during March 2025: Numeric Distribution was 75.0%, ACV (weighted distribution — definition pending GPIL confirmation) was 75.2%, Out-of-Stock rate was 7.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 42.6%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Karnataka during March 2025: Numeric Distribution was 25.1%, ACV (weighted distribution — definition pending GPIL confirmation) was 24.9%, Out-of-Stock rate was 3.6%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 17.4%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Karnataka during March 2025: Numeric Distribution was 22.7%, ACV (weighted distribution — definition pending GPIL confirmation) was 22.5%, Out-of-Stock rate was 5.4%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.9%.

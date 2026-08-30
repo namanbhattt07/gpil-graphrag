@@ -1,0 +1,32 @@
+State: Maharashtra
+Period: September 2024
+
+Maharashtra is divided into 2 zones: Maharashtra Zone 1, Maharashtra Zone 2.
+
+This document reports Sales & Distribution performance for Maharashtra in September 2024.
+
+Productivity for Maharashtra in September 2024 was 78.5%. Service Level for Maharashtra in September 2024 was 94.0%. SKUs per Transaction for Maharashtra in September 2024 was 4.01. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Maharashtra in September 2024 was 201.20. Inventory Turns for Maharashtra in September 2024 was 2.04 times. Inventory Days for Maharashtra in September 2024 was 14.7 days.
+
+Maharashtra Zone 1 distributors: Boyd-White Distributors, Larson-Hernandez Distributors, Dorsey LLC Distributors, Clark, Goodman and Hale Distributors, Bryant Ltd Distributors.
+Maharashtra Zone 2 distributors: Miranda-Robinson Distributors, Porter Group Distributors, Moss Inc Distributors, Johnson PLC Distributors, Evans and Sons Distributors, Davis-Bailey Distributors.
+
+Distributor-level deviations, September 2024:
+No distributor deviation this month for: Productivity, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Out-of-Stock Rate (Candy), Range Billing (Candy).
+Distributor Boyd-White Distributors showed a significant deviation on Service Level in September 2024: 81.8% vs. the state average of 94.0%, a gap of 12.3 percentage points.
+Distributor Johnson PLC Distributors showed a significant deviation on Dropsize in September 2024: 179.28 vs. the state average of 201.20, a gap of 10.9 percent.
+Distributor Boyd-White Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in September 2024: 20.0% vs. the state average of 1.8%, a gap of 18.2 percentage points.
+Distributor Dorsey LLC Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in September 2024: 28.6% vs. the state average of 3.9%, a gap of 24.7 percentage points.
+Distributor Porter Group Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in September 2024: 14.3% vs. the state average of 3.9%, a gap of 10.4 percentage points.
+
+Channel-level performance, September 2024:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+The Modern Trade channel showed a significant deviation on Numeric Distribution for the Ferrero category in September 2024: 12.0% vs. the state average of 23.1%, a gap of 11.0 percentage points.
+The Modern Trade channel showed a significant deviation on ACV for the Ferrero category in September 2024: 12.8% vs. the state average of 23.1%, a gap of 10.3 percentage points.
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Maharashtra during September 2024: Numeric Distribution was 69.7%, ACV (weighted distribution — definition pending GPIL confirmation) was 69.5%, Out-of-Stock rate was 7.7%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 6.5%.
+
+For the IPM category (franchises: Marlboro) in Maharashtra during September 2024: Numeric Distribution was 78.0%, ACV (weighted distribution — definition pending GPIL confirmation) was 77.9%, Out-of-Stock rate was 1.8%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 40.1%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Maharashtra during September 2024: Numeric Distribution was 23.1%, ACV (weighted distribution — definition pending GPIL confirmation) was 23.1%, Out-of-Stock rate was 3.9%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.8%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Maharashtra during September 2024: Numeric Distribution was 21.3%, ACV (weighted distribution — definition pending GPIL confirmation) was 21.3%, Out-of-Stock rate was 5.2%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.5%.

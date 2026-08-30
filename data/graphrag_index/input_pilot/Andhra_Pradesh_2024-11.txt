@@ -1,0 +1,32 @@
+State: Andhra Pradesh
+Period: November 2024
+
+Andhra Pradesh is divided into 2 zones: Andhra Pradesh Zone 1, Andhra Pradesh Zone 2.
+
+This document reports Sales & Distribution performance for Andhra Pradesh in November 2024.
+
+Productivity for Andhra Pradesh in November 2024 was 85.7%. Service Level for Andhra Pradesh in November 2024 was 94.4%. SKUs per Transaction for Andhra Pradesh in November 2024 was 3.98. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Andhra Pradesh in November 2024 was 192.98. Inventory Turns for Andhra Pradesh in November 2024 was 2.56 times. Inventory Days for Andhra Pradesh in November 2024 was 11.7 days.
+
+Andhra Pradesh Zone 1 distributors: Rodriguez, Figueroa and Sanchez Distributors, Cameron-Parsons Distributors, George Group Distributors, Davis Ltd Distributors.
+Andhra Pradesh Zone 2 distributors: Brown PLC Distributors, Rice, Contreras and Spencer Distributors, Shields, Cochran and Adams Distributors, Rush LLC Distributors, Carr-Mack Distributors, Daniels-Perry Distributors, Strickland and Sons Distributors.
+
+Distributor-level deviations, November 2024:
+No distributor deviation this month for: Productivity, Service Level, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Rice, Contreras and Spencer Distributors showed a significant deviation on Dropsize in November 2024: 217.04 vs. the state average of 192.98, a gap of 12.5 percent.
+Distributor Rodriguez, Figueroa and Sanchez Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in November 2024: 20.0% vs. the state average of 7.3%, a gap of 12.7 percentage points.
+Distributor Cameron-Parsons Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in November 2024: 20.0% vs. the state average of 7.3%, a gap of 12.7 percentage points.
+Distributor Davis Ltd Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in November 2024: 20.0% vs. the state average of 7.3%, a gap of 12.7 percentage points.
+Distributor Brown PLC Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in November 2024: 20.0% vs. the state average of 7.3%, a gap of 12.7 percentage points.
+Distributor Rodriguez, Figueroa and Sanchez Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in November 2024: 28.6% vs. the state average of 7.8%, a gap of 20.8 percentage points.
+Distributor George Group Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in November 2024: 28.6% vs. the state average of 7.8%, a gap of 20.8 percentage points.
+
+Channel-level performance, November 2024:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Andhra Pradesh during November 2024: Numeric Distribution was 73.0%, ACV (weighted distribution — definition pending GPIL confirmation) was 72.9%, Out-of-Stock rate was 5.0%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 6.3%.
+
+For the IPM category (franchises: Marlboro) in Andhra Pradesh during November 2024: Numeric Distribution was 82.6%, ACV (weighted distribution — definition pending GPIL confirmation) was 82.4%, Out-of-Stock rate was 7.3%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 38.9%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Andhra Pradesh during November 2024: Numeric Distribution was 33.0%, ACV (weighted distribution — definition pending GPIL confirmation) was 32.9%, Out-of-Stock rate was 7.8%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 18.0%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Andhra Pradesh during November 2024: Numeric Distribution was 30.8%, ACV (weighted distribution — definition pending GPIL confirmation) was 30.5%, Out-of-Stock rate was 7.8%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 17.7%.

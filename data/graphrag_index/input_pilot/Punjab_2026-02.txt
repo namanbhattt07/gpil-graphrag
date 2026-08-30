@@ -1,0 +1,30 @@
+State: Punjab
+Period: February 2026
+
+Punjab is divided into 2 zones: Punjab Zone 1, Punjab Zone 2.
+
+This document reports Sales & Distribution performance for Punjab in February 2026.
+
+Productivity for Punjab in February 2026 was 67.4%. Service Level for Punjab in February 2026 was 90.3%. SKUs per Transaction for Punjab in February 2026 was 4.02. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Punjab in February 2026 was 200.59. Inventory Turns for Punjab in February 2026 was 2.60 times. Inventory Days for Punjab in February 2026 was 11.5 days.
+
+Punjab Zone 1 distributors: Flores, Walker and Smith Distributors, Barnes PLC Distributors, Johnson-Guzman Distributors, Molina, Rodriguez and Jackson Distributors.
+Punjab Zone 2 distributors: Harrell Group Distributors, Ramos Group Distributors, Cohen PLC Distributors, Willis, Brown and Brown Distributors.
+
+Distributor-level deviations, February 2026:
+No distributor deviation this month for: Productivity, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Out-of-Stock Rate (Candy), Range Billing (Candy).
+Distributor Cohen PLC Distributors showed a significant deviation on Service Level in February 2026: 70.6% vs. the state average of 90.3%, a gap of 19.6 percentage points.
+Distributor Willis, Brown and Brown Distributors showed a significant deviation on Dropsize in February 2026: 179.72 vs. the state average of 200.59, a gap of 10.4 percent.
+Distributor Cohen PLC Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in February 2026: 40.0% vs. the state average of 12.5%, a gap of 27.5 percentage points.
+Distributor Flores, Walker and Smith Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in February 2026: 28.6% vs. the state average of 12.5%, a gap of 16.1 percentage points.
+Distributor Johnson-Guzman Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in February 2026: 28.6% vs. the state average of 12.5%, a gap of 16.1 percentage points.
+
+Channel-level performance, February 2026:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Punjab during February 2026: Numeric Distribution was 62.1%, ACV (weighted distribution — definition pending GPIL confirmation) was 62.1%, Out-of-Stock rate was 8.1%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 6.4%.
+
+For the IPM category (franchises: Marlboro) in Punjab during February 2026: Numeric Distribution was 69.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 69.9%, Out-of-Stock rate was 12.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 39.3%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Punjab during February 2026: Numeric Distribution was 20.0%, ACV (weighted distribution — definition pending GPIL confirmation) was 19.9%, Out-of-Stock rate was 12.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.6%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Punjab during February 2026: Numeric Distribution was 18.3%, ACV (weighted distribution — definition pending GPIL confirmation) was 18.2%, Out-of-Stock rate was 7.1%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.5%.

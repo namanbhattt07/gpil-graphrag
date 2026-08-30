@@ -1,0 +1,33 @@
+State: Mizoram
+Period: February 2026
+
+Mizoram is divided into 2 zones: Mizoram Zone 1, Mizoram Zone 2.
+
+This document reports Sales & Distribution performance for Mizoram in February 2026.
+
+Productivity for Mizoram in February 2026 was 43.7%. Service Level for Mizoram in February 2026 was 90.8%. SKUs per Transaction for Mizoram in February 2026 was 3.00. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Mizoram in February 2026 was 155.11. Inventory Turns for Mizoram in February 2026 was 2.64 times. Inventory Days for Mizoram in February 2026 was 11.4 days.
+
+Mizoram Zone 1 distributors: Baker Ltd Distributors, Erickson-Rios Distributors, Floyd LLC Distributors, Lee Group Distributors, Flowers, Williams and Taylor Distributors.
+Mizoram Zone 2 distributors: Campos Group Distributors, Jackson Ltd Distributors, Christian and Sons Distributors, May, Crawford and Collier Distributors, Mendoza, Anderson and Cummings Distributors.
+
+Distributor-level deviations, February 2026:
+No distributor deviation this month for: Productivity, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Out-of-Stock Rate (Candy), Range Billing (Candy).
+Distributor Baker Ltd Distributors showed a significant deviation on Service Level in February 2026: 78.5% vs. the state average of 90.8%, a gap of 12.3 percentage points.
+Distributor Flowers, Williams and Taylor Distributors showed a significant deviation on Service Level in February 2026: 79.9% vs. the state average of 90.8%, a gap of 10.9 percentage points.
+Distributor May, Crawford and Collier Distributors showed a significant deviation on Service Level in February 2026: 80.1% vs. the state average of 90.8%, a gap of 10.7 percentage points.
+Distributor Baker Ltd Distributors showed a significant deviation on Dropsize in February 2026: 130.66 vs. the state average of 155.11, a gap of 15.8 percent.
+Distributor Baker Ltd Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in February 2026: 20.0% vs. the state average of 6.0%, a gap of 14.0 percentage points.
+Distributor Flowers, Williams and Taylor Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in February 2026: 20.0% vs. the state average of 6.0%, a gap of 14.0 percentage points.
+Distributor May, Crawford and Collier Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in February 2026: 20.0% vs. the state average of 6.0%, a gap of 14.0 percentage points.
+Distributor Christian and Sons Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in February 2026: 28.6% vs. the state average of 7.1%, a gap of 21.4 percentage points.
+
+Channel-level performance, February 2026:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Mizoram during February 2026: Numeric Distribution was 39.1%, ACV (weighted distribution — definition pending GPIL confirmation) was 39.0%, Out-of-Stock rate was 8.0%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 4.7%.
+
+For the IPM category (franchises: Marlboro) in Mizoram during February 2026: Numeric Distribution was 47.7%, ACV (weighted distribution — definition pending GPIL confirmation) was 47.5%, Out-of-Stock rate was 6.0%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 32.4%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Mizoram during February 2026: Numeric Distribution was 9.2%, ACV (weighted distribution — definition pending GPIL confirmation) was 9.2%, Out-of-Stock rate was 7.1%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 15.4%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Mizoram during February 2026: Numeric Distribution was 8.0%, ACV (weighted distribution — definition pending GPIL confirmation) was 7.9%, Out-of-Stock rate was 4.3%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 15.4%.

@@ -1,0 +1,33 @@
+State: Tripura
+Period: May 2026
+
+Tripura is divided into 2 zones: Tripura Zone 1, Tripura Zone 2.
+
+This document reports Sales & Distribution performance for Tripura in May 2026.
+
+Productivity for Tripura in May 2026 was 50.9%. Service Level for Tripura in May 2026 was 91.5%. SKUs per Transaction for Tripura in May 2026 was 3.00. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Tripura in May 2026 was 151.41. Inventory Turns for Tripura in May 2026 was 2.63 times. Inventory Days for Tripura in May 2026 was 11.4 days.
+
+Tripura Zone 1 distributors: Graham Group Distributors, Wade-Miller Distributors, Moore-Lee Distributors, Mcbride, Gibson and Ball Distributors, French, Mack and Alvarado Distributors, Ramirez, Miller and Mccormick Distributors, Spencer-Arnold Distributors.
+Tripura Zone 2 distributors: Berg, Payne and Escobar Distributors, Jimenez, Levine and Sullivan Distributors, Newman-Cole Distributors, Barnes, Peterson and Castillo Distributors.
+
+Distributor-level deviations, May 2026:
+No distributor deviation this month for: Productivity, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Ramirez, Miller and Mccormick Distributors showed a significant deviation on Service Level in May 2026: 77.5% vs. the state average of 91.5%, a gap of 14.0 percentage points.
+Distributor Wade-Miller Distributors showed a significant deviation on Dropsize in May 2026: 166.58 vs. the state average of 151.41, a gap of 10.0 percent.
+Distributor Berg, Payne and Escobar Distributors showed a significant deviation on Dropsize in May 2026: 130.14 vs. the state average of 151.41, a gap of 14.1 percent.
+Distributor Ramirez, Miller and Mccormick Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in May 2026: 40.0% vs. the state average of 14.5%, a gap of 25.5 percentage points.
+Distributor Graham Group Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in May 2026: 42.9% vs. the state average of 10.4%, a gap of 32.5 percentage points.
+Distributor Spencer-Arnold Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in May 2026: 28.6% vs. the state average of 10.4%, a gap of 18.2 percentage points.
+Distributor Berg, Payne and Escobar Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in May 2026: 28.6% vs. the state average of 9.1%, a gap of 19.5 percentage points.
+Distributor Jimenez, Levine and Sullivan Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in May 2026: 28.6% vs. the state average of 9.1%, a gap of 19.5 percentage points.
+
+Channel-level performance, May 2026:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Tripura during May 2026: Numeric Distribution was 45.1%, ACV (weighted distribution — definition pending GPIL confirmation) was 45.2%, Out-of-Stock rate was 6.8%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 4.7%.
+
+For the IPM category (franchises: Marlboro) in Tripura during May 2026: Numeric Distribution was 54.2%, ACV (weighted distribution — definition pending GPIL confirmation) was 54.3%, Out-of-Stock rate was 14.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 32.5%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Tripura during May 2026: Numeric Distribution was 10.6%, ACV (weighted distribution — definition pending GPIL confirmation) was 10.6%, Out-of-Stock rate was 10.4%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 15.5%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Tripura during May 2026: Numeric Distribution was 9.6%, ACV (weighted distribution — definition pending GPIL confirmation) was 9.6%, Out-of-Stock rate was 9.1%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 15.6%.

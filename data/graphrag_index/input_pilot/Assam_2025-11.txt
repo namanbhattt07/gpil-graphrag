@@ -1,0 +1,34 @@
+State: Assam
+Period: November 2025
+
+Assam is divided into 2 zones: Assam Zone 1, Assam Zone 2.
+
+This document reports Sales & Distribution performance for Assam in November 2025.
+
+Productivity for Assam in November 2025 was 81.8%. Service Level for Assam in November 2025 was 92.7%. SKUs per Transaction for Assam in November 2025 was 3.00. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Assam in November 2025 was 149.24. Inventory Turns for Assam in November 2025 was 2.64 times. Inventory Days for Assam in November 2025 was 11.3 days.
+
+Assam Zone 1 distributors: King-York Distributors, Bowers, Young and Allen Distributors, West-Smith Distributors, Marshall, Dominguez and Welch Distributors, West-Acosta Distributors, Mitchell, Hendricks and Henry Distributors, Perez, Meza and Stone Distributors.
+Assam Zone 2 distributors: Jimenez-Parker Distributors, Carlson LLC Distributors, Miller, Bradshaw and Douglas Distributors, Mcdowell-Smith Distributors.
+
+Distributor-level deviations, November 2025:
+No distributor deviation this month for: Productivity, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Jimenez-Parker Distributors showed a significant deviation on Service Level in November 2025: 78.1% vs. the state average of 92.7%, a gap of 14.7 percentage points.
+Distributor West-Smith Distributors showed a significant deviation on Dropsize in November 2025: 133.58 vs. the state average of 149.24, a gap of 10.5 percent.
+Distributor Jimenez-Parker Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in November 2025: 20.0% vs. the state average of 5.5%, a gap of 14.5 percentage points.
+Distributor Miller, Bradshaw and Douglas Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in November 2025: 20.0% vs. the state average of 5.5%, a gap of 14.5 percentage points.
+Distributor Mcdowell-Smith Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in November 2025: 20.0% vs. the state average of 5.5%, a gap of 14.5 percentage points.
+Distributor Perez, Meza and Stone Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in November 2025: 28.6% vs. the state average of 9.1%, a gap of 19.5 percentage points.
+Distributor Marshall, Dominguez and Welch Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in November 2025: 28.6% vs. the state average of 15.6%, a gap of 13.0 percentage points.
+Distributor Perez, Meza and Stone Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in November 2025: 28.6% vs. the state average of 15.6%, a gap of 13.0 percentage points.
+Distributor Miller, Bradshaw and Douglas Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in November 2025: 28.6% vs. the state average of 15.6%, a gap of 13.0 percentage points.
+
+Channel-level performance, November 2025:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Assam during November 2025: Numeric Distribution was 65.3%, ACV (weighted distribution — definition pending GPIL confirmation) was 65.2%, Out-of-Stock rate was 7.7%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 4.8%.
+
+For the IPM category (franchises: Marlboro) in Assam during November 2025: Numeric Distribution was 78.5%, ACV (weighted distribution — definition pending GPIL confirmation) was 78.6%, Out-of-Stock rate was 5.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 32.8%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Assam during November 2025: Numeric Distribution was 23.2%, ACV (weighted distribution — definition pending GPIL confirmation) was 23.4%, Out-of-Stock rate was 9.1%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.5%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Assam during November 2025: Numeric Distribution was 21.4%, ACV (weighted distribution — definition pending GPIL confirmation) was 21.3%, Out-of-Stock rate was 15.6%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.2%.

@@ -1,0 +1,33 @@
+State: Tamil Nadu
+Period: August 2025
+
+Tamil Nadu is divided into 2 zones: Tamil Nadu Zone 1, Tamil Nadu Zone 2.
+
+This document reports Sales & Distribution performance for Tamil Nadu in August 2025.
+
+Productivity for Tamil Nadu in August 2025 was 71.3%. Service Level for Tamil Nadu in August 2025 was 91.4%. SKUs per Transaction for Tamil Nadu in August 2025 was 3.98. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Tamil Nadu in August 2025 was 192.61. Inventory Turns for Tamil Nadu in August 2025 was 2.60 times. Inventory Days for Tamil Nadu in August 2025 was 11.5 days.
+
+Tamil Nadu Zone 1 distributors: Jones, Aguilar and Sheppard Distributors, King, Webster and Brown Distributors, Lawson-Porter Distributors, Buchanan-Peters Distributors, Bowers LLC Distributors.
+Tamil Nadu Zone 2 distributors: Foster-Nguyen Distributors, Bailey Inc Distributors, Guzman-Martin Distributors, Lewis Group Distributors, Rosales PLC Distributors.
+
+Distributor-level deviations, August 2025:
+No distributor deviation this month for: Productivity, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Out-of-Stock Rate (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Jones, Aguilar and Sheppard Distributors showed a significant deviation on Service Level in August 2025: 77.2% vs. the state average of 91.4%, a gap of 14.3 percentage points.
+Distributor Buchanan-Peters Distributors showed a significant deviation on Dropsize in August 2025: 172.11 vs. the state average of 192.61, a gap of 10.6 percent.
+Distributor Bailey Inc Distributors showed a significant deviation on Dropsize in August 2025: 218.08 vs. the state average of 192.61, a gap of 13.2 percent.
+Distributor Jones, Aguilar and Sheppard Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in August 2025: 20.0% vs. the state average of 8.0%, a gap of 12.0 percentage points.
+Distributor King, Webster and Brown Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in August 2025: 20.0% vs. the state average of 8.0%, a gap of 12.0 percentage points.
+Distributor Buchanan-Peters Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in August 2025: 20.0% vs. the state average of 8.0%, a gap of 12.0 percentage points.
+Distributor Bowers LLC Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in August 2025: 20.0% vs. the state average of 8.0%, a gap of 12.0 percentage points.
+Distributor Bowers LLC Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in August 2025: 28.6% vs. the state average of 7.1%, a gap of 21.4 percentage points.
+
+Channel-level performance, August 2025:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Tamil Nadu during August 2025: Numeric Distribution was 64.7%, ACV (weighted distribution — definition pending GPIL confirmation) was 64.6%, Out-of-Stock rate was 7.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 6.4%.
+
+For the IPM category (franchises: Marlboro) in Tamil Nadu during August 2025: Numeric Distribution was 72.8%, ACV (weighted distribution — definition pending GPIL confirmation) was 72.7%, Out-of-Stock rate was 8.0%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 39.2%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Tamil Nadu during August 2025: Numeric Distribution was 20.8%, ACV (weighted distribution — definition pending GPIL confirmation) was 20.5%, Out-of-Stock rate was 4.3%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.7%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Tamil Nadu during August 2025: Numeric Distribution was 19.3%, ACV (weighted distribution — definition pending GPIL confirmation) was 19.1%, Out-of-Stock rate was 7.1%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.4%.

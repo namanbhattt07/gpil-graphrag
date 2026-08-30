@@ -1,0 +1,31 @@
+State: Madhya Pradesh
+Period: November 2024
+
+Madhya Pradesh is divided into 2 zones: Madhya Pradesh Zone 1, Madhya Pradesh Zone 2.
+
+This document reports Sales & Distribution performance for Madhya Pradesh in November 2024.
+
+Productivity for Madhya Pradesh in November 2024 was 90.0%. Service Level for Madhya Pradesh in November 2024 was 92.3%. SKUs per Transaction for Madhya Pradesh in November 2024 was 4.52. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Madhya Pradesh in November 2024 was 215.66. Inventory Turns for Madhya Pradesh in November 2024 was 2.53 times. Inventory Days for Madhya Pradesh in November 2024 was 11.8 days.
+
+Madhya Pradesh Zone 1 distributors: Ramirez Group Distributors, Reyes-Pope Distributors, Jensen-Barnes Distributors, Sanchez, Williams and Jensen Distributors.
+Madhya Pradesh Zone 2 distributors: Payne LLC Distributors, Perez-Simmons Distributors, Collins Ltd Distributors, Jones-Garcia Distributors, Benjamin Inc Distributors, Jones-Smith Distributors.
+
+Distributor-level deviations, November 2024:
+No distributor deviation this month for: Productivity, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Out-of-Stock Rate (Candy), Range Billing (Candy).
+Distributor Perez-Simmons Distributors showed a significant deviation on Service Level in November 2024: 75.2% vs. the state average of 92.3%, a gap of 17.0 percentage points.
+Distributor Jones-Garcia Distributors showed a significant deviation on Dropsize in November 2024: 193.15 vs. the state average of 215.66, a gap of 10.4 percent.
+Distributor Benjamin Inc Distributors showed a significant deviation on Dropsize in November 2024: 242.30 vs. the state average of 215.66, a gap of 12.4 percent.
+Distributor Jensen-Barnes Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in November 2024: 20.0% vs. the state average of 4.0%, a gap of 16.0 percentage points.
+Distributor Perez-Simmons Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in November 2024: 20.0% vs. the state average of 4.0%, a gap of 16.0 percentage points.
+Distributor Collins Ltd Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in November 2024: 28.6% vs. the state average of 8.6%, a gap of 20.0 percentage points.
+
+Channel-level performance, November 2024:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Madhya Pradesh during November 2024: Numeric Distribution was 77.6%, ACV (weighted distribution — definition pending GPIL confirmation) was 77.7%, Out-of-Stock rate was 8.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 7.1%.
+
+For the IPM category (franchises: Marlboro) in Madhya Pradesh during November 2024: Numeric Distribution was 85.8%, ACV (weighted distribution — definition pending GPIL confirmation) was 85.9%, Out-of-Stock rate was 4.0%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 41.9%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Madhya Pradesh during November 2024: Numeric Distribution was 39.7%, ACV (weighted distribution — definition pending GPIL confirmation) was 39.8%, Out-of-Stock rate was 8.6%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 19.3%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Madhya Pradesh during November 2024: Numeric Distribution was 36.3%, ACV (weighted distribution — definition pending GPIL confirmation) was 36.5%, Out-of-Stock rate was 7.1%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 18.6%.

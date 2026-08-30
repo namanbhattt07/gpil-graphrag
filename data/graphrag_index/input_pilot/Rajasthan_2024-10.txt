@@ -1,0 +1,27 @@
+State: Rajasthan
+Period: October 2024
+
+Rajasthan is divided into 2 zones: Rajasthan Zone 1, Rajasthan Zone 2.
+
+This document reports Sales & Distribution performance for Rajasthan in October 2024.
+
+Productivity for Rajasthan in October 2024 was 86.5%. Service Level for Rajasthan in October 2024 was 88.9%. SKUs per Transaction for Rajasthan in October 2024 was 3.49. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Rajasthan in October 2024 was 164.59. Inventory Turns for Rajasthan in October 2024 was 2.38 times. Inventory Days for Rajasthan in October 2024 was 12.6 days.
+
+Rajasthan Zone 1 distributors: Scott-Adkins Distributors, Saunders, Patel and Valdez Distributors, Martinez, Sherman and Martinez Distributors, Harmon Ltd Distributors.
+Rajasthan Zone 2 distributors: Barnett-Meyer Distributors, Burch PLC Distributors, Smith-King Distributors, Hernandez-Beard Distributors.
+
+Distributor-level deviations, October 2024:
+No distributor deviation this month for: Productivity, Service Level, Dropsize, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Out-of-Stock Rate (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Out-of-Stock Rate (Candy), Range Billing (Candy).
+Distributor Martinez, Sherman and Martinez Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in October 2024: 28.6% vs. the state average of 10.7%, a gap of 17.9 percentage points.
+Distributor Harmon Ltd Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in October 2024: 28.6% vs. the state average of 10.7%, a gap of 17.9 percentage points.
+
+Channel-level performance, October 2024:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Rajasthan during October 2024: Numeric Distribution was 71.3%, ACV (weighted distribution — definition pending GPIL confirmation) was 71.3%, Out-of-Stock rate was 8.1%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 5.5%.
+
+For the IPM category (franchises: Marlboro) in Rajasthan during October 2024: Numeric Distribution was 82.3%, ACV (weighted distribution — definition pending GPIL confirmation) was 82.4%, Out-of-Stock rate was 12.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 35.9%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Rajasthan during October 2024: Numeric Distribution was 29.0%, ACV (weighted distribution — definition pending GPIL confirmation) was 29.1%, Out-of-Stock rate was 10.7%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 17.3%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Rajasthan during October 2024: Numeric Distribution was 27.0%, ACV (weighted distribution — definition pending GPIL confirmation) was 27.0%, Out-of-Stock rate was 7.1%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 17.0%.

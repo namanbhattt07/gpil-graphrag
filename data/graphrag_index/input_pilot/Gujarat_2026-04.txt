@@ -1,0 +1,37 @@
+State: Gujarat
+Period: April 2026
+
+Gujarat is divided into 2 zones: Gujarat Zone 1, Gujarat Zone 2.
+
+This document reports Sales & Distribution performance for Gujarat in April 2026.
+
+Productivity for Gujarat in April 2026 was 74.0%. Service Level for Gujarat in April 2026 was 92.0%. SKUs per Transaction for Gujarat in April 2026 was 3.98. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Gujarat in April 2026 was 193.87. Inventory Turns for Gujarat in April 2026 was 2.68 times. Inventory Days for Gujarat in April 2026 was 11.2 days.
+
+Gujarat Zone 1 distributors: Baxter, Thomas and Williams Distributors, Diaz, Stewart and Patterson Distributors, Holmes LLC Distributors, Greene-Elliott Distributors, Campbell PLC Distributors.
+Gujarat Zone 2 distributors: Mendez, Cohen and Williams Distributors, Walter-Li Distributors, Mendoza-Fernandez Distributors, Lewis LLC Distributors, Garcia PLC Distributors.
+
+Distributor-level deviations, April 2026:
+No distributor deviation this month for: Productivity, Service Level, Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Baxter, Thomas and Williams Distributors showed a significant deviation on Dropsize in April 2026: 214.48 vs. the state average of 193.87, a gap of 10.6 percent.
+Distributor Walter-Li Distributors showed a significant deviation on Dropsize in April 2026: 172.51 vs. the state average of 193.87, a gap of 11.0 percent.
+Distributor Mendoza-Fernandez Distributors showed a significant deviation on Dropsize in April 2026: 173.79 vs. the state average of 193.87, a gap of 10.4 percent.
+Distributor Lewis LLC Distributors showed a significant deviation on Dropsize in April 2026: 217.88 vs. the state average of 193.87, a gap of 12.4 percent.
+Distributor Campbell PLC Distributors showed a significant deviation on Out-of-Stock Rate for the GPI category in April 2026: 20.0% vs. the state average of 8.0%, a gap of 12.0 percentage points.
+Distributor Holmes LLC Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in April 2026: 20.0% vs. the state average of 8.0%, a gap of 12.0 percentage points.
+Distributor Campbell PLC Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in April 2026: 20.0% vs. the state average of 8.0%, a gap of 12.0 percentage points.
+Distributor Mendez, Cohen and Williams Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in April 2026: 20.0% vs. the state average of 8.0%, a gap of 12.0 percentage points.
+Distributor Walter-Li Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in April 2026: 20.0% vs. the state average of 8.0%, a gap of 12.0 percentage points.
+Distributor Diaz, Stewart and Patterson Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in April 2026: 28.6% vs. the state average of 2.9%, a gap of 25.7 percentage points.
+Distributor Mendez, Cohen and Williams Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in April 2026: 28.6% vs. the state average of 10.0%, a gap of 18.6 percentage points.
+Distributor Mendoza-Fernandez Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in April 2026: 28.6% vs. the state average of 10.0%, a gap of 18.6 percentage points.
+
+Channel-level performance, April 2026:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Gujarat during April 2026: Numeric Distribution was 66.7%, ACV (weighted distribution — definition pending GPIL confirmation) was 66.8%, Out-of-Stock rate was 8.0%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 6.4%.
+
+For the IPM category (franchises: Marlboro) in Gujarat during April 2026: Numeric Distribution was 75.0%, ACV (weighted distribution — definition pending GPIL confirmation) was 75.2%, Out-of-Stock rate was 8.0%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 39.4%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Gujarat during April 2026: Numeric Distribution was 21.6%, ACV (weighted distribution — definition pending GPIL confirmation) was 21.6%, Out-of-Stock rate was 2.9%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.8%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Gujarat during April 2026: Numeric Distribution was 19.8%, ACV (weighted distribution — definition pending GPIL confirmation) was 19.8%, Out-of-Stock rate was 10.0%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.3%.

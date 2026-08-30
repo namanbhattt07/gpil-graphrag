@@ -1,0 +1,37 @@
+State: Kerala
+Period: October 2024
+
+Kerala is divided into 2 zones: Kerala Zone 1, Kerala Zone 2.
+
+This document reports Sales & Distribution performance for Kerala in October 2024.
+
+Productivity for Kerala in October 2024 was 81.7%. Service Level for Kerala in October 2024 was 92.7%. SKUs per Transaction for Kerala in October 2024 was 3.52. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Kerala in October 2024 was 167.99. Inventory Turns for Kerala in October 2024 was 2.33 times. Inventory Days for Kerala in October 2024 was 12.9 days.
+
+Kerala Zone 1 distributors: Yates-Manning Distributors, Leach, Skinner and Mills Distributors, Henderson-Wilson Distributors, Gonzalez PLC Distributors, Colon Inc Distributors.
+Kerala Zone 2 distributors: Miller LLC Distributors, Cook, Hardy and Singh Distributors, Colon-Thomas Distributors, Hernandez-Luna Distributors, Goodwin PLC Distributors, Williams-Stevenson Distributors, Wood-Lee Distributors.
+
+Distributor-level deviations, October 2024:
+No distributor deviation this month for: Productivity, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Colon Inc Distributors showed a significant deviation on Service Level in October 2024: 75.0% vs. the state average of 92.7%, a gap of 17.7 percentage points.
+Distributor Henderson-Wilson Distributors showed a significant deviation on Dropsize in October 2024: 189.21 vs. the state average of 167.99, a gap of 12.6 percent.
+Distributor Gonzalez PLC Distributors showed a significant deviation on Dropsize in October 2024: 184.93 vs. the state average of 167.99, a gap of 10.1 percent.
+Distributor Hernandez-Luna Distributors showed a significant deviation on Dropsize in October 2024: 150.07 vs. the state average of 167.99, a gap of 10.7 percent.
+Distributor Leach, Skinner and Mills Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in October 2024: 20.0% vs. the state average of 8.3%, a gap of 11.7 percentage points.
+Distributor Colon Inc Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in October 2024: 40.0% vs. the state average of 8.3%, a gap of 31.7 percentage points.
+Distributor Cook, Hardy and Singh Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in October 2024: 20.0% vs. the state average of 8.3%, a gap of 11.7 percentage points.
+Distributor Colon-Thomas Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in October 2024: 20.0% vs. the state average of 8.3%, a gap of 11.7 percentage points.
+Distributor Cook, Hardy and Singh Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in October 2024: 28.6% vs. the state average of 8.3%, a gap of 20.2 percentage points.
+Distributor Cook, Hardy and Singh Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in October 2024: 28.6% vs. the state average of 11.9%, a gap of 16.7 percentage points.
+Distributor Hernandez-Luna Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in October 2024: 28.6% vs. the state average of 11.9%, a gap of 16.7 percentage points.
+Distributor Williams-Stevenson Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in October 2024: 28.6% vs. the state average of 11.9%, a gap of 16.7 percentage points.
+
+Channel-level performance, October 2024:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Kerala during October 2024: Numeric Distribution was 68.3%, ACV (weighted distribution — definition pending GPIL confirmation) was 68.2%, Out-of-Stock rate was 7.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 5.5%.
+
+For the IPM category (franchises: Marlboro) in Kerala during October 2024: Numeric Distribution was 79.2%, ACV (weighted distribution — definition pending GPIL confirmation) was 79.2%, Out-of-Stock rate was 8.3%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 35.8%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Kerala during October 2024: Numeric Distribution was 27.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 28.1%, Out-of-Stock rate was 8.3%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 17.2%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Kerala during October 2024: Numeric Distribution was 25.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 25.8%, Out-of-Stock rate was 11.9%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.9%.

@@ -1,0 +1,38 @@
+State: Jharkhand
+Period: January 2025
+
+Jharkhand is divided into 2 zones: Jharkhand Zone 1, Jharkhand Zone 2.
+
+This document reports Sales & Distribution performance for Jharkhand in January 2025.
+
+Productivity for Jharkhand in January 2025 was 70.6%. Service Level for Jharkhand in January 2025 was 93.5%. SKUs per Transaction for Jharkhand in January 2025 was 3.99. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Jharkhand in January 2025 was 200.24. Inventory Turns for Jharkhand in January 2025 was 2.63 times. Inventory Days for Jharkhand in January 2025 was 11.4 days.
+
+Jharkhand Zone 1 distributors: Duran PLC Distributors, Hill and Sons Distributors, Cisneros, Whitehead and Lane Distributors, Daniels, Norton and French Distributors.
+Jharkhand Zone 2 distributors: Martin Inc Distributors, Spence-Hernandez Distributors, Gonzalez-Miller Distributors, Butler-Vasquez Distributors, Austin, Guerra and Fox Distributors, Austin, Wagner and Jones Distributors, Schaefer, Levine and Brown Distributors.
+
+Distributor-level deviations, January 2025:
+No distributor deviation this month for: Productivity, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Duran PLC Distributors showed a significant deviation on Service Level in January 2025: 76.2% vs. the state average of 93.5%, a gap of 17.3 percentage points.
+Distributor Cisneros, Whitehead and Lane Distributors showed a significant deviation on Dropsize in January 2025: 238.88 vs. the state average of 200.24, a gap of 19.3 percent.
+Distributor Duran PLC Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in January 2025: 20.0% vs. the state average of 5.5%, a gap of 14.5 percentage points.
+Distributor Hill and Sons Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in January 2025: 20.0% vs. the state average of 5.5%, a gap of 14.5 percentage points.
+Distributor Martin Inc Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in January 2025: 20.0% vs. the state average of 5.5%, a gap of 14.5 percentage points.
+Distributor Hill and Sons Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in January 2025: 28.6% vs. the state average of 5.2%, a gap of 23.4 percentage points.
+Distributor Duran PLC Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in January 2025: 14.3% vs. the state average of 3.9%, a gap of 10.4 percentage points.
+Distributor Martin Inc Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in January 2025: 14.3% vs. the state average of 3.9%, a gap of 10.4 percentage points.
+Distributor Spence-Hernandez Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in January 2025: 14.3% vs. the state average of 3.9%, a gap of 10.4 percentage points.
+
+Channel-level performance, January 2025:
+No channel deviation this month for: Range Billing (GPI), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+The Modern Trade channel showed a significant deviation on Numeric Distribution for the GPI category in January 2025: 49.4% vs. the state average of 63.8%, a gap of 14.5 percentage points.
+The Modern Trade channel showed a significant deviation on ACV for the GPI category in January 2025: 47.5% vs. the state average of 63.7%, a gap of 16.3 percentage points.
+The Modern Trade channel showed a significant deviation on Numeric Distribution for the IPM category in January 2025: 55.7% vs. the state average of 72.1%, a gap of 16.4 percentage points.
+The Modern Trade channel showed a significant deviation on ACV for the IPM category in January 2025: 53.2% vs. the state average of 72.1%, a gap of 18.9 percentage points.
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Jharkhand during January 2025: Numeric Distribution was 63.8%, ACV (weighted distribution — definition pending GPIL confirmation) was 63.7%, Out-of-Stock rate was 10.0%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 6.4%.
+
+For the IPM category (franchises: Marlboro) in Jharkhand during January 2025: Numeric Distribution was 72.1%, ACV (weighted distribution — definition pending GPIL confirmation) was 72.1%, Out-of-Stock rate was 5.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 39.2%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Jharkhand during January 2025: Numeric Distribution was 20.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 20.6%, Out-of-Stock rate was 5.2%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.8%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Jharkhand during January 2025: Numeric Distribution was 18.8%, ACV (weighted distribution — definition pending GPIL confirmation) was 18.9%, Out-of-Stock rate was 3.9%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.5%.

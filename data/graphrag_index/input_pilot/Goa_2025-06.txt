@@ -1,0 +1,35 @@
+State: Goa
+Period: June 2025
+
+Goa is divided into 2 zones: Goa Zone 1, Goa Zone 2.
+
+This document reports Sales & Distribution performance for Goa in June 2025.
+
+Productivity for Goa in June 2025 was 52.2%. Service Level for Goa in June 2025 was 94.7%. SKUs per Transaction for Goa in June 2025 was 2.99. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Goa in June 2025 was 149.00. Inventory Turns for Goa in June 2025 was 2.80 times. Inventory Days for Goa in June 2025 was 10.7 days.
+
+Goa Zone 1 distributors: Rodriguez-Hernandez Distributors, Jones Ltd Distributors, Pearson-Palmer Distributors, Johnson, Erickson and Armstrong Distributors, Anderson Group Distributors, Brooks Ltd Distributors, Baker-Williams Distributors.
+Goa Zone 2 distributors: Mcpherson, Anderson and Knapp Distributors, Richmond, Walsh and Wu Distributors, Moreno Inc Distributors, Wilson, Bell and Castillo Distributors, Cole-Lucero Distributors, Lang, Griffin and Williams Distributors.
+
+Distributor-level deviations, June 2025:
+No distributor deviation this month for: Productivity, Service Level, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Rodriguez-Hernandez Distributors showed a significant deviation on Dropsize in June 2025: 130.23 vs. the state average of 149.00, a gap of 12.6 percent.
+Distributor Pearson-Palmer Distributors showed a significant deviation on Dropsize in June 2025: 170.05 vs. the state average of 149.00, a gap of 14.1 percent.
+Distributor Richmond, Walsh and Wu Distributors showed a significant deviation on Dropsize in June 2025: 131.98 vs. the state average of 149.00, a gap of 11.4 percent.
+Distributor Moreno Inc Distributors showed a significant deviation on Dropsize in June 2025: 182.70 vs. the state average of 149.00, a gap of 22.6 percent.
+Distributor Pearson-Palmer Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in June 2025: 20.0% vs. the state average of 6.2%, a gap of 13.8 percentage points.
+Distributor Johnson, Erickson and Armstrong Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in June 2025: 20.0% vs. the state average of 6.2%, a gap of 13.8 percentage points.
+Distributor Cole-Lucero Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in June 2025: 20.0% vs. the state average of 6.2%, a gap of 13.8 percentage points.
+Distributor Lang, Griffin and Williams Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in June 2025: 20.0% vs. the state average of 6.2%, a gap of 13.8 percentage points.
+Distributor Wilson, Bell and Castillo Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in June 2025: 28.6% vs. the state average of 6.6%, a gap of 22.0 percentage points.
+Distributor Moreno Inc Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in June 2025: 42.9% vs. the state average of 11.0%, a gap of 31.9 percentage points.
+
+Channel-level performance, June 2025:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Goa during June 2025: Numeric Distribution was 45.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 45.8%, Out-of-Stock rate was 6.9%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 4.7%.
+
+For the IPM category (franchises: Marlboro) in Goa during June 2025: Numeric Distribution was 55.8%, ACV (weighted distribution — definition pending GPIL confirmation) was 55.8%, Out-of-Stock rate was 6.2%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 32.6%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Goa during June 2025: Numeric Distribution was 10.5%, ACV (weighted distribution — definition pending GPIL confirmation) was 10.5%, Out-of-Stock rate was 6.6%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 15.6%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Goa during June 2025: Numeric Distribution was 10.0%, ACV (weighted distribution — definition pending GPIL confirmation) was 10.0%, Out-of-Stock rate was 11.0%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 15.3%.

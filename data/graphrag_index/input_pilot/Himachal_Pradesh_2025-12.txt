@@ -1,0 +1,34 @@
+State: Himachal Pradesh
+Period: December 2025
+
+Himachal Pradesh is divided into 2 zones: Himachal Pradesh Zone 1, Himachal Pradesh Zone 2.
+
+This document reports Sales & Distribution performance for Himachal Pradesh in December 2025.
+
+Productivity for Himachal Pradesh in December 2025 was 59.7%. Service Level for Himachal Pradesh in December 2025 was 93.0%. SKUs per Transaction for Himachal Pradesh in December 2025 was 2.99. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Himachal Pradesh in December 2025 was 155.16. Inventory Turns for Himachal Pradesh in December 2025 was 2.61 times. Inventory Days for Himachal Pradesh in December 2025 was 11.5 days.
+
+Himachal Pradesh Zone 1 distributors: Carter Group Distributors, Franklin Group Distributors, Mendez Group Distributors, Pittman-Morgan Distributors, Mcclain, Flores and Lee Distributors, Chavez-Johnson Distributors, Brown, Robinson and Taylor Distributors.
+Himachal Pradesh Zone 2 distributors: Hanson-Gibson Distributors, Mooney, Lamb and Weber Distributors, Stewart, Moreno and Blanchard Distributors, Scott-Norman Distributors, Norman, Floyd and Fernandez Distributors, Johnson Inc Distributors.
+
+Distributor-level deviations, December 2025:
+No distributor deviation this month for: Productivity, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Johnson Inc Distributors showed a significant deviation on Service Level in December 2025: 75.2% vs. the state average of 93.0%, a gap of 17.8 percentage points.
+Distributor Johnson Inc Distributors showed a significant deviation on Dropsize in December 2025: 133.53 vs. the state average of 155.16, a gap of 13.9 percent.
+Distributor Chavez-Johnson Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in December 2025: 20.0% vs. the state average of 6.2%, a gap of 13.8 percentage points.
+Distributor Mooney, Lamb and Weber Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in December 2025: 20.0% vs. the state average of 6.2%, a gap of 13.8 percentage points.
+Distributor Scott-Norman Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in December 2025: 20.0% vs. the state average of 6.2%, a gap of 13.8 percentage points.
+Distributor Johnson Inc Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in December 2025: 20.0% vs. the state average of 6.2%, a gap of 13.8 percentage points.
+Distributor Mooney, Lamb and Weber Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in December 2025: 28.6% vs. the state average of 9.9%, a gap of 18.7 percentage points.
+Distributor Stewart, Moreno and Blanchard Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in December 2025: 28.6% vs. the state average of 9.9%, a gap of 18.7 percentage points.
+Distributor Norman, Floyd and Fernandez Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in December 2025: 28.6% vs. the state average of 6.6%, a gap of 22.0 percentage points.
+
+Channel-level performance, December 2025:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Himachal Pradesh during December 2025: Numeric Distribution was 51.5%, ACV (weighted distribution — definition pending GPIL confirmation) was 51.3%, Out-of-Stock rate was 8.8%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 4.8%.
+
+For the IPM category (franchises: Marlboro) in Himachal Pradesh during December 2025: Numeric Distribution was 62.1%, ACV (weighted distribution — definition pending GPIL confirmation) was 61.8%, Out-of-Stock rate was 6.2%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 32.8%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Himachal Pradesh during December 2025: Numeric Distribution was 12.4%, ACV (weighted distribution — definition pending GPIL confirmation) was 12.4%, Out-of-Stock rate was 9.9%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 15.6%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Himachal Pradesh during December 2025: Numeric Distribution was 11.3%, ACV (weighted distribution — definition pending GPIL confirmation) was 11.3%, Out-of-Stock rate was 6.6%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 15.4%.

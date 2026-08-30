@@ -1,0 +1,34 @@
+State: Meghalaya
+Period: July 2026
+
+Meghalaya is divided into 2 zones: Meghalaya Zone 1, Meghalaya Zone 2.
+
+This document reports Sales & Distribution performance for Meghalaya in July 2026.
+
+Productivity for Meghalaya in July 2026 was 51.9%. Service Level for Meghalaya in July 2026 was 93.7%. SKUs per Transaction for Meghalaya in July 2026 was 3.49. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Meghalaya in July 2026 was 171.15. Inventory Turns for Meghalaya in July 2026 was 2.59 times. Inventory Days for Meghalaya in July 2026 was 11.6 days.
+
+Meghalaya Zone 1 distributors: Mcknight Inc Distributors, Spencer-Gallegos Distributors, Davis-Parker Distributors, Case PLC Distributors, Tate-Gonzalez Distributors, Gaines-Hudson Distributors.
+Meghalaya Zone 2 distributors: Shaw-Parrish Distributors, Stewart, Jackson and Armstrong Distributors, Donovan Ltd Distributors, Campbell, Long and Silva Distributors, Fisher, Avila and Stewart Distributors.
+
+Distributor-level deviations, July 2026:
+No distributor deviation this month for: Productivity, Service Level, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Out-of-Stock Rate (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Tate-Gonzalez Distributors showed a significant deviation on Dropsize in July 2026: 188.85 vs. the state average of 171.15, a gap of 10.3 percent.
+Distributor Shaw-Parrish Distributors showed a significant deviation on Dropsize in July 2026: 136.50 vs. the state average of 171.15, a gap of 20.2 percent.
+Distributor Spencer-Gallegos Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in July 2026: 20.0% vs. the state average of 9.1%, a gap of 10.9 percentage points.
+Distributor Davis-Parker Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in July 2026: 20.0% vs. the state average of 9.1%, a gap of 10.9 percentage points.
+Distributor Case PLC Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in July 2026: 20.0% vs. the state average of 9.1%, a gap of 10.9 percentage points.
+Distributor Gaines-Hudson Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in July 2026: 20.0% vs. the state average of 9.1%, a gap of 10.9 percentage points.
+Distributor Shaw-Parrish Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in July 2026: 20.0% vs. the state average of 9.1%, a gap of 10.9 percentage points.
+Distributor Stewart, Jackson and Armstrong Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in July 2026: 28.6% vs. the state average of 9.1%, a gap of 19.5 percentage points.
+
+Channel-level performance, July 2026:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+The Modern Trade channel showed a significant deviation on ACV for the IPM category in July 2026: 44.7% vs. the state average of 55.8%, a gap of 11.1 percentage points.
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Meghalaya during July 2026: Numeric Distribution was 47.6%, ACV (weighted distribution — definition pending GPIL confirmation) was 47.3%, Out-of-Stock rate was 8.4%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 5.5%.
+
+For the IPM category (franchises: Marlboro) in Meghalaya during July 2026: Numeric Distribution was 56.0%, ACV (weighted distribution — definition pending GPIL confirmation) was 55.8%, Out-of-Stock rate was 9.1%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 35.3%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Meghalaya during July 2026: Numeric Distribution was 12.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 12.7%, Out-of-Stock rate was 6.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.3%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Meghalaya during July 2026: Numeric Distribution was 12.0%, ACV (weighted distribution — definition pending GPIL confirmation) was 12.0%, Out-of-Stock rate was 9.1%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 15.9%.

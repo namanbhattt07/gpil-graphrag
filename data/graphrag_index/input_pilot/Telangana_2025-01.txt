@@ -1,0 +1,29 @@
+State: Telangana
+Period: January 2025
+
+Telangana is divided into 2 zones: Telangana Zone 1, Telangana Zone 2.
+
+This document reports Sales & Distribution performance for Telangana in January 2025.
+
+Productivity for Telangana in January 2025 was 73.0%. Service Level for Telangana in January 2025 was 93.0%. SKUs per Transaction for Telangana in January 2025 was 3.49. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Telangana in January 2025 was 169.66. Inventory Turns for Telangana in January 2025 was 2.63 times. Inventory Days for Telangana in January 2025 was 11.4 days.
+
+Telangana Zone 1 distributors: Turner-Clark Distributors, Bond, Robinson and Jenkins Distributors, Johnson-Graham Distributors, Brown-Reynolds Distributors, Greene, Floyd and Taylor Distributors, Holden, Larson and Alvarez Distributors.
+Telangana Zone 2 distributors: Mcclain and Sons Distributors, Blankenship-Davis Distributors, Bradford and Sons Distributors, Sanders-Thomas Distributors, Blake-Hamilton Distributors, Snyder, Miller and Stevens Distributors.
+
+Distributor-level deviations, January 2025:
+No distributor deviation this month for: Productivity, Dropsize, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Out-of-Stock Rate (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Blake-Hamilton Distributors showed a significant deviation on Service Level in January 2025: 81.3% vs. the state average of 93.0%, a gap of 11.7 percentage points.
+Distributor Mcclain and Sons Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in January 2025: 60.0% vs. the state average of 10.0%, a gap of 50.0 percentage points.
+Distributor Greene, Floyd and Taylor Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in January 2025: 28.6% vs. the state average of 9.5%, a gap of 19.0 percentage points.
+Distributor Mcclain and Sons Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in January 2025: 28.6% vs. the state average of 9.5%, a gap of 19.0 percentage points.
+
+Channel-level performance, January 2025:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Telangana during January 2025: Numeric Distribution was 63.3%, ACV (weighted distribution — definition pending GPIL confirmation) was 63.5%, Out-of-Stock rate was 7.9%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 5.7%.
+
+For the IPM category (franchises: Marlboro) in Telangana during January 2025: Numeric Distribution was 73.0%, ACV (weighted distribution — definition pending GPIL confirmation) was 73.2%, Out-of-Stock rate was 10.0%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 36.6%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Telangana during January 2025: Numeric Distribution was 18.2%, ACV (weighted distribution — definition pending GPIL confirmation) was 18.2%, Out-of-Stock rate was 6.0%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.2%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Telangana during January 2025: Numeric Distribution was 16.4%, ACV (weighted distribution — definition pending GPIL confirmation) was 16.4%, Out-of-Stock rate was 9.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.0%.

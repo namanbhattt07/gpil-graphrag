@@ -2,6 +2,8 @@
 
 Verified against the actual repository at `/Users/namanbhatt/Downloads/GPIL/code` (branch `main`, plus uncommitted working-tree files). Every claim below is backed by a specific file/function. Nothing here is aspirational — items that exist only as docs/plans are called out explicitly in Section 9 ("Things NOT to show").
 
+> **2026-08-30 finalization update:** two facts below are now stale and superseded by the README. (1) `src/ui/streamlit_app.py` now exists and is a working Streamlit chat UI (Section G's "Streamlit chat UI does not exist" claim no longer holds). (2) The pilot index was expanded from 32 to 62 documents (Section G's "32-document mini pilot" claim). Everything else in this document — the grounding architecture, knowledge graph schema, and "Things NOT to show" list — is unchanged and still accurate.
+
 ---
 
 ## 1. SYSTEM FLOW (end to end, in build order)

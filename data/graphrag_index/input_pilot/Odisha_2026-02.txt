@@ -1,0 +1,33 @@
+State: Odisha
+Period: February 2026
+
+Odisha is divided into 2 zones: Odisha Zone 1, Odisha Zone 2.
+
+This document reports Sales & Distribution performance for Odisha in February 2026.
+
+Productivity for Odisha in February 2026 was 67.6%. Service Level for Odisha in February 2026 was 95.4%. SKUs per Transaction for Odisha in February 2026 was 4.00. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Odisha in February 2026 was 192.56. Inventory Turns for Odisha in February 2026 was 2.64 times. Inventory Days for Odisha in February 2026 was 11.4 days.
+
+Odisha Zone 1 distributors: Barton, Wright and Nelson Distributors, Watkins-Miller Distributors, Barnes, Smith and Wilson Distributors, Cross LLC Distributors, Gonzalez LLC Distributors, Edwards PLC Distributors.
+Odisha Zone 2 distributors: Nelson and Sons Distributors, King LLC Distributors, Villanueva-Weiss Distributors, Coleman-Harmon Distributors, Acosta Ltd Distributors.
+
+Distributor-level deviations, February 2026:
+No distributor deviation this month for: Productivity, Service Level, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Watkins-Miller Distributors showed a significant deviation on Dropsize in February 2026: 212.53 vs. the state average of 192.56, a gap of 10.4 percent.
+Distributor Barnes, Smith and Wilson Distributors showed a significant deviation on Dropsize in February 2026: 169.88 vs. the state average of 192.56, a gap of 11.8 percent.
+Distributor Edwards PLC Distributors showed a significant deviation on Dropsize in February 2026: 214.22 vs. the state average of 192.56, a gap of 11.2 percent.
+Distributor King LLC Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in February 2026: 20.0% vs. the state average of 1.8%, a gap of 18.2 percentage points.
+Distributor Edwards PLC Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in February 2026: 28.6% vs. the state average of 7.8%, a gap of 20.8 percentage points.
+Distributor Watkins-Miller Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in February 2026: 14.3% vs. the state average of 3.9%, a gap of 10.4 percentage points.
+Distributor Edwards PLC Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in February 2026: 14.3% vs. the state average of 3.9%, a gap of 10.4 percentage points.
+Distributor Nelson and Sons Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in February 2026: 14.3% vs. the state average of 3.9%, a gap of 10.4 percentage points.
+
+Channel-level performance, February 2026:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Odisha during February 2026: Numeric Distribution was 61.8%, ACV (weighted distribution — definition pending GPIL confirmation) was 61.5%, Out-of-Stock rate was 8.2%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 6.4%.
+
+For the IPM category (franchises: Marlboro) in Odisha during February 2026: Numeric Distribution was 69.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 69.7%, Out-of-Stock rate was 1.8%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 39.2%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Odisha during February 2026: Numeric Distribution was 19.8%, ACV (weighted distribution — definition pending GPIL confirmation) was 19.7%, Out-of-Stock rate was 7.8%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.9%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Odisha during February 2026: Numeric Distribution was 18.5%, ACV (weighted distribution — definition pending GPIL confirmation) was 18.5%, Out-of-Stock rate was 3.9%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.5%.

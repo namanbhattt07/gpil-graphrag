@@ -1,0 +1,32 @@
+State: Manipur
+Period: August 2025
+
+Manipur is divided into 2 zones: Manipur Zone 1, Manipur Zone 2.
+
+This document reports Sales & Distribution performance for Manipur in August 2025.
+
+Productivity for Manipur in August 2025 was 51.5%. Service Level for Manipur in August 2025 was 92.9%. SKUs per Transaction for Manipur in August 2025 was 3.50. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Manipur in August 2025 was 178.77. Inventory Turns for Manipur in August 2025 was 2.67 times. Inventory Days for Manipur in August 2025 was 11.2 days.
+
+Manipur Zone 1 distributors: Sanchez-Stevenson Distributors, Gentry Inc Distributors, Gamble-Wright Distributors, Paul-Chapman Distributors.
+Manipur Zone 2 distributors: Berg, Mata and Martin Distributors, Medina PLC Distributors, Rodriguez Inc Distributors, Jones-Cook Distributors.
+
+Distributor-level deviations, August 2025:
+No distributor deviation this month for: Productivity, Dropsize, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Gamble-Wright Distributors showed a significant deviation on Service Level in August 2025: 75.0% vs. the state average of 92.9%, a gap of 17.8 percentage points.
+Distributor Gentry Inc Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in August 2025: 20.0% vs. the state average of 7.5%, a gap of 12.5 percentage points.
+Distributor Gamble-Wright Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in August 2025: 20.0% vs. the state average of 7.5%, a gap of 12.5 percentage points.
+Distributor Rodriguez Inc Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in August 2025: 20.0% vs. the state average of 7.5%, a gap of 12.5 percentage points.
+Distributor Sanchez-Stevenson Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in August 2025: 14.3% vs. the state average of 3.6%, a gap of 10.7 percentage points.
+Distributor Gamble-Wright Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in August 2025: 14.3% vs. the state average of 3.6%, a gap of 10.7 percentage points.
+Distributor Gamble-Wright Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in August 2025: 42.9% vs. the state average of 19.6%, a gap of 23.2 percentage points.
+
+Channel-level performance, August 2025:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Manipur during August 2025: Numeric Distribution was 47.5%, ACV (weighted distribution — definition pending GPIL confirmation) was 47.7%, Out-of-Stock rate was 6.6%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 5.5%.
+
+For the IPM category (franchises: Marlboro) in Manipur during August 2025: Numeric Distribution was 55.6%, ACV (weighted distribution — definition pending GPIL confirmation) was 55.7%, Out-of-Stock rate was 7.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 35.5%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Manipur during August 2025: Numeric Distribution was 13.3%, ACV (weighted distribution — definition pending GPIL confirmation) was 13.5%, Out-of-Stock rate was 3.6%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 15.9%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Manipur during August 2025: Numeric Distribution was 11.7%, ACV (weighted distribution — definition pending GPIL confirmation) was 11.7%, Out-of-Stock rate was 19.6%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 15.7%.

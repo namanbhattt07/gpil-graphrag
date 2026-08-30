@@ -1,0 +1,31 @@
+State: Uttar Pradesh
+Period: July 2025
+
+Uttar Pradesh is divided into 2 zones: Uttar Pradesh Zone 1, Uttar Pradesh Zone 2.
+
+This document reports Sales & Distribution performance for Uttar Pradesh in July 2025.
+
+Productivity for Uttar Pradesh in July 2025 was 76.6%. Service Level for Uttar Pradesh in July 2025 was 94.7%. SKUs per Transaction for Uttar Pradesh in July 2025 was 4.49. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Uttar Pradesh in July 2025 was 220.83. Inventory Turns for Uttar Pradesh in July 2025 was 2.59 times. Inventory Days for Uttar Pradesh in July 2025 was 11.6 days.
+
+Uttar Pradesh Zone 1 distributors: Davis and Sons Distributors, Rodriguez-Duran Distributors, Clayton Inc Distributors, Gray-Williams Distributors.
+Uttar Pradesh Zone 2 distributors: Brewer, Estrada and Parker Distributors, Rivera-Compton Distributors, Hull PLC Distributors, Wagner, Jones and Hayes Distributors, Doyle, Rice and Russell Distributors, Sanders Inc Distributors, Smith Group Distributors.
+
+Distributor-level deviations, July 2025:
+No distributor deviation this month for: Productivity, Service Level, Dropsize, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Davis and Sons Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in July 2025: 20.0% vs. the state average of 1.8%, a gap of 18.2 percentage points.
+Distributor Rodriguez-Duran Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in July 2025: 28.6% vs. the state average of 9.1%, a gap of 19.5 percentage points.
+Distributor Doyle, Rice and Russell Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in July 2025: 28.6% vs. the state average of 9.1%, a gap of 19.5 percentage points.
+Distributor Gray-Williams Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in July 2025: 28.6% vs. the state average of 10.4%, a gap of 18.2 percentage points.
+Distributor Brewer, Estrada and Parker Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in July 2025: 28.6% vs. the state average of 10.4%, a gap of 18.2 percentage points.
+Distributor Hull PLC Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in July 2025: 28.6% vs. the state average of 10.4%, a gap of 18.2 percentage points.
+
+Channel-level performance, July 2025:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Uttar Pradesh during July 2025: Numeric Distribution was 69.5%, ACV (weighted distribution — definition pending GPIL confirmation) was 69.6%, Out-of-Stock rate was 8.4%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 7.3%.
+
+For the IPM category (franchises: Marlboro) in Uttar Pradesh during July 2025: Numeric Distribution was 76.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 77.0%, Out-of-Stock rate was 1.8%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 42.5%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Uttar Pradesh during July 2025: Numeric Distribution was 25.5%, ACV (weighted distribution — definition pending GPIL confirmation) was 25.5%, Out-of-Stock rate was 9.1%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 17.4%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Uttar Pradesh during July 2025: Numeric Distribution was 23.5%, ACV (weighted distribution — definition pending GPIL confirmation) was 23.4%, Out-of-Stock rate was 10.4%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 17.1%.

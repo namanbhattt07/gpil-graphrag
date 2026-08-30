@@ -1,0 +1,30 @@
+State: Madhya Pradesh
+Period: October 2024
+
+Madhya Pradesh is divided into 2 zones: Madhya Pradesh Zone 1, Madhya Pradesh Zone 2.
+
+This document reports Sales & Distribution performance for Madhya Pradesh in October 2024.
+
+Productivity for Madhya Pradesh in October 2024 was 89.9%. Service Level for Madhya Pradesh in October 2024 was 94.0%. SKUs per Transaction for Madhya Pradesh in October 2024 was 4.50. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Madhya Pradesh in October 2024 was 214.05. Inventory Turns for Madhya Pradesh in October 2024 was 2.42 times. Inventory Days for Madhya Pradesh in October 2024 was 12.4 days.
+
+Madhya Pradesh Zone 1 distributors: Ramirez Group Distributors, Reyes-Pope Distributors, Jensen-Barnes Distributors, Sanchez, Williams and Jensen Distributors.
+Madhya Pradesh Zone 2 distributors: Payne LLC Distributors, Perez-Simmons Distributors, Collins Ltd Distributors, Jones-Garcia Distributors, Benjamin Inc Distributors, Jones-Smith Distributors.
+
+Distributor-level deviations, October 2024:
+No distributor deviation this month for: Productivity, Service Level, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Out-of-Stock Rate (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Out-of-Stock Rate (Candy), Range Billing (Candy).
+Distributor Benjamin Inc Distributors showed a significant deviation on Dropsize in October 2024: 239.00 vs. the state average of 214.05, a gap of 11.7 percent.
+Distributor Jones-Smith Distributors showed a significant deviation on Dropsize in October 2024: 237.96 vs. the state average of 214.05, a gap of 11.2 percent.
+Distributor Reyes-Pope Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in October 2024: 20.0% vs. the state average of 6.0%, a gap of 14.0 percentage points.
+Distributor Jones-Garcia Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in October 2024: 20.0% vs. the state average of 6.0%, a gap of 14.0 percentage points.
+Distributor Benjamin Inc Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in October 2024: 20.0% vs. the state average of 6.0%, a gap of 14.0 percentage points.
+
+Channel-level performance, October 2024:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Madhya Pradesh during October 2024: Numeric Distribution was 77.4%, ACV (weighted distribution — definition pending GPIL confirmation) was 77.4%, Out-of-Stock rate was 6.8%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 7.1%.
+
+For the IPM category (franchises: Marlboro) in Madhya Pradesh during October 2024: Numeric Distribution was 85.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 85.9%, Out-of-Stock rate was 6.0%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 41.8%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Madhya Pradesh during October 2024: Numeric Distribution was 38.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 38.6%, Out-of-Stock rate was 5.7%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 19.2%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Madhya Pradesh during October 2024: Numeric Distribution was 35.7%, ACV (weighted distribution — definition pending GPIL confirmation) was 35.8%, Out-of-Stock rate was 7.1%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 18.7%.

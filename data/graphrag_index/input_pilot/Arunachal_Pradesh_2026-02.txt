@@ -1,0 +1,35 @@
+State: Arunachal Pradesh
+Period: February 2026
+
+Arunachal Pradesh is divided into 2 zones: Arunachal Pradesh Zone 1, Arunachal Pradesh Zone 2.
+
+This document reports Sales & Distribution performance for Arunachal Pradesh in February 2026.
+
+Productivity for Arunachal Pradesh in February 2026 was 46.6%. Service Level for Arunachal Pradesh in February 2026 was 93.1%. SKUs per Transaction for Arunachal Pradesh in February 2026 was 3.99. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Arunachal Pradesh in February 2026 was 192.40. Inventory Turns for Arunachal Pradesh in February 2026 was 2.60 times. Inventory Days for Arunachal Pradesh in February 2026 was 11.5 days.
+
+Arunachal Pradesh Zone 1 distributors: Peters-Allen Distributors, Wilson Group Distributors, Underwood, Johnston and Hines Distributors, Jimenez Ltd Distributors, Pollard, Simpson and Johnson Distributors, Hayden, Vaughn and Bryant Distributors, Francis-Morgan Distributors.
+Arunachal Pradesh Zone 2 distributors: Robinson-Wallace Distributors, Reese Group Distributors, Douglas and Sons Distributors, Smith Ltd Distributors, Lin-Burton Distributors.
+
+Distributor-level deviations, February 2026:
+No distributor deviation this month for: Productivity, Dropsize, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Robinson-Wallace Distributors showed a significant deviation on Service Level in February 2026: 82.5% vs. the state average of 93.1%, a gap of 10.5 percentage points.
+Distributor Underwood, Johnston and Hines Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in February 2026: 20.0% vs. the state average of 8.3%, a gap of 11.7 percentage points.
+Distributor Francis-Morgan Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in February 2026: 20.0% vs. the state average of 8.3%, a gap of 11.7 percentage points.
+Distributor Robinson-Wallace Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in February 2026: 20.0% vs. the state average of 8.3%, a gap of 11.7 percentage points.
+Distributor Reese Group Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in February 2026: 20.0% vs. the state average of 8.3%, a gap of 11.7 percentage points.
+Distributor Lin-Burton Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in February 2026: 20.0% vs. the state average of 8.3%, a gap of 11.7 percentage points.
+Distributor Lin-Burton Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in February 2026: 28.6% vs. the state average of 9.5%, a gap of 19.0 percentage points.
+Distributor Wilson Group Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in February 2026: 28.6% vs. the state average of 10.7%, a gap of 17.9 percentage points.
+Distributor Underwood, Johnston and Hines Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in February 2026: 28.6% vs. the state average of 10.7%, a gap of 17.9 percentage points.
+Distributor Douglas and Sons Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in February 2026: 28.6% vs. the state average of 10.7%, a gap of 17.9 percentage points.
+
+Channel-level performance, February 2026:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Arunachal Pradesh during February 2026: Numeric Distribution was 45.1%, ACV (weighted distribution — definition pending GPIL confirmation) was 45.1%, Out-of-Stock rate was 7.1%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 6.2%.
+
+For the IPM category (franchises: Marlboro) in Arunachal Pradesh during February 2026: Numeric Distribution was 51.5%, ACV (weighted distribution — definition pending GPIL confirmation) was 51.5%, Out-of-Stock rate was 8.3%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 38.0%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Arunachal Pradesh during February 2026: Numeric Distribution was 13.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 13.9%, Out-of-Stock rate was 9.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.4%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Arunachal Pradesh during February 2026: Numeric Distribution was 12.7%, ACV (weighted distribution — definition pending GPIL confirmation) was 12.7%, Out-of-Stock rate was 10.7%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.2%.

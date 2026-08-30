@@ -1,0 +1,31 @@
+State: Uttarakhand
+Period: June 2026
+
+Uttarakhand is divided into 2 zones: Uttarakhand Zone 1, Uttarakhand Zone 2.
+
+This document reports Sales & Distribution performance for Uttarakhand in June 2026.
+
+Productivity for Uttarakhand in June 2026 was 62.5%. Service Level for Uttarakhand in June 2026 was 93.9%. SKUs per Transaction for Uttarakhand in June 2026 was 4.00. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Uttarakhand in June 2026 was 196.01. Inventory Turns for Uttarakhand in June 2026 was 2.67 times. Inventory Days for Uttarakhand in June 2026 was 11.2 days.
+
+Uttarakhand Zone 1 distributors: Salazar LLC Distributors, Johnson-Zuniga Distributors, Stein Ltd Distributors, White Ltd Distributors.
+Uttarakhand Zone 2 distributors: Hunt, Soto and Holland Distributors, Long, Watkins and Gonzalez Distributors, Lee Ltd Distributors, Mcconnell PLC Distributors, Henderson Ltd Distributors.
+
+Distributor-level deviations, June 2026:
+No distributor deviation this month for: Productivity, Service Level, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Out-of-Stock Rate (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Hunt, Soto and Holland Distributors showed a significant deviation on Dropsize in June 2026: 176.32 vs. the state average of 196.01, a gap of 10.0 percent.
+Distributor Henderson Ltd Distributors showed a significant deviation on Dropsize in June 2026: 223.91 vs. the state average of 196.01, a gap of 14.2 percent.
+Distributor Stein Ltd Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in June 2026: 20.0% vs. the state average of 6.7%, a gap of 13.3 percentage points.
+Distributor Long, Watkins and Gonzalez Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in June 2026: 20.0% vs. the state average of 6.7%, a gap of 13.3 percentage points.
+Distributor Henderson Ltd Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in June 2026: 20.0% vs. the state average of 6.7%, a gap of 13.3 percentage points.
+Distributor Stein Ltd Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in June 2026: 28.6% vs. the state average of 6.3%, a gap of 22.2 percentage points.
+
+Channel-level performance, June 2026:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Uttarakhand during June 2026: Numeric Distribution was 58.4%, ACV (weighted distribution — definition pending GPIL confirmation) was 58.3%, Out-of-Stock rate was 6.7%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 6.3%.
+
+For the IPM category (franchises: Marlboro) in Uttarakhand during June 2026: Numeric Distribution was 65.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 65.9%, Out-of-Stock rate was 6.7%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 38.9%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Uttarakhand during June 2026: Numeric Distribution was 18.2%, ACV (weighted distribution — definition pending GPIL confirmation) was 18.2%, Out-of-Stock rate was 6.3%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.6%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Uttarakhand during June 2026: Numeric Distribution was 17.0%, ACV (weighted distribution — definition pending GPIL confirmation) was 16.9%, Out-of-Stock rate was 6.3%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.5%.

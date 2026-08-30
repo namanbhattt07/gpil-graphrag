@@ -94,7 +94,7 @@ This has now been extended to the three **WD-month** KPIs (Productivity, Service
 | Productivity | Percentage points (absolute) | Distributor's value differs from state average by more than **6 percentage points** |
 | Service Level | Percentage points (absolute) | Distributor's value differs from state average by more than **6 percentage points** |
 | Dropsize | **Percent (relative) deviation** | Distributor's value differs from state average by more than **6% relative** (e.g. if state Dropsize is 200, trigger below 188 or above 212) |
-| ND / ACV / OOS% / Range Billing | Percentage points (absolute) | Unchanged from Design Decision #1 — more than 6pp, unfavorable direction only |
+| ND / ACV / OOS% / Range Billing | Percentage points (absolute) | Tightened from Design Decision #1's 6pp to 10pp (see `PP_DEVIATION_THRESHOLD` in `src/graph/build_documents.py`) — the 7-document pilot showed too many call-outs per document at 6pp; unfavorable direction only |
 
 Same tunability caveat as Design Decision #1 applies: this is an agreed default, not a code- or statistics-derived value, and should be revisited once pilot documents show how many distributors it flags per state/month.
 

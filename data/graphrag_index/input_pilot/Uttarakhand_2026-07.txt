@@ -1,0 +1,28 @@
+State: Uttarakhand
+Period: July 2026
+
+Uttarakhand is divided into 2 zones: Uttarakhand Zone 1, Uttarakhand Zone 2.
+
+This document reports Sales & Distribution performance for Uttarakhand in July 2026.
+
+Productivity for Uttarakhand in July 2026 was 62.5%. Service Level for Uttarakhand in July 2026 was 94.7%. SKUs per Transaction for Uttarakhand in July 2026 was 4.00. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Uttarakhand in July 2026 was 199.55. Inventory Turns for Uttarakhand in July 2026 was 2.62 times. Inventory Days for Uttarakhand in July 2026 was 11.4 days.
+
+Uttarakhand Zone 1 distributors: Salazar LLC Distributors, Johnson-Zuniga Distributors, Stein Ltd Distributors, White Ltd Distributors.
+Uttarakhand Zone 2 distributors: Hunt, Soto and Holland Distributors, Long, Watkins and Gonzalez Distributors, Lee Ltd Distributors, Mcconnell PLC Distributors, Henderson Ltd Distributors.
+
+Distributor-level deviations, July 2026:
+No distributor deviation this month for: Productivity, Service Level, Dropsize, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Out-of-Stock Rate (Candy), Range Billing (Candy).
+Distributor Long, Watkins and Gonzalez Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in July 2026: 20.0% vs. the state average of 2.2%, a gap of 17.8 percentage points.
+Distributor Salazar LLC Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in July 2026: 28.6% vs. the state average of 9.5%, a gap of 19.0 percentage points.
+Distributor Stein Ltd Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in July 2026: 28.6% vs. the state average of 9.5%, a gap of 19.0 percentage points.
+
+Channel-level performance, July 2026:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Uttarakhand during July 2026: Numeric Distribution was 58.2%, ACV (weighted distribution — definition pending GPIL confirmation) was 58.1%, Out-of-Stock rate was 7.8%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 6.3%.
+
+For the IPM category (franchises: Marlboro) in Uttarakhand during July 2026: Numeric Distribution was 65.8%, ACV (weighted distribution — definition pending GPIL confirmation) was 65.7%, Out-of-Stock rate was 2.2%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 39.0%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Uttarakhand during July 2026: Numeric Distribution was 18.5%, ACV (weighted distribution — definition pending GPIL confirmation) was 18.4%, Out-of-Stock rate was 9.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.6%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Uttarakhand during July 2026: Numeric Distribution was 17.0%, ACV (weighted distribution — definition pending GPIL confirmation) was 17.1%, Out-of-Stock rate was 9.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.5%.

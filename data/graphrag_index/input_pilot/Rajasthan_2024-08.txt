@@ -1,0 +1,31 @@
+State: Rajasthan
+Period: August 2024
+
+Rajasthan is divided into 2 zones: Rajasthan Zone 1, Rajasthan Zone 2.
+
+This document reports Sales & Distribution performance for Rajasthan in August 2024.
+
+Productivity for Rajasthan in August 2024 was 70.2%. Service Level for Rajasthan in August 2024 was 92.4%. SKUs per Transaction for Rajasthan in August 2024 was 3.50. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Rajasthan in August 2024 was 172.48. Inventory Turns for Rajasthan in August 2024 was 1.52 times. Inventory Days for Rajasthan in August 2024 was 19.7 days.
+
+Rajasthan Zone 1 distributors: Scott-Adkins Distributors, Saunders, Patel and Valdez Distributors, Martinez, Sherman and Martinez Distributors, Harmon Ltd Distributors.
+Rajasthan Zone 2 distributors: Barnett-Meyer Distributors, Burch PLC Distributors, Smith-King Distributors, Hernandez-Beard Distributors.
+
+Distributor-level deviations, August 2024:
+No distributor deviation this month for: Productivity, Service Level, Dropsize, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Saunders, Patel and Valdez Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in August 2024: 20.0% vs. the state average of 7.5%, a gap of 12.5 percentage points.
+Distributor Harmon Ltd Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in August 2024: 20.0% vs. the state average of 7.5%, a gap of 12.5 percentage points.
+Distributor Smith-King Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in August 2024: 20.0% vs. the state average of 7.5%, a gap of 12.5 percentage points.
+Distributor Scott-Adkins Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in August 2024: 28.6% vs. the state average of 10.7%, a gap of 17.9 percentage points.
+Distributor Hernandez-Beard Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in August 2024: 28.6% vs. the state average of 10.7%, a gap of 17.9 percentage points.
+Distributor Scott-Adkins Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in August 2024: 28.6% vs. the state average of 8.9%, a gap of 19.6 percentage points.
+
+Channel-level performance, August 2024:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Rajasthan during August 2024: Numeric Distribution was 62.0%, ACV (weighted distribution — definition pending GPIL confirmation) was 61.8%, Out-of-Stock rate was 7.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 5.6%.
+
+For the IPM category (franchises: Marlboro) in Rajasthan during August 2024: Numeric Distribution was 71.2%, ACV (weighted distribution — definition pending GPIL confirmation) was 71.3%, Out-of-Stock rate was 7.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 36.4%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Rajasthan during August 2024: Numeric Distribution was 17.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 17.9%, Out-of-Stock rate was 10.7%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.1%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Rajasthan during August 2024: Numeric Distribution was 16.1%, ACV (weighted distribution — definition pending GPIL confirmation) was 16.3%, Out-of-Stock rate was 8.9%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 15.8%.

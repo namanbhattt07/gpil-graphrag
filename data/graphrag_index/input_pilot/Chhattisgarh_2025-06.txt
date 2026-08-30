@@ -1,0 +1,30 @@
+State: Chhattisgarh
+Period: June 2025
+
+Chhattisgarh is divided into 2 zones: Chhattisgarh Zone 1, Chhattisgarh Zone 2.
+
+This document reports Sales & Distribution performance for Chhattisgarh in June 2025.
+
+Productivity for Chhattisgarh in June 2025 was 65.5%. Service Level for Chhattisgarh in June 2025 was 95.2%. SKUs per Transaction for Chhattisgarh in June 2025 was 3.99. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Chhattisgarh in June 2025 was 197.42. Inventory Turns for Chhattisgarh in June 2025 was 2.65 times. Inventory Days for Chhattisgarh in June 2025 was 11.3 days.
+
+Chhattisgarh Zone 1 distributors: Burns-Ray Distributors, Martin, Sanders and Torres Distributors, Taylor Inc Distributors, Herrera Group Distributors, Richardson LLC Distributors.
+Chhattisgarh Zone 2 distributors: Moreno and Sons Distributors, Anderson Group Distributors, Ferguson-Moody Distributors, Taylor-Moore Distributors, Jones, Mcmahon and Spence Distributors, Contreras, Miller and Cooper Distributors.
+
+Distributor-level deviatwasions, June 2025:
+No distributor deviation this month for: Productivity, Service Level, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Out-of-Stock Rate (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Out-of-Stock Rate (Candy), Range Billing (Candy).
+Distributor Martin, Sanders and Torres Distributors showed a significant deviation on Dropsize in June 2025: 168.76 vs. the state average of 197.42, a gap of 14.5 percent.
+Distributor Ferguson-Moody Distributors showed a significant deviation on Dropsize in June 2025: 217.77 vs. the state average of 197.42, a gap of 10.3 percent.
+Distributor Martin, Sanders and Torres Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in June 2025: 20.0% vs. the state average of 5.5%, a gap of 14.5 percentage points.
+Distributor Herrera Group Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in June 2025: 20.0% vs. the state average of 5.5%, a gap of 14.5 percentage points.
+Distributor Moreno and Sons Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in June 2025: 20.0% vs. the state average of 5.5%, a gap of 14.5 percentage points.
+
+Channel-level performance, June 2025:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Chhattisgarh during June 2025: Numeric Distribution was 60.4%, ACV (weighted distribution — definition pending GPIL confirmation) was 60.4%, Out-of-Stock rate was 8.9%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 6.3%.
+
+For the IPM category (franchises: Marlboro) in Chhattisgarh during June 2025: Numeric Distribution was 68.5%, ACV (weighted distribution — definition pending GPIL confirmation) was 68.5%, Out-of-Stock rate was 5.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 39.0%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Chhattisgarh during June 2025: Numeric Distribution was 19.6%, ACV (weighted distribution — definition pending GPIL confirmation) was 19.4%, Out-of-Stock rate was 6.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.8%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Chhattisgarh during June 2025: Numeric Distribution was 17.7%, ACV (weighted distribution — definition pending GPIL confirmation) was 17.5%, Out-of-Stock rate was 5.2%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.5%.

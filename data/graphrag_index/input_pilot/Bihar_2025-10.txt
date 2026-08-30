@@ -1,0 +1,31 @@
+State: Bihar
+Period: October 2025
+
+Bihar is divided into 2 zones: Bihar Zone 1, Bihar Zone 2.
+
+This document reports Sales & Distribution performance for Bihar in October 2025.
+
+Productivity for Bihar in October 2025 was 85.5%. Service Level for Bihar in October 2025 was 94.3%. SKUs per Transaction for Bihar in October 2025 was 3.49. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Bihar in October 2025 was 174.76. Inventory Turns for Bihar in October 2025 was 2.64 times. Inventory Days for Bihar in October 2025 was 11.3 days.
+
+Bihar Zone 1 distributors: Zhang, Brooks and Miles Distributors, Long, Anderson and Irwin Distributors, Bennett-Webster Distributors, Ward-Andrade Distributors.
+Bihar Zone 2 distributors: Landry Ltd Distributors, Porter Group Distributors, Rodriguez-Smith Distributors, Casey, Nguyen and Ramirez Distributors, Garcia-Perry Distributors, Edwards and Sons Distributors, Weaver-Sherman Distributors.
+
+Distributor-level deviations, October 2025:
+No distributor deviation this month for: Productivity, Service Level, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Long, Anderson and Irwin Distributors showed a significant deviation on Dropsize in October 2025: 156.99 vs. the state average of 174.76, a gap of 10.2 percent.
+Distributor Weaver-Sherman Distributors showed a significant deviation on Dropsize in October 2025: 194.71 vs. the state average of 174.76, a gap of 11.4 percent.
+Distributor Bennett-Webster Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in October 2025: 20.0% vs. the state average of 1.8%, a gap of 18.2 percentage points.
+Distributor Zhang, Brooks and Miles Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in October 2025: 42.9% vs. the state average of 5.2%, a gap of 37.7 percentage points.
+Distributor Long, Anderson and Irwin Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in October 2025: 28.6% vs. the state average of 10.4%, a gap of 18.2 percentage points.
+Distributor Weaver-Sherman Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in October 2025: 28.6% vs. the state average of 10.4%, a gap of 18.2 percentage points.
+
+Channel-level performance, October 2025:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Bihar during October 2025: Numeric Distribution was 70.3%, ACV (weighted distribution — definition pending GPIL confirmation) was 70.2%, Out-of-Stock rate was 5.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 5.5%.
+
+For the IPM category (franchises: Marlboro) in Bihar during October 2025: Numeric Distribution was 81.7%, ACV (weighted distribution — definition pending GPIL confirmation) was 81.8%, Out-of-Stock rate was 1.8%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 35.8%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Bihar during October 2025: Numeric Distribution was 28.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 28.8%, Out-of-Stock rate was 5.2%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 17.3%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Bihar during October 2025: Numeric Distribution was 26.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 26.8%, Out-of-Stock rate was 10.4%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 17.0%.

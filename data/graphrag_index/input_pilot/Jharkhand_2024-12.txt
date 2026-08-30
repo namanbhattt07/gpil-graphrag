@@ -1,0 +1,33 @@
+State: Jharkhand
+Period: December 2024
+
+Jharkhand is divided into 2 zones: Jharkhand Zone 1, Jharkhand Zone 2.
+
+This document reports Sales & Distribution performance for Jharkhand in December 2024.
+
+Productivity for Jharkhand in December 2024 was 69.6%. Service Level for Jharkhand in December 2024 was 88.0%. SKUs per Transaction for Jharkhand in December 2024 was 4.01. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Jharkhand in December 2024 was 191.54. Inventory Turns for Jharkhand in December 2024 was 2.57 times. Inventory Days for Jharkhand in December 2024 was 11.7 days.
+
+Jharkhand Zone 1 distributors: Duran PLC Distributors, Hill and Sons Distributors, Cisneros, Whitehead and Lane Distributors, Daniels, Norton and French Distributors.
+Jharkhand Zone 2 distributors: Martin Inc Distributors, Spence-Hernandez Distributors, Gonzalez-Miller Distributors, Butler-Vasquez Distributors, Austin, Guerra and Fox Distributors, Austin, Wagner and Jones Distributors, Schaefer, Levine and Brown Distributors.
+
+Distributor-level deviations, December 2024:
+No distributor deviation this month for: Productivity, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Hill and Sons Distributors showed a significant deviation on Service Level in December 2024: 77.9% vs. the state average of 88.0%, a gap of 10.1 percentage points.
+Distributor Cisneros, Whitehead and Lane Distributors showed a significant deviation on Dropsize in December 2024: 217.63 vs. the state average of 191.54, a gap of 13.6 percent.
+Distributor Austin, Wagner and Jones Distributors showed a significant deviation on Dropsize in December 2024: 164.92 vs. the state average of 191.54, a gap of 13.9 percent.
+Distributor Martin Inc Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in December 2024: 40.0% vs. the state average of 20.0%, a gap of 20.0 percentage points.
+Distributor Butler-Vasquez Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in December 2024: 40.0% vs. the state average of 20.0%, a gap of 20.0 percentage points.
+Distributor Schaefer, Levine and Brown Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in December 2024: 40.0% vs. the state average of 20.0%, a gap of 20.0 percentage points.
+Distributor Spence-Hernandez Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in December 2024: 28.6% vs. the state average of 5.2%, a gap of 23.4 percentage points.
+Distributor Austin, Wagner and Jones Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in December 2024: 28.6% vs. the state average of 7.8%, a gap of 20.8 percentage points.
+
+Channel-level performance, December 2024:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Jharkhand during December 2024: Numeric Distribution was 63.4%, ACV (weighted distribution — definition pending GPIL confirmation) was 63.6%, Out-of-Stock rate was 7.7%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 6.4%.
+
+For the IPM category (franchises: Marlboro) in Jharkhand during December 2024: Numeric Distribution was 71.3%, ACV (weighted distribution — definition pending GPIL confirmation) was 71.6%, Out-of-Stock rate was 20.0%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 39.3%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Jharkhand during December 2024: Numeric Distribution was 20.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 20.9%, Out-of-Stock rate was 5.2%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.9%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Jharkhand during December 2024: Numeric Distribution was 19.0%, ACV (weighted distribution — definition pending GPIL confirmation) was 18.9%, Out-of-Stock rate was 7.8%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.4%.

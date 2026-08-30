@@ -24,11 +24,30 @@ data/graphrag_index_ollama_test/
 # small and avoids noisy diffs on large binary/CSV files.
 data/*.csv
 data/**/*.csv
+*.csv.bak
+# Exception: small filename -> state/month lookup table needed to
+# reproduce/validate the committed pilot index without regenerating the
+# full 672-document corpus (see README "Reproducing the pilot index").
+!data/graphrag_docs_manifest.csv
 data/graphrag_input/
 data/graphrag_sku_input/
 graphrag_workspace/
 *.parquet
 *.lance/
+
+# GraphRAG pilot: the curated input documents + settings.yaml (config) are
+# small and are what a reader needs to understand/reproduce the pilot, so
+# they ARE committed. The generated index itself (LLM cache, parquet
+# output, lancedb vectors, run logs) is large, regenerable via
+# `graphrag index --root data/graphrag_index/pilot_run_mini`, and gitignored.
+data/graphrag_index/pilot_run_mini/cache/
+data/graphrag_index/pilot_run_mini/logs/
+data/graphrag_index/pilot_run_mini/output/
+data/graphrag_index/pilot_run_mini/output_fixed/
+data/graphrag_index/pilot_run_mini/output_fixed_maharashtra/
+data/graphrag_index/pilot_run_mini/output_fixed_clean/
+data/graphrag_index/pilot_run_mini/output*__32doc_backup/
+data/graphrag_index/cache/
 
 # --- OS / editor clutter ---
 .DS_Store

@@ -16,7 +16,7 @@ Run with (from the project root, venv activated):
     python -m scripts.generate_presentation_preview
 
 or with custom paths, e.g. to preview a future full-corpus run instead
-of the 7/32-document pilot:
+of the 62-document pilot:
 
     python -m scripts.generate_presentation_preview \\
         --input-dir data/graphrag_index/full_run/output \\
@@ -205,8 +205,8 @@ def main() -> None:
     parser.add_argument(
         "--input-dir",
         type=Path,
-        default=PROJECT_ROOT / "data" / "graphrag_index" / "pilot_run" / "output",
-        help="Folder containing the GraphRAG *.parquet output files (default: the pilot run's output/).",
+        default=PROJECT_ROOT / "data" / "graphrag_index" / "pilot_run_mini" / "output_fixed_clean",
+        help="Folder containing the GraphRAG *.parquet output files (default: the final pilot's output_fixed_clean/).",
     )
     parser.add_argument(
         "--output-dir",

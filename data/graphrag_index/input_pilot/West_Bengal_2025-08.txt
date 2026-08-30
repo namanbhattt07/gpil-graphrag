@@ -1,0 +1,30 @@
+State: West Bengal
+Period: August 2025
+
+West Bengal is divided into 2 zones: West Bengal Zone 1, West Bengal Zone 2.
+
+This document reports Sales & Distribution performance for West Bengal in August 2025.
+
+Productivity for West Bengal in August 2025 was 70.9%. Service Level for West Bengal in August 2025 was 92.0%. SKUs per Transaction for West Bengal in August 2025 was 4.01. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for West Bengal in August 2025 was 198.33. Inventory Turns for West Bengal in August 2025 was 2.66 times. Inventory Days for West Bengal in August 2025 was 11.3 days.
+
+West Bengal Zone 1 distributors: Hart-Baker Distributors, Carr-Hardy Distributors, Smith LLC Distributors, Brown PLC Distributors.
+West Bengal Zone 2 distributors: Baldwin PLC Distributors, Mitchell-Bridges Distributors, Ward-Schmidt Distributors, Lynch, Johnson and Lawrence Distributors, Merritt Inc Distributors, Contreras, Villa and Dixon Distributors.
+
+Distributor-level deviations, August 2025:
+No distributor deviation this month for: Productivity, Dropsize, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Ward-Schmidt Distributors showed a significant deviation on Service Level in August 2025: 79.9% vs. the state average of 92.0%, a gap of 12.1 percentage points.
+Distributor Ward-Schmidt Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in August 2025: 40.0% vs. the state average of 10.0%, a gap of 30.0 percentage points.
+Distributor Merritt Inc Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in August 2025: 14.3% vs. the state average of 1.4%, a gap of 12.9 percentage points.
+Distributor Baldwin PLC Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in August 2025: 28.6% vs. the state average of 10.0%, a gap of 18.6 percentage points.
+Distributor Lynch, Johnson and Lawrence Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in August 2025: 28.6% vs. the state average of 10.0%, a gap of 18.6 percentage points.
+
+Channel-level performance, August 2025:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in West Bengal during August 2025: Numeric Distribution was 64.8%, ACV (weighted distribution — definition pending GPIL confirmation) was 64.5%, Out-of-Stock rate was 8.2%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 6.4%.
+
+For the IPM category (franchises: Marlboro) in West Bengal during August 2025: Numeric Distribution was 71.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 71.7%, Out-of-Stock rate was 10.0%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 39.4%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in West Bengal during August 2025: Numeric Distribution was 21.2%, ACV (weighted distribution — definition pending GPIL confirmation) was 21.2%, Out-of-Stock rate was 1.4%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.8%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in West Bengal during August 2025: Numeric Distribution was 18.8%, ACV (weighted distribution — definition pending GPIL confirmation) was 18.9%, Out-of-Stock rate was 10.0%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.6%.

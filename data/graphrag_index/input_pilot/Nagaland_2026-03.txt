@@ -1,0 +1,32 @@
+State: Nagaland
+Period: March 2026
+
+Nagaland is divided into 2 zones: Nagaland Zone 1, Nagaland Zone 2.
+
+This document reports Sales & Distribution performance for Nagaland in March 2026.
+
+Productivity for Nagaland in March 2026 was 48.7%. Service Level for Nagaland in March 2026 was 92.7%. SKUs per Transaction for Nagaland in March 2026 was 3.01. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Nagaland in March 2026 was 151.84. Inventory Turns for Nagaland in March 2026 was 2.75 times. Inventory Days for Nagaland in March 2026 was 10.9 days.
+
+Nagaland Zone 1 distributors: White-Williams Distributors, Alexander, Duran and Benton Distributors, Campbell Ltd Distributors, Simmons, Campbell and Johnson Distributors.
+Nagaland Zone 2 distributors: Huff LLC Distributors, Vargas-Jensen Distributors, Edwards, Reed and Martin Distributors, Johnson, Walters and Smith Distributors, Sanders, Anderson and Khan Distributors.
+
+Distributor-level deviations, March 2026:
+No distributor deviation this month for: Productivity, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Out-of-Stock Rate (Candy), Range Billing (Candy).
+Distributor Huff LLC Distributors showed a significant deviation on Service Level in March 2026: 76.8% vs. the state average of 92.7%, a gap of 15.9 percentage points.
+Distributor Vargas-Jensen Distributors showed a significant deviation on Dropsize in March 2026: 171.10 vs. the state average of 151.84, a gap of 12.7 percent.
+Distributor Sanders, Anderson and Khan Distributors showed a significant deviation on Dropsize in March 2026: 128.10 vs. the state average of 151.84, a gap of 15.6 percent.
+Distributor Alexander, Duran and Benton Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in March 2026: 20.0% vs. the state average of 8.9%, a gap of 11.1 percentage points.
+Distributor Simmons, Campbell and Johnson Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in March 2026: 20.0% vs. the state average of 8.9%, a gap of 11.1 percentage points.
+Distributor Huff LLC Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in March 2026: 40.0% vs. the state average of 8.9%, a gap of 31.1 percentage points.
+Distributor Vargas-Jensen Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in March 2026: 28.6% vs. the state average of 6.3%, a gap of 22.2 percentage points.
+
+Channel-level performance, March 2026:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Nagaland during March 2026: Numeric Distribution was 43.6%, ACV (weighted distribution — definition pending GPIL confirmation) was 43.7%, Out-of-Stock rate was 6.7%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 4.7%.
+
+For the IPM category (franchises: Marlboro) in Nagaland during March 2026: Numeric Distribution was 52.6%, ACV (weighted distribution — definition pending GPIL confirmation) was 52.8%, Out-of-Stock rate was 8.9%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 32.3%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Nagaland during March 2026: Numeric Distribution was 9.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 9.9%, Out-of-Stock rate was 6.3%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 15.5%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Nagaland during March 2026: Numeric Distribution was 9.3%, ACV (weighted distribution — definition pending GPIL confirmation) was 9.4%, Out-of-Stock rate was 6.3%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 15.3%.

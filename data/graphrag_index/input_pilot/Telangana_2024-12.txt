@@ -1,0 +1,30 @@
+State: Telangana
+Period: December 2024
+
+Telangana is divided into 2 zones: Telangana Zone 1, Telangana Zone 2.
+
+This document reports Sales & Distribution performance for Telangana in December 2024.
+
+Productivity for Telangana in December 2024 was 72.4%. Service Level for Telangana in December 2024 was 93.4%. SKUs per Transaction for Telangana in December 2024 was 3.49. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Telangana in December 2024 was 172.53. Inventory Turns for Telangana in December 2024 was 2.56 times. Inventory Days for Telangana in December 2024 was 11.7 days.
+
+Telangana Zone 1 distributors: Turner-Clark Distributors, Bond, Robinson and Jenkins Distributors, Johnson-Graham Distributors, Brown-Reynolds Distributors, Greene, Floyd and Taylor Distributors, Holden, Larson and Alvarez Distributors.
+Telangana Zone 2 distributors: Mcclain and Sons Distributors, Blankenship-Davis Distributors, Bradford and Sons Distributors, Sanders-Thomas Distributors, Blake-Hamilton Distributors, Snyder, Miller and Stevens Distributors.
+
+Distributor-level deviations, December 2024:
+No distributor deviation this month for: Productivity, Dropsize, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Holden, Larson and Alvarez Distributors showed a significant deviation on Service Level in December 2024: 79.9% vs. the state average of 93.4%, a gap of 13.6 percentage points.
+Distributor Holden, Larson and Alvarez Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in December 2024: 40.0% vs. the state average of 11.7%, a gap of 28.3 percentage points.
+Distributor Blankenship-Davis Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in December 2024: 28.6% vs. the state average of 9.5%, a gap of 19.0 percentage points.
+Distributor Snyder, Miller and Stevens Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in December 2024: 28.6% vs. the state average of 9.5%, a gap of 19.0 percentage points.
+Distributor Greene, Floyd and Taylor Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in December 2024: 28.6% vs. the state average of 7.1%, a gap of 21.4 percentage points.
+
+Channel-level performance, December 2024:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Telangana during December 2024: Numeric Distribution was 63.6%, ACV (weighted distribution — definition pending GPIL confirmation) was 63.5%, Out-of-Stock rate was 5.6%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 5.7%.
+
+For the IPM category (franchises: Marlboro) in Telangana during December 2024: Numeric Distribution was 73.5%, ACV (weighted distribution — definition pending GPIL confirmation) was 73.5%, Out-of-Stock rate was 11.7%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 36.2%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Telangana during December 2024: Numeric Distribution was 18.5%, ACV (weighted distribution — definition pending GPIL confirmation) was 18.5%, Out-of-Stock rate was 9.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.2%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Telangana during December 2024: Numeric Distribution was 16.7%, ACV (weighted distribution — definition pending GPIL confirmation) was 16.7%, Out-of-Stock rate was 7.1%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 15.9%.

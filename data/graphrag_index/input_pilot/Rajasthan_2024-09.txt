@@ -1,0 +1,30 @@
+State: Rajasthan
+Period: September 2024
+
+Rajasthan is divided into 2 zones: Rajasthan Zone 1, Rajasthan Zone 2.
+
+This document reports Sales & Distribution performance for Rajasthan in September 2024.
+
+Productivity for Rajasthan in September 2024 was 70.4%. Service Level for Rajasthan in September 2024 was 93.0%. SKUs per Transaction for Rajasthan in September 2024 was 3.50. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Rajasthan in September 2024 was 168.72. Inventory Turns for Rajasthan in September 2024 was 2.01 times. Inventory Days for Rajasthan in September 2024 was 15.0 days.
+
+Rajasthan Zone 1 distributors: Scott-Adkins Distributors, Saunders, Patel and Valdez Distributors, Martinez, Sherman and Martinez Distributors, Harmon Ltd Distributors.
+Rajasthan Zone 2 distributors: Barnett-Meyer Distributors, Burch PLC Distributors, Smith-King Distributors, Hernandez-Beard Distributors.
+
+Distributor-level deviations, September 2024:
+No distributor deviation this month for: Productivity, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Out-of-Stock Rate (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+Distributor Smith-King Distributors showed a significant deviation on Service Level in September 2024: 79.7% vs. the state average of 93.0%, a gap of 13.3 percentage points.
+Distributor Burch PLC Distributors showed a significant deviation on Dropsize in September 2024: 146.36 vs. the state average of 168.72, a gap of 13.3 percent.
+Distributor Smith-King Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in September 2024: 40.0% vs. the state average of 10.0%, a gap of 30.0 percentage points.
+Distributor Martinez, Sherman and Martinez Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in September 2024: 42.9% vs. the state average of 14.3%, a gap of 28.6 percentage points.
+Distributor Hernandez-Beard Distributors showed a significant deviation on Out-of-Stock Rate for the Candy category in September 2024: 28.6% vs. the state average of 14.3%, a gap of 14.3 percentage points.
+
+Channel-level performance, September 2024:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Rajasthan during September 2024: Numeric Distribution was 62.2%, ACV (weighted distribution — definition pending GPIL confirmation) was 62.0%, Out-of-Stock rate was 7.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 5.6%.
+
+For the IPM category (franchises: Marlboro) in Rajasthan during September 2024: Numeric Distribution was 71.6%, ACV (weighted distribution — definition pending GPIL confirmation) was 71.5%, Out-of-Stock rate was 10.0%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 36.3%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Rajasthan during September 2024: Numeric Distribution was 18.0%, ACV (weighted distribution — definition pending GPIL confirmation) was 17.8%, Out-of-Stock rate was 0.0%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.2%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Rajasthan during September 2024: Numeric Distribution was 16.1%, ACV (weighted distribution — definition pending GPIL confirmation) was 16.1%, Out-of-Stock rate was 14.3%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 16.0%.

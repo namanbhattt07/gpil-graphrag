@@ -1,0 +1,222 @@
+
+-Goal-
+Given a document reporting GPIL Sales & Distribution performance for one Indian state and one month, identify all entities of the given types and all relationships among them, following the naming and construction rules below exactly. This is a structured-data domain: almost every fact is a KPI number stated in a fixed sentence pattern, not free-form narrative, so consistent, deterministic entity naming matters more here than in general-purpose text extraction — the same real-world entity (e.g. the state "Maharashtra", or the metric "Dropsize") must be named identically every time it appears, so it resolves to one node instead of duplicates.
+
+-Entity Type Definitions-
+
+State: An Indian state. entity_name is the exact state name as written after the "State:" tag line, e.g. "Maharashtra". Always emit this as its own standalone entity, once per document, even though the same state name also reappears as a prefix inside Observation and Document entity names below — using it there is not a substitute for this separate entity declaration.
+
+Period: A calendar month. entity_name is the exact "Month YYYY" wording as written after the "Period:" tag line, e.g. "August 2024". Never abbreviate or reformat it.
+
+Distributor: A distribution partner named in a "distributors:" list or a deviation sentence. entity_name is the exact name as written, e.g. "Boyd-White Distributors". Always use the word "Distributor" as the entity_type — never use "WD", even if you see "WD" elsewhere; they refer to the same thing and must not become two different entity types.
+
+Category: A product category named before a category paragraph or in "for the <Category> category" / "on <Metric> for the <Category> category" phrasing. entity_name is the exact category code as written, e.g. "GPI", "IPM", "Ferrero", "Candy".
+
+Franchise: A brand/franchise listed inside a category paragraph's "(franchises: ...)" list. entity_name is the exact name as written, e.g. "Marlboro", "TicTac".
+
+Metric: A KPI type, e.g. "Productivity", "Service Level", "SKUs per Transaction", "Dropsize", "Inventory Turns", "Inventory Days", "Numeric Distribution", "ACV", "Out-of-Stock Rate", "Range Billing". entity_name is the metric name only — strip any parenthetical definition note before using it as the name (e.g. use "Dropsize", not "Dropsize (units ordered per productive visit — definition pending GPIL confirmation)"); the parenthetical belongs in the entity_description instead. Never prepend a Category to the Metric's entity_name, even when a category code sits directly next to the metric in text — e.g. "Out-of-Stock Rate (GPI)" in a "No distributor/channel deviation" sentence (see -Content To Skip-). The entity_name is always "Out-of-Stock Rate", never "GPI Out-of-Stock Rate"; the "{{Category}} {{Metric}}" naming pattern shown below belongs only to the Observation entity_name.
+
+Observation: One measured KPI number for one scope (state or distributor), optionally one category, and one period. This is the entity type that carries every actual value in the document. Construct entity_name using exactly one of these four templates, matching the sentence's scope:
+  - State-level, no category: "{{State}} {{Metric}} {{Period}}" → "Maharashtra Productivity August 2024"
+  - State-level, category-scoped: "{{State}} {{Category}} {{Metric}} {{Period}}" → "Maharashtra IPM Out-of-Stock Rate August 2024"
+  - Distributor-level, no category: "{{Distributor}} {{Metric}} {{Period}}" → "Boyd-White Distributors Dropsize August 2024"
+  - Distributor-level, category-scoped: "{{Distributor}} {{Category}} {{Metric}} {{Period}}" → "Boyd-White Distributors IPM Out-of-Stock Rate August 2024"
+Put the numeric value in entity_description (e.g. "79.0%" or "174.36 units"). If the same Observation is mentioned more than once in the document (e.g. a state average repeated inside a deviation sentence), use the identical entity_name both times so it resolves to one node — do not create a second Observation for a value you've already extracted.
+
+Document: The source document itself — exactly one per document, even though its filename is never written in the prose. Construct entity_name as "{{State_with_underscores}}_{{YYYY-MM}}.txt" from the State and Period tag lines: replace spaces in the state name with underscores, and convert the Period's month name to a two-digit number using this table: January=01, February=02, March=03, April=04, May=05, June=06, July=07, August=08, September=09, October=10, November=11, December=12. Example: State "Maharashtra" + Period "August 2024" → entity_name "Maharashtra_2024-08.txt". Every Observation extracted from the document must end up connected to this one Document entity via an EVIDENCED_BY relationship.
+
+-Content To Skip-
+The document may also contain a "zones" sentence (e.g. "Maharashtra is divided into 2 zones: ...") and a "Channel-level performance" section. Do NOT create entities or relationships for zones or channels — neither is a defined entity type in this schema. Still extract the Distributor entities and their SERVES relationship to the State from zone-grouped distributor lists (e.g. "Maharashtra Zone 1 distributors: ..."); just ignore the zone grouping itself.
+Sentences of the form "No distributor deviation this month for: X, Y, Z" and "No channel deviation this month for: ..." state the *absence* of an anomaly. Do not create a DEVIATES_FROM relationship for any metric named in one of these sentences, and do not create any other entity or relationship from them.
+
+-Relationship Type Definitions-
+Every relationship_description you write MUST begin with one of these exact type labels followed by a colon, chosen from this list only — do not invent new relationship types and do not extract PRECEDES (period-to-period sequencing is computed separately, not extracted from text):
+
+- HAS_OBSERVATION: State → Observation, or Distributor → Observation. The state/distributor has this measured KPI fact.
+- SCOPED_TO_CATEGORY: Observation → Category. Only for category-scoped Observations.
+- OF_METRIC: Observation → Metric. Which KPI this number is.
+- OBSERVED_IN: Observation → Period. When the observation applies.
+- SERVES: Distributor → State. The distributor operates in this state.
+- CONTAINS: Category → Franchise. The category groups this franchise.
+- EVIDENCED_BY: Observation → Document. Citation — this document is the number's source.
+- DEVIATES_FROM: Distributor → Observation (the state-level Observation for that same metric/category/period). Only from an explicit "showed a significant deviation" sentence — this is the highest business-value relationship in this schema, since it supports "which distributor caused the decline" questions.
+
+Every Observation you extract should typically end up with four outgoing relationships: one OF_METRIC, one OBSERVED_IN, one EVIDENCED_BY, and (if category-scoped) one SCOPED_TO_CATEGORY — plus one incoming HAS_OBSERVATION from its State or Distributor.
+
+-Steps-
+1. Identify all entities of the types State, Period, Distributor, Category, Franchise, Observation, Metric, Document, following the construction rules above exactly. Format each entity as:
+("entity"<|><entity_name><|><entity_type><|><entity_description>)
+
+2. Identify all relationships between the entities from step 1, using only the eight relationship types defined above. Format each relationship as:
+("relationship"<|><source_entity><|><target_entity><|><relationship_description><|><relationship_strength>)
+relationship_description must start with "TYPE: " (one of the eight labels above) followed by a short factual explanation. relationship_strength is a number 1-10: use 10 for DEVIATES_FROM (the causal-reasoning-critical edge), 9 for HAS_OBSERVATION/SCOPED_TO_CATEGORY/SERVES/CONTAINS, and 8 for the purely structural OF_METRIC/OBSERVED_IN/EVIDENCED_BY — every relationship here is directly and explicitly stated in the source sentence, never inferred, so strength should stay in this high range.
+
+3. Return output in English as a single list of all the entities and relationships identified in steps 1 and 2. Use **##** as the list delimiter.
+
+4. When finished, output <|COMPLETE|>
+
+######################
+-Examples-
+######################
+The two examples below are for illustration only, to demonstrate the exact output format and naming conventions. Every name in them — "Maharashtra", "Boyd-White Distributors", "IPM", "Marlboro", and all other entity names in Example 1 and Example 2 — is a placeholder from a hypothetical document, not real data. When you process the actual document in -Real Data- below, extract entity names only from that document's own text. Never output "Maharashtra", "Boyd-White Distributors", or any other name from these examples unless it is literally written in the -Real Data- text you are currently processing.
+
+Example 1:
+Entity_types: State,Period,Distributor,Category,Franchise,Observation,Metric,Document
+Text:
+State: Maharashtra
+Period: August 2024
+
+This document reports Sales & Distribution performance for Maharashtra in August 2024.
+
+Productivity for Maharashtra in August 2024 was 79.0%. Service Level for Maharashtra in August 2024 was 92.3%.
+
+Maharashtra Zone 1 distributors: Boyd-White Distributors, Larson-Hernandez Distributors.
+Maharashtra Zone 2 distributors: Miranda-Robinson Distributors, Porter Group Distributors.
+
+Distributor-level deviations, August 2024:
+No distributor deviation this month for: Service Level.
+Distributor Boyd-White Distributors showed a significant deviation on Dropsize in August 2024: 174.36 vs. the state average of 200.96, a gap of 13.2 percent.
+######################
+Output:
+("entity"<|>MAHARASHTRA<|>State<|>An Indian state; this document reports its S&D performance for August 2024)
+##
+("entity"<|>AUGUST 2024<|>Period<|>The calendar month this document reports on)
+##
+("entity"<|>MAHARASHTRA_2024-08.TXT<|>Document<|>Source document for Maharashtra, August 2024)
+##
+("entity"<|>PRODUCTIVITY<|>Metric<|>Share of sales visits that resulted in an order)
+##
+("entity"<|>MAHARASHTRA PRODUCTIVITY AUGUST 2024<|>Observation<|>State-level Productivity for Maharashtra in August 2024 was 79.0%)
+##
+("entity"<|>SERVICE LEVEL<|>Metric<|>Share of ordered quantity actually delivered)
+##
+("entity"<|>MAHARASHTRA SERVICE LEVEL AUGUST 2024<|>Observation<|>State-level Service Level for Maharashtra in August 2024 was 92.3%)
+##
+("entity"<|>BOYD-WHITE DISTRIBUTORS<|>Distributor<|>Distributor serving Maharashtra Zone 1; showed a significant Dropsize deviation in August 2024)
+##
+("entity"<|>LARSON-HERNANDEZ DISTRIBUTORS<|>Distributor<|>Distributor serving Maharashtra Zone 1)
+##
+("entity"<|>MIRANDA-ROBINSON DISTRIBUTORS<|>Distributor<|>Distributor serving Maharashtra Zone 2)
+##
+("entity"<|>PORTER GROUP DISTRIBUTORS<|>Distributor<|>Distributor serving Maharashtra Zone 2)
+##
+("entity"<|>DROPSIZE<|>Metric<|>Units ordered per productive visit; definition pending GPIL confirmation)
+##
+("entity"<|>MAHARASHTRA DROPSIZE AUGUST 2024<|>Observation<|>State-average Dropsize for Maharashtra in August 2024 was 200.96)
+##
+("entity"<|>BOYD-WHITE DISTRIBUTORS DROPSIZE AUGUST 2024<|>Observation<|>Boyd-White Distributors' Dropsize in August 2024 was 174.36, a 13.2 percent gap below the state average)
+##
+("relationship"<|>MAHARASHTRA<|>MAHARASHTRA PRODUCTIVITY AUGUST 2024<|>HAS_OBSERVATION: Maharashtra has a measured Productivity fact for August 2024<|>9)
+##
+("relationship"<|>MAHARASHTRA PRODUCTIVITY AUGUST 2024<|>PRODUCTIVITY<|>OF_METRIC: This observation measures Productivity<|>8)
+##
+("relationship"<|>MAHARASHTRA PRODUCTIVITY AUGUST 2024<|>AUGUST 2024<|>OBSERVED_IN: This observation applies to August 2024<|>8)
+##
+("relationship"<|>MAHARASHTRA PRODUCTIVITY AUGUST 2024<|>MAHARASHTRA_2024-08.TXT<|>EVIDENCED_BY: Stated in this document<|>8)
+##
+("relationship"<|>MAHARASHTRA<|>MAHARASHTRA SERVICE LEVEL AUGUST 2024<|>HAS_OBSERVATION: Maharashtra has a measured Service Level fact for August 2024<|>9)
+##
+("relationship"<|>MAHARASHTRA SERVICE LEVEL AUGUST 2024<|>SERVICE LEVEL<|>OF_METRIC: This observation measures Service Level<|>8)
+##
+("relationship"<|>MAHARASHTRA SERVICE LEVEL AUGUST 2024<|>AUGUST 2024<|>OBSERVED_IN: This observation applies to August 2024<|>8)
+##
+("relationship"<|>MAHARASHTRA SERVICE LEVEL AUGUST 2024<|>MAHARASHTRA_2024-08.TXT<|>EVIDENCED_BY: Stated in this document<|>8)
+##
+("relationship"<|>BOYD-WHITE DISTRIBUTORS<|>MAHARASHTRA<|>SERVES: Boyd-White Distributors operates in Maharashtra<|>9)
+##
+("relationship"<|>LARSON-HERNANDEZ DISTRIBUTORS<|>MAHARASHTRA<|>SERVES: Larson-Hernandez Distributors operates in Maharashtra<|>9)
+##
+("relationship"<|>MIRANDA-ROBINSON DISTRIBUTORS<|>MAHARASHTRA<|>SERVES: Miranda-Robinson Distributors operates in Maharashtra<|>9)
+##
+("relationship"<|>PORTER GROUP DISTRIBUTORS<|>MAHARASHTRA<|>SERVES: Porter Group Distributors operates in Maharashtra<|>9)
+##
+("relationship"<|>MAHARASHTRA<|>MAHARASHTRA DROPSIZE AUGUST 2024<|>HAS_OBSERVATION: Maharashtra has a measured state-average Dropsize fact for August 2024<|>9)
+##
+("relationship"<|>MAHARASHTRA DROPSIZE AUGUST 2024<|>DROPSIZE<|>OF_METRIC: This observation measures Dropsize<|>8)
+##
+("relationship"<|>MAHARASHTRA DROPSIZE AUGUST 2024<|>AUGUST 2024<|>OBSERVED_IN: This observation applies to August 2024<|>8)
+##
+("relationship"<|>MAHARASHTRA DROPSIZE AUGUST 2024<|>MAHARASHTRA_2024-08.TXT<|>EVIDENCED_BY: Stated in this document<|>8)
+##
+("relationship"<|>BOYD-WHITE DISTRIBUTORS<|>BOYD-WHITE DISTRIBUTORS DROPSIZE AUGUST 2024<|>HAS_OBSERVATION: Boyd-White Distributors has a measured Dropsize fact for August 2024<|>9)
+##
+("relationship"<|>BOYD-WHITE DISTRIBUTORS DROPSIZE AUGUST 2024<|>DROPSIZE<|>OF_METRIC: This observation measures Dropsize<|>8)
+##
+("relationship"<|>BOYD-WHITE DISTRIBUTORS DROPSIZE AUGUST 2024<|>AUGUST 2024<|>OBSERVED_IN: This observation applies to August 2024<|>8)
+##
+("relationship"<|>BOYD-WHITE DISTRIBUTORS DROPSIZE AUGUST 2024<|>MAHARASHTRA_2024-08.TXT<|>EVIDENCED_BY: Stated in this document<|>8)
+##
+("relationship"<|>BOYD-WHITE DISTRIBUTORS<|>MAHARASHTRA DROPSIZE AUGUST 2024<|>DEVIATES_FROM: Boyd-White Distributors' Dropsize (174.36) was 13.2 percent below the Maharashtra state average (200.96) in August 2024<|>10)
+<|COMPLETE|>
+
+######################
+Example 2:
+Entity_types: State,Period,Distributor,Category,Franchise,Observation,Metric,Document
+Text:
+Distributor Boyd-White Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in August 2024: 20.0% vs. the state average of 7.3%, a gap of 12.7 percentage points.
+
+For the IPM category (franchises: Marlboro) in Maharashtra during August 2024: Numeric Distribution was 78.5%, Out-of-Stock rate was 7.3%.
+######################
+Output:
+("entity"<|>MAHARASHTRA<|>State<|>An Indian state; this document reports its S&D performance for August 2024)
+##
+("entity"<|>AUGUST 2024<|>Period<|>The calendar month this document reports on)
+##
+("entity"<|>MAHARASHTRA_2024-08.TXT<|>Document<|>Source document for Maharashtra, August 2024)
+##
+("entity"<|>IPM<|>Category<|>Product category reported for Maharashtra in August 2024)
+##
+("entity"<|>MARLBORO<|>Franchise<|>Franchise within the IPM category)
+##
+("entity"<|>NUMERIC DISTRIBUTION<|>Metric<|>Share of relevant outlets stocking the category)
+##
+("entity"<|>MAHARASHTRA IPM NUMERIC DISTRIBUTION AUGUST 2024<|>Observation<|>State-level, IPM-scoped Numeric Distribution for Maharashtra in August 2024 was 78.5%)
+##
+("entity"<|>OUT-OF-STOCK RATE<|>Metric<|>Share of relevant SKUs out of stock)
+##
+("entity"<|>MAHARASHTRA IPM OUT-OF-STOCK RATE AUGUST 2024<|>Observation<|>State-average, IPM-scoped Out-of-Stock Rate for Maharashtra in August 2024 was 7.3%)
+##
+("entity"<|>BOYD-WHITE DISTRIBUTORS IPM OUT-OF-STOCK RATE AUGUST 2024<|>Observation<|>Boyd-White Distributors' IPM-scoped Out-of-Stock Rate in August 2024 was 20.0%, 12.7 percentage points above the state average)
+##
+("relationship"<|>IPM<|>MARLBORO<|>CONTAINS: The IPM category contains the Marlboro franchise<|>9)
+##
+("relationship"<|>MAHARASHTRA<|>MAHARASHTRA IPM NUMERIC DISTRIBUTION AUGUST 2024<|>HAS_OBSERVATION: Maharashtra has a measured IPM Numeric Distribution fact for August 2024<|>9)
+##
+("relationship"<|>MAHARASHTRA IPM NUMERIC DISTRIBUTION AUGUST 2024<|>IPM<|>SCOPED_TO_CATEGORY: This observation is specific to the IPM category<|>9)
+##
+("relationship"<|>MAHARASHTRA IPM NUMERIC DISTRIBUTION AUGUST 2024<|>NUMERIC DISTRIBUTION<|>OF_METRIC: This observation measures Numeric Distribution<|>8)
+##
+("relationship"<|>MAHARASHTRA IPM NUMERIC DISTRIBUTION AUGUST 2024<|>AUGUST 2024<|>OBSERVED_IN: This observation applies to August 2024<|>8)
+##
+("relationship"<|>MAHARASHTRA IPM NUMERIC DISTRIBUTION AUGUST 2024<|>MAHARASHTRA_2024-08.TXT<|>EVIDENCED_BY: Stated in this document<|>8)
+##
+("relationship"<|>MAHARASHTRA<|>MAHARASHTRA IPM OUT-OF-STOCK RATE AUGUST 2024<|>HAS_OBSERVATION: Maharashtra has a measured IPM Out-of-Stock Rate fact for August 2024<|>9)
+##
+("relationship"<|>MAHARASHTRA IPM OUT-OF-STOCK RATE AUGUST 2024<|>IPM<|>SCOPED_TO_CATEGORY: This observation is specific to the IPM category<|>9)
+##
+("relationship"<|>MAHARASHTRA IPM OUT-OF-STOCK RATE AUGUST 2024<|>OUT-OF-STOCK RATE<|>OF_METRIC: This observation measures Out-of-Stock Rate<|>8)
+##
+("relationship"<|>MAHARASHTRA IPM OUT-OF-STOCK RATE AUGUST 2024<|>AUGUST 2024<|>OBSERVED_IN: This observation applies to August 2024<|>8)
+##
+("relationship"<|>MAHARASHTRA IPM OUT-OF-STOCK RATE AUGUST 2024<|>MAHARASHTRA_2024-08.TXT<|>EVIDENCED_BY: Stated in this document<|>8)
+##
+("relationship"<|>BOYD-WHITE DISTRIBUTORS<|>BOYD-WHITE DISTRIBUTORS IPM OUT-OF-STOCK RATE AUGUST 2024<|>HAS_OBSERVATION: Boyd-White Distributors has a measured IPM Out-of-Stock Rate fact for August 2024<|>9)
+##
+("relationship"<|>BOYD-WHITE DISTRIBUTORS IPM OUT-OF-STOCK RATE AUGUST 2024<|>IPM<|>SCOPED_TO_CATEGORY: This observation is specific to the IPM category<|>9)
+##
+("relationship"<|>BOYD-WHITE DISTRIBUTORS IPM OUT-OF-STOCK RATE AUGUST 2024<|>OUT-OF-STOCK RATE<|>OF_METRIC: This observation measures Out-of-Stock Rate<|>8)
+##
+("relationship"<|>BOYD-WHITE DISTRIBUTORS IPM OUT-OF-STOCK RATE AUGUST 2024<|>AUGUST 2024<|>OBSERVED_IN: This observation applies to August 2024<|>8)
+##
+("relationship"<|>BOYD-WHITE DISTRIBUTORS IPM OUT-OF-STOCK RATE AUGUST 2024<|>MAHARASHTRA_2024-08.TXT<|>EVIDENCED_BY: Stated in this document<|>8)
+##
+("relationship"<|>BOYD-WHITE DISTRIBUTORS<|>MAHARASHTRA IPM OUT-OF-STOCK RATE AUGUST 2024<|>DEVIATES_FROM: Boyd-White Distributors' IPM Out-of-Stock Rate (20.0%) was 12.7 percentage points above the Maharashtra state average (7.3%) in August 2024<|>10)
+<|COMPLETE|>
+
+######################
+-Real Data-
+######################
+Entity_types: {entity_types}
+Text: {input_text}
+######################
+Output:

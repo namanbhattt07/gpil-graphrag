@@ -1,0 +1,30 @@
+State: Haryana
+Period: November 2024
+
+Haryana is divided into 2 zones: Haryana Zone 1, Haryana Zone 2.
+
+This document reports Sales & Distribution performance for Haryana in November 2024.
+
+Productivity for Haryana in November 2024 was 85.3%. Service Level for Haryana in November 2024 was 94.6%. SKUs per Transaction for Haryana in November 2024 was 4.00. Dropsize (units ordered per productive visit — definition pending GPIL confirmation) for Haryana in November 2024 was 186.21. Inventory Turns for Haryana in November 2024 was 2.72 times. Inventory Days for Haryana in November 2024 was 11.0 days.
+
+Haryana Zone 1 distributors: Nelson, Wong and Patel Distributors, Nguyen-Jackson Distributors, Cole LLC Distributors, Owen-Brown Distributors, Smith-Short Distributors.
+Haryana Zone 2 distributors: Rogers Group Distributors, Williamson, Brown and Pena Distributors, Taylor, Blair and Meyer Distributors, Johnson Inc Distributors.
+
+Distributor-level deviations, November 2024:
+No distributor deviation this month for: Productivity, Service Level, Numeric Distribution (GPI), ACV (GPI), Out-of-Stock Rate (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Out-of-Stock Rate (Candy), Range Billing (Candy).
+Distributor Nguyen-Jackson Distributors showed a significant deviation on Dropsize in November 2024: 165.52 vs. the state average of 186.21, a gap of 11.1 percent.
+Distributor Williamson, Brown and Pena Distributors showed a significant deviation on Dropsize in November 2024: 211.74 vs. the state average of 186.21, a gap of 13.7 percent.
+Distributor Rogers Group Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in November 2024: 20.0% vs. the state average of 4.4%, a gap of 15.6 percentage points.
+Distributor Johnson Inc Distributors showed a significant deviation on Out-of-Stock Rate for the IPM category in November 2024: 20.0% vs. the state average of 4.4%, a gap of 15.6 percentage points.
+Distributor Williamson, Brown and Pena Distributors showed a significant deviation on Out-of-Stock Rate for the Ferrero category in November 2024: 28.6% vs. the state average of 9.5%, a gap of 19.0 percentage points.
+
+Channel-level performance, November 2024:
+No channel deviation this month for: Numeric Distribution (GPI), ACV (GPI), Range Billing (GPI), Numeric Distribution (IPM), ACV (IPM), Range Billing (IPM), Numeric Distribution (Ferrero), ACV (Ferrero), Range Billing (Ferrero), Numeric Distribution (Candy), ACV (Candy), Range Billing (Candy).
+
+For the GPI category (franchises: GPI_Franchise_1, GPI_Franchise_2, GPI_Franchise_3, GPI_Franchise_4, GPI_Franchise_5, GPI_Franchise_6) in Haryana during November 2024: Numeric Distribution was 72.7%, ACV (weighted distribution — definition pending GPIL confirmation) was 72.8%, Out-of-Stock rate was 6.1%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 6.3%.
+
+For the IPM category (franchises: Marlboro) in Haryana during November 2024: Numeric Distribution was 82.5%, ACV (weighted distribution — definition pending GPIL confirmation) was 82.5%, Out-of-Stock rate was 4.4%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 38.7%.
+
+For the Ferrero category (franchises: TicTac, Kinder_Joy) in Haryana during November 2024: Numeric Distribution was 32.9%, ACV (weighted distribution — definition pending GPIL confirmation) was 33.0%, Out-of-Stock rate was 9.5%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 18.1%.
+
+For the Candy category (franchises: Candy_Franchise_1, Candy_Franchise_2) in Haryana during November 2024: Numeric Distribution was 30.8%, ACV (weighted distribution — definition pending GPIL confirmation) was 30.9%, Out-of-Stock rate was 7.9%, and average Range Billing (share of the category's SKU range billed, among outlets that billed anything — definition pending GPIL confirmation) was 17.7%.
