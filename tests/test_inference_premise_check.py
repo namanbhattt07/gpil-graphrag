@@ -413,6 +413,27 @@ def test_pick_up_idiom_does_not_trigger_false_improve_claim(question, expected):
     assert extract_direction_claim(question) == expected
 
 
+@pytest.mark.parametrize(
+    "question,expected",
+    [
+        # Live bug: "show up" hit the exact same class of false-positive
+        # as "pick up" (bare "up" token match), via a DIFFERENT idiom the
+        # original narrow fix didn't cover.
+        ("Gamble-Wright Distributors show up with issues in some months and not others -- what's the most recurring problem?", "neutral"),
+        ("Which distributors showed up as problems in Gujarat this month?", "neutral"),
+        ("What ended up happening to Service Level this quarter?", "neutral"),
+        ("The team wrapped up its review of Productivity for the year.", "neutral"),
+        ("Did the distributor turn down the shipment in October 2025?", "neutral"),
+        ("Service Level calmed down after the spike in October 2025.", "neutral"),
+        # Bare "up"/"down" direction language must still work unaffected.
+        ("Was Service Level up in October 2025?", "improve"),
+        ("Did Productivity go down in October 2025?", "decline"),
+    ],
+)
+def test_other_up_down_phrasal_verbs_do_not_trigger_false_direction_claim(question, expected):
+    assert extract_direction_claim(question) == expected
+
+
 def test_gamble_wright_question_is_no_claim_and_never_gated():
     """The exact known-issue question: with the 'pick up' idiom no longer
     misread as a direction word, this question asserts no decline/improve

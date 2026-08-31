@@ -147,10 +147,32 @@ _SOURCE_HEADER_RE = re.compile(r"State:\s*(?P<state>[^\n]+)\s*\n\s*Period:\s*(?P
 # legitimate uses like "Service Level was up") inside the idiom "pick up"
 # ("acquire/gain", nothing to do with a metric direction) and gated
 # generation on a decline/improve premise the question never actually
-# asserted. Narrow, targeted fix: neutralize this one confirmed idiom
-# before token matching, rather than removing "up"/"down" as direction
-# words entirely (which would break real direction detection elsewhere).
-_PHRASAL_VERB_NEUTRALIZE_RE = re.compile(r"\bpick(?:ed|ing)?\s+up\b", re.IGNORECASE)
+# asserted. A second live question ("...show up with issues...") hit the
+# SAME class of bug via a DIFFERENT idiom ("show up", not "pick up") --
+# proving the original fix (one idiom, hardcoded) was too narrow: bare
+# "up"/"down" token matching is fragile against ANY phrasal verb built on
+# those words, not just the one instance that happened to be caught live.
+# Fix, widened but still a closed, curated list (never a general NLP
+# solution -- this project's own "grammar, not guessing" discipline):
+# every common English phrasal verb built on "up"/"down" that has NOTHING
+# to do with a metric rising or falling, neutralized before token
+# matching. Real direction language ("Service Level was up", "Productivity
+# fell down to 70%") is completely unaffected, since none of these exact
+# phrases appear in genuine metric-direction sentences.
+_PHRASAL_VERB_NEUTRALIZE_RE = re.compile(
+    r"\b(?:"
+    r"pick(?:ed|ing)?|show(?:ed|ing|s)?|turn(?:ed|ing|s)?|end(?:ed|ing|s)?|wind(?:ing)?|wound|"
+    r"sum(?:med|ming|s)?|catch(?:ing|es)?|caught|back(?:ed|ing|s)?|wrap(?:ped|ping|s)?|"
+    r"step(?:ped|ping|s)?|keep(?:ing|s)?|kept|hold(?:ing|s)?|held|line(?:d|ing|s)?|"
+    r"set(?:ting|s)?|open(?:ed|ing|s)?|come(?:s|ing)?|came"
+    r")\s+up\b"
+    r"|"
+    r"\b(?:"
+    r"turn(?:ed|ing|s)?|let(?:ting|s)?|calm(?:ed|ing|s)?|settle(?:d|ing|s)?|shut(?:ting|s)?|"
+    r"close(?:d|ing|s)?|write(?:s|ing)?|wrote|break(?:ing|s)?|broke"
+    r")\s+down\b",
+    re.IGNORECASE,
+)
 
 
 def extract_direction_claim(question: str) -> str:

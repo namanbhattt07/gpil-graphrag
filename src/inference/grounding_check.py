@@ -103,6 +103,17 @@ QUALITATIVE_FLAGS = {
     "unacceptable", "unacceptably",
     "dire", "direly",
     "red flag",
+    # Live bug: an invented root-cause NARRATIVE ("suggests a systemic
+    # issue", "likely reflects underlying systemic challenges") for a
+    # "coincidence or connection?" question slipped past scan_causal_
+    # language() because it never used an explicit causal CONNECTOR word
+    # (caused/led to/due to/etc.) -- it asserted an unsubstantiated
+    # root-cause characterization instead. This corpus's fixed-template
+    # numeric sentences never use these words, so flagging them the same
+    # way "alarming"/"concerning" already are is the same fix, not a new
+    # mechanism.
+    "systemic", "systemically",
+    "underlying",
 }
 
 UP_WORDS = {
@@ -181,6 +192,36 @@ _CAUSAL_PATTERN_RE = re.compile(
     r"driven by|because of|as a result of|responsible for)\b",
     re.IGNORECASE,
 )
+
+# A sentence that DENIES or hedges around causation ("no evidence of a
+# shared cause", "this appears to be a coincidence rather than a
+# connection caused by...") still matches _CAUSAL_PATTERN_RE (it contains
+# "responsible for"/"caused by") even though it asserts NOTHING that needs
+# grounding -- it's the epistemically correct, desired answer for a
+# "coincidence or connection?" question, the opposite of an invented
+# cause. Live bug: closing scan_causal_language()'s whole-blob fallback
+# (see that function's own comment) made this pre-existing gap bite for
+# the first time -- a live "is this a coincidence, or is something
+# connecting them?" answer correctly declined to invent a shared cause,
+# and got flagged anyway for using causal VOCABULARY while denying it.
+# Narrow, phrase-based (not a general negation parser): only recognizes
+# explicit denial/hedge framings, never silently exempts a sentence that
+# also asserts a real cause elsewhere in the same clause.
+_CAUSAL_DENIAL_RE = re.compile(
+    r"\b(no evidence|does not establish|doesn't establish|do not establish|don't establish|"
+    r"cannot be established|can't be established|"
+    r"can(?:not|'t) be attributed|"
+    r"no (?:established|confirmed|shared|common|single|clear) cause|"
+    r"not (?:necessarily )?(?:caused|attributed)|"
+    r"rather than an? (?:connection|cause|causal)|"
+    r"appears? to be a coincidence|is a coincidence|genuine coincidence|"
+    r"without (?:a |an )?(?:clear |established )?cause)\b",
+    re.IGNORECASE,
+)
+
+
+def _is_causal_denial(text: str) -> bool:
+    return bool(_CAUSAL_DENIAL_RE.search(text))
 
 _SUFFIXES = ("ically", "ingly", "edly", "ness", "ment", "ing", "ied", "ies", "ed", "es", "ally", "ly", "s")
 
@@ -1426,8 +1467,24 @@ def validate_claim(
             # units) instead of the evidence's own relative-percent gap
             # (e.g. 10.6%) would wrongly reject a claim that faithfully
             # restates what the evidence actually says.
-            is_dropsize_metric = bool(claim.metric) and claim.metric.strip().lower() == "dropsize"
-            if is_dropsize_metric and claim.comparison_value:
+            #
+            # GATED ON claim_type == "deviation" (live bug fix): that
+            # relative-percent convention is ONLY what the source template
+            # means by "gap" for a distributor-vs-STATE-AVERAGE claim in
+            # the SAME period. A "trend" claim (the SAME entity's Dropsize
+            # in period A vs period B -- comparison_value is a DIFFERENT
+            # PERIOD'S value, not a state average) has no such convention
+            # anywhere in the source documents; its delta is the plain
+            # unit difference, exactly like every other metric's trend
+            # delta. A live run self-reported a period-over-period Dropsize
+            # trend claim with a CORRECT unit delta (214.48-175.8=38.68)
+            # and had it rejected because this branch forced it to equal
+            # 38.68/175.8*100=22.0 instead -- applying the deviation-only
+            # convention to a claim_type it was never meant to cover.
+            is_dropsize_deviation = (
+                claim_type == "deviation" and bool(claim.metric) and claim.metric.strip().lower() == "dropsize"
+            )
+            if is_dropsize_deviation and claim.comparison_value:
                 expected_delta = abs(actual_delta) / abs(claim.comparison_value) * 100
             else:
                 expected_delta = abs(actual_delta)
@@ -1451,7 +1508,7 @@ def validate_claim(
     if claim_type == "deviation" and (used_fallback or "deviation" not in scope_text.lower()):
         flag("unsupported_deviation", "deviation", "The cited evidence does not explicitly describe this as a deviation.")
 
-    is_causal = claim_type == "causal" or _is_causal_text(reporting_text)
+    is_causal = (claim_type == "causal" or _is_causal_text(reporting_text)) and not _is_causal_denial(reporting_text)
     if is_causal and (used_fallback or not _is_causal_text(scope_text)):
         flag(
             "unsupported_causal",
@@ -1851,24 +1908,54 @@ def scan_qualitative_language(answer_text: str, context_records: dict[str, pd.Da
     """Fallback safety net: scan the FULL answer text sentence by
     sentence for qualitative-flag word families, regardless of whether a
     structured claim covered that sentence. Citation-scoped when a
-    sentence carries its own [Data: ...] tag; whole-blob otherwise."""
+    sentence carries its own [Data: ...] tag (checking the immediately
+    NEXT sentence too, mirroring scan_causal_language()'s/
+    scan_entity_numeric_claims()'s established borrowed-next-sentence
+    convention for a citation the model placed at the end of a
+    multi-sentence paragraph).
+
+    NO WHOLE-BLOB FALLBACK (live bug fix, same class as
+    scan_causal_language()'s -- see that function's own comment): a live
+    "coincidence or connection?" answer asserted "the convergence...
+    suggests a SYSTEMIC issue... likely reflects UNDERLYING systemic
+    challenges" with no citation on that sentence -- exactly the invented
+    root-cause narrative this project's "no unsupported causal
+    explanations" rule forbids, dressed in qualitative rather than
+    explicitly-causal-connector language. An uncited qualitative sentence
+    now fails closed directly instead of passing whenever SOME unrelated
+    retrieved record (of 10+ documents in a typical retrieval) happens to
+    contain the same word."""
     evidence_index = _build_evidence_index(context_records)
-    whole_blob = _all_evidence_text(evidence_index)
     issues: list[GroundingIssue] = []
-    for sentence in _split_sentences(answer_text):
+    sentences = _split_sentences(answer_text)
+    for i, sentence in enumerate(sentences):
         citations = _extract_citations_from_sentence(sentence)
-        scope = _resolve_citations(citations, evidence_index) if citations else whole_blob
-        scope = scope if scope else whole_blob
+        if not citations and i + 1 < len(sentences):
+            citations = _extract_citations_from_sentence(sentences[i + 1])
+        if not citations:
+            for term in _qualitative_tokens_in(sentence):
+                issues.append(
+                    GroundingIssue(
+                        issue_type="unsupported_qualifier",
+                        sentence=sentence,
+                        term=term,
+                        detail=(
+                            f"'{term}' cites no evidence of its own (checked this sentence and the "
+                            "next) -- a qualitative characterization must be traceable to a specific "
+                            "citation, not merely present somewhere in the broader retrieved context."
+                        ),
+                        source="prose_fallback",
+                    )
+                )
+            continue
+        scope = _resolve_citations(citations, evidence_index)
         for term in _find_unsupported_qualitative_terms(sentence, scope):
             issues.append(
                 GroundingIssue(
                     issue_type="unsupported_qualifier",
                     sentence=sentence,
                     term=term,
-                    detail=(
-                        f"'{term}' does not appear (or share a word-family) in the "
-                        f"{'cited' if citations else 'retrieved'} evidence."
-                    ),
+                    detail=f"'{term}' does not appear (or share a word-family) in the cited evidence.",
                     source="prose_fallback",
                 )
             )
@@ -1887,27 +1974,77 @@ def scan_causal_language(answer_text: str, context_records: dict[str, pd.DataFra
     causation" check as "Service Level declined due to X". A future
     recommendation's own factual content (numbers it states) is still
     checked, by scan_recommendation_language() below.
+
+    NO WHOLE-BLOB FALLBACK (live bug fix): a live run answering a real
+    causal-shaped "why" question produced "The increase can be attributed
+    to poor inventory management practices among several distributors...
+    which likely resulted in the concerning stockout levels" -- pure
+    invented causation the source documents (fixed-template numeric KPI
+    sentences) never assert. This scanner still let it through, because
+    the sentence carried no citation of its own and the OLD code fell back
+    to checking the ENTIRE retrieved blob for causal language -- and
+    GraphRAG's own auto-generated Entity/Community Report descriptions
+    (free LLM prose, unlike the fixed-template Sources documents) often
+    contain generic causal connectors about something else entirely,
+    letting an uncited invented-cause sentence "pass" by coincidence. This
+    is the exact same whole-blob-fallback weakness the 2026-08-12/13
+    claim-level grounding rewrite already closed for validate_claim()
+    (see that section's own comment) -- this prose-level safety net had
+    fallen behind it. Fix: a causal sentence with NO citation of its own
+    (checked against its own sentence, then the immediately NEXT sentence
+    only -- mirroring scan_entity_numeric_claims()'s established
+    borrowed-next-sentence convention for a citation the model placed at
+    the end of a multi-sentence paragraph) now fails closed directly,
+    never falls back to the whole blob. A causal sentence that IS cited
+    still only passes if that SPECIFIC cited text itself contains causal
+    language, exactly as before.
+
+    Skips sentences that DENY causation (see _is_causal_denial) --
+    "there is no evidence of a shared cause" uses the same causal
+    vocabulary ("responsible for") as an actual causal assertion, but
+    means the opposite: it's the correct, desired answer for a
+    "coincidence or connection?" question, not an invented explanation
+    that needs a citation.
     """
     evidence_index = _build_evidence_index(context_records)
-    whole_blob = _all_evidence_text(evidence_index)
     issues: list[GroundingIssue] = []
-    for sentence in _split_sentences(answer_text):
+    sentences = _split_sentences(answer_text)
+    for i, sentence in enumerate(sentences):
         if not _is_causal_text(sentence):
+            continue
+        if _is_causal_denial(sentence):
             continue
         if _is_future_or_prescriptive(sentence):
             continue
         citations = _extract_citations_from_sentence(sentence)
-        scope = _resolve_citations(citations, evidence_index) if citations else whole_blob
-        scope = scope if scope else whole_blob
-        if not _is_causal_text(scope):
+        if not citations and i + 1 < len(sentences):
+            citations = _extract_citations_from_sentence(sentences[i + 1])
+        if not citations:
             issues.append(
                 GroundingIssue(
                     issue_type="unsupported_causal",
                     sentence=sentence,
                     term=None,
                     detail=(
-                        f"This sentence asserts or implies causation, but the {'cited' if citations else 'retrieved'} "
-                        "evidence only states facts, not an explicit causal relationship."
+                        "This sentence asserts or implies causation but cites no evidence of its "
+                        "own (checked this sentence and the next) -- a causal claim must be "
+                        "traceable to a specific citation, not merely present somewhere in the "
+                        "broader retrieved context."
+                    ),
+                    source="prose_fallback",
+                )
+            )
+            continue
+        scope = _resolve_citations(citations, evidence_index)
+        if not scope or not _is_causal_text(scope):
+            issues.append(
+                GroundingIssue(
+                    issue_type="unsupported_causal",
+                    sentence=sentence,
+                    term=None,
+                    detail=(
+                        "This sentence asserts or implies causation, but the cited evidence only "
+                        "states facts, not an explicit causal relationship."
                     ),
                     source="prose_fallback",
                 )

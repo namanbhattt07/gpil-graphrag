@@ -928,11 +928,101 @@ def test_prose_fallback_flags_unsupported_adjective_with_no_citation():
     assert any(i.term == "alarming" and i.source == "prose_fallback" for i in issues)
 
 
+def test_uncited_systemic_narrative_fails_even_when_unrelated_evidence_has_the_word():
+    """Live bug regression: closing scan_causal_language()'s whole-blob
+    fallback wasn't enough -- the same live 'coincidence or connection?'
+    answer invented a root-cause narrative WITHOUT an explicit causal
+    connector word ('suggests a systemic issue... likely reflects
+    underlying systemic challenges'), which scan_causal_language() never
+    matches at all. scan_qualitative_language() must catch it instead, and
+    must not be excused by an unrelated record elsewhere using the word."""
+    records = make_context_records(
+        sources=[{"id": "0", "text": "State: Gujarat\nPeriod: June 2026\n\nOut-of-Stock rate for IPM was 12.0%."}],
+        reports=[{"id": "9", "content": "Unrelated report: this region's rainfall follows a systemic seasonal pattern."}],
+    )
+    answer = "The convergence of these rates suggests a systemic issue in the supply chain."
+    issues = scan_qualitative_language(answer, records)
+    assert any(i.term == "systemic" and i.source == "prose_fallback" for i in issues)
+
+
 def test_prose_fallback_causal_scanner_catches_unreported_causal_sentence():
     records = make_context_records(sources=[{"id": "0", "text": "State: Bihar\nPeriod: October 2025\n\nService Level was 94.3%."}])
     answer = "Distributor issues led to the decline."  # causal, no citation, not in any structured claim
     issues = scan_causal_language(answer, records)
     assert any(i.issue_type == "unsupported_causal" and i.source == "prose_fallback" for i in issues)
+
+
+def test_uncited_causal_sentence_fails_even_when_unrelated_evidence_has_causal_words():
+    """Live bug regression: an uncited causal sentence must NOT be excused
+    just because SOME retrieved record, about something else entirely
+    (e.g. a GraphRAG-generated Entity/Community Report description), also
+    happens to contain causal-connector language -- the old whole-blob
+    fallback let this happen. A live "why" answer produced "The increase
+    can be attributed to poor inventory management practices... which
+    likely resulted in the concerning stockout levels" with no citation of
+    its own, and passed grounding only because unrelated retrieved text
+    elsewhere used a causal connector. This must fail closed now."""
+    records = make_context_records(
+        sources=[{"id": "0", "text": "State: Gujarat\nPeriod: June 2026\n\nOut-of-Stock rate for IPM was 12.0%."}],
+        reports=[{"id": "9", "content": "Unrelated community summary: rainfall levels in the region are due to seasonal monsoon patterns."}],
+    )
+    answer = "The increase can be attributed to poor inventory management practices among distributors."
+    issues = scan_causal_language(answer, records)
+    assert any(i.issue_type == "unsupported_causal" and i.source == "prose_fallback" for i in issues)
+
+
+def test_causal_denial_sentence_is_not_flagged_as_unsupported_causal():
+    """Live bug regression: closing the whole-blob fallback (previous test)
+    exposed a pre-existing gap -- a sentence DENYING causation ('no
+    evidence that a shared cause is responsible', 'this appears to be a
+    coincidence rather than a connection caused by...') uses the same
+    causal vocabulary as an actual invented-cause assertion, but means the
+    opposite: it's the correct, desired answer for a 'coincidence or
+    connection?' question, not a claim needing a citation."""
+    records = make_context_records(
+        sources=[{"id": "0", "text": "State: Gujarat\nPeriod: June 2026\n\nOut-of-Stock rate for IPM was 12.0%."}],
+    )
+    answer = (
+        "There is no evidence that a shared cause is responsible for both distributors' issues. "
+        "This appears to be a coincidence rather than a connection caused by a common factor."
+    )
+    issues = scan_causal_language(answer, records)
+    assert issues == []
+
+
+def test_genuine_causal_assertion_still_flagged_alongside_a_denial_sentence():
+    """The denial exemption must be narrow -- a genuinely asserted cause in
+    a DIFFERENT, non-denial sentence in the same answer must still fail."""
+    records = make_context_records(
+        sources=[{"id": "0", "text": "State: Gujarat\nPeriod: June 2026\n\nOut-of-Stock rate for IPM was 12.0%."}],
+    )
+    answer = (
+        "There is no evidence that a shared cause is responsible for both distributors' issues. "
+        "However, Baxter's problem was clearly caused by poor warehouse management."
+    )
+    issues = scan_causal_language(answer, records)
+    assert any(i.issue_type == "unsupported_causal" for i in issues)
+    assert not any("no evidence" in i.sentence.lower() for i in issues)
+
+
+def test_causal_sentence_with_citation_in_next_sentence_uses_that_citation_not_whole_blob():
+    """A causal clause whose own sentence carries no [Data: ...] tag but is
+    immediately followed by a sentence that does (the model's own common
+    habit of citing once at the end of a multi-sentence paragraph) should
+    be checked against THAT specific citation -- mirroring
+    scan_entity_numeric_claims()'s established borrowed-next-sentence
+    convention -- not treated as uncited. Still fails here because the
+    cited record itself states no causal relationship, proving this is a
+    real citation-scoped check, not another whole-blob loophole."""
+    records = make_context_records(
+        sources=[{"id": "7", "text": "State: Gujarat\nPeriod: June 2026\n\nOut-of-Stock rate for IPM was 12.0%."}],
+    )
+    answer = (
+        "The increase can be attributed to poor inventory management practices. "
+        "This is shown by the elevated Out-of-Stock rate [Data: Sources (7)]."
+    )
+    issues = scan_causal_language(answer, records)
+    assert any(i.issue_type == "unsupported_causal" and "cited evidence only states facts" in i.detail for i in issues)
 
 
 def test_direction_consistency_still_flags_prose_contradiction():
@@ -3000,6 +3090,68 @@ def test_dropsize_raw_unit_difference_as_delta_is_rejected():
     assert any(i.issue_type == "unsupported_delta" for i in issues)
 
 
+DROPSIZE_TREND_SOURCES = [
+    {
+        "id": "60",
+        "text": "State: Gujarat\nPeriod: April 2026\n\nDropsize for Gujarat in April 2026 was 193.87. Distributor Baxter, Thomas and Williams Distributors showed a significant deviation on Dropsize in April 2026: 214.48 vs. the state average of 193.87, a gap of 10.6 percent.",
+    },
+    {
+        "id": "61",
+        "text": "State: Gujarat\nPeriod: May 2026\n\nDropsize for Gujarat in May 2026 was 198.70. Distributor Baxter, Thomas and Williams Distributors showed a significant deviation on Dropsize in May 2026: 175.80 vs. the state average of 198.70, a gap of 11.5 percent.",
+    },
+]
+
+
+def test_dropsize_trend_claim_uses_plain_unit_delta_not_relative_percent():
+    """Live bug regression: a period-over-period Dropsize TREND claim (the
+    SAME distributor's own value in April vs May -- comparison_value is a
+    DIFFERENT PERIOD'S value, not a state average) has no relative-percent
+    'gap' convention -- its delta is the plain unit difference, exactly
+    like every other metric's trend delta. A live self-reported claim with
+    the CORRECT unit delta (214.48-175.80=38.68) was wrongly rejected
+    because the old code forced ALL Dropsize deltas through the
+    deviation-only relative-percent formula regardless of claim_type."""
+    records = make_context_records(sources=DROPSIZE_TREND_SOURCES)
+    evidence_index = _build_evidence_index(records)
+    claim = AnswerClaim(
+        claim_text="Baxter's Dropsize fell from 214.48 in April 2026 to 175.80 in May 2026, a drop of 38.68.",
+        claim_type="trend",
+        entity="Baxter, Thomas and Williams Distributors",
+        metric="Dropsize",
+        period="May 2026",
+        comparison_period="April 2026",
+        value=175.80,
+        comparison_value=214.48,
+        direction="declined",
+        delta=38.68,
+        citations=["Sources (60)", "Sources (61)"],
+    )
+    assert validate_claim(claim, evidence_index) == []
+
+
+def test_dropsize_trend_claim_relative_percent_delta_still_rejected():
+    """The inverse: a trend claim's delta must NOT be accepted as the
+    (deviation-only) relative-percent figure either -- 38.68/214.48*100 =
+    18.04, not the real 38.68-unit trend delta."""
+    records = make_context_records(sources=DROPSIZE_TREND_SOURCES)
+    evidence_index = _build_evidence_index(records)
+    claim = AnswerClaim(
+        claim_text="Baxter's Dropsize fell from 214.48 in April 2026 to 175.80 in May 2026, a drop of 18.04%.",
+        claim_type="trend",
+        entity="Baxter, Thomas and Williams Distributors",
+        metric="Dropsize",
+        period="May 2026",
+        comparison_period="April 2026",
+        value=175.80,
+        comparison_value=214.48,
+        direction="declined",
+        delta=18.04,
+        citations=["Sources (60)", "Sources (61)"],
+    )
+    issues = validate_claim(claim, evidence_index)
+    assert any(i.issue_type == "unsupported_delta" for i in issues)
+
+
 def test_non_dropsize_delta_validation_unchanged_correct_case():
     """3a: a non-Dropsize (percentage-point) metric's correct delta --
     still the plain raw-difference comparison, unaffected by the Dropsize
@@ -3260,6 +3412,16 @@ def make_glossary_records(question: str) -> dict:
 
 def test_scan_glossary_term_misuse_flags_general_product_inventory():
     issues = scan_glossary_term_misuse("GPI stands for General Product Inventory.")
+    assert len(issues) == 1
+    assert issues[0].issue_type == "wrong_glossary_expansion"
+    assert issues[0].term == "GPI / GPIL"
+
+
+def test_scan_glossary_term_misuse_flags_gross_product_index():
+    """Live bug regression (2026-08-31): a SECOND wrong GPI expansion,
+    distinct from 'general product inventory' -- a live 'What was the out
+    of stock in Goa in June 2025?' answer used this one instead."""
+    issues = scan_glossary_term_misuse("The state-average Gross Product Index (GPI) scoped out-of-stock rate was 6.9%.")
     assert len(issues) == 1
     assert issues[0].issue_type == "wrong_glossary_expansion"
     assert issues[0].term == "GPI / GPIL"

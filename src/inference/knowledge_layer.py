@@ -98,7 +98,13 @@ GPIL_GLOSSARY: tuple[GlossaryEntry, ...] = (
             "as \"General Product Inventory\" in this system -- it always refers to "
             "Godfrey Phillips India Ltd. or its own cigarette category."
         ),
-        forbidden_phrases=("general product inventory",),
+        # "gross product index" is a second live-observed wrong expansion
+        # (2026-08-31, a "What was the out of stock in Goa in June 2025?"
+        # investigation), distinct from the original "general product
+        # inventory" failure this list was built for -- same underlying
+        # problem (the model reaching for a plausible-sounding generic
+        # expansion of the acronym), a different specific guess.
+        forbidden_phrases=("general product inventory", "gross product index"),
     ),
     GlossaryEntry(
         term_id="ipm",

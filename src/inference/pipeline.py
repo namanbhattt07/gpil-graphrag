@@ -57,6 +57,7 @@ from src.inference.context import QueryContext, build_query_context
 from src.inference.fact_structuring import SKU_METRIC_FIELDS, extract_atomic_facts
 from src.inference.grounding_check import check_grounding, resolve_claim_sources
 from src.inference.knowledge_layer import build_glossary_source_rows
+from src.inference.named_period_evidence import named_period_source_rows
 from src.inference.premise_check import check_premise
 from src.inference.query_requirements import detect_query_requirements
 from src.inference.schemas import (
@@ -144,6 +145,39 @@ def _augment_context_with_glossary(qctx: QueryContext, glossary_rows: list[dict]
     original_records = qctx.context_records
     original_sources = original_records.get("sources")
     new_rows = pd.DataFrame(glossary_rows)
+    if original_sources is not None and not original_sources.empty:
+        merged_sources = pd.concat([original_sources, new_rows], ignore_index=True)
+    else:
+        merged_sources = new_rows
+    merged_records = {**original_records, "sources": merged_sources}
+    new_context_result = ContextBuilderResult(
+        context_chunks=qctx.context_result.context_chunks,
+        context_records=merged_records,
+    )
+    return QueryContext(engine=qctx.engine, context_result=new_context_result)
+
+
+def _sources_text_blob(qctx: QueryContext) -> str:
+    """Every retrieved Sources row's text, concatenated -- used only to
+    check whether a state+period named_period_source_rows() might inject
+    was already found by GraphRAG's own retrieval (see that module's
+    _already_retrieved())."""
+    sources = qctx.context_records.get("sources")
+    if sources is None or sources.empty or "text" not in sources.columns:
+        return ""
+    return "\n".join(str(t) for t in sources["text"])
+
+
+def _augment_context_with_named_period_docs(qctx: QueryContext, rows: list[dict]) -> QueryContext:
+    """Same additive merge as _augment_context_with_sku_evidence() /
+    _augment_context_with_glossary() above, duplicated per this project's
+    own established convention -- see named_period_evidence.py's module
+    docstring for why these rows exist. Uses a disjoint "named-period-doc-"
+    id prefix, so this can never collide with SKU/glossary rows merged
+    separately."""
+    original_records = qctx.context_records
+    original_sources = original_records.get("sources")
+    new_rows = pd.DataFrame(rows)
     if original_sources is not None and not original_sources.empty:
         merged_sources = pd.concat([original_sources, new_rows], ignore_index=True)
     else:
@@ -321,6 +355,7 @@ def run_pipeline(
     answer_fn: AnswerFn = generate_answer,
     retry_fn: RetryFn = regenerate_answer,
     data_dir: Path | None = None,
+    index_input_dir: Path | None = None,
 ) -> PipelineResult:
     """Pure orchestration:
 
@@ -412,6 +447,21 @@ def run_pipeline(
     glossary_row_ids = {row["id"] for row in glossary_rows}
     if glossary_rows:
         qctx = _augment_context_with_glossary(qctx, glossary_rows)
+
+    # NAMED-PERIOD DOCUMENT COMPLETION (retrieval-recall fix): GraphRAG's
+    # own semantic retrieval doesn't guarantee it returns the document for
+    # every state+period the question ITSELF explicitly names, even when
+    # that document is one of the 62 actually indexed -- see
+    # named_period_evidence.py's module docstring for the live failure
+    # this fixes (a 3-period question only got 1 period's document back,
+    # and the model invented numbers for the other two). Purely additive
+    # and read-only against the pilot's own already-indexed input files;
+    # never touches GraphRAG, the index, or the embedding API.
+    named_period_rows = named_period_source_rows(
+        question, _sources_text_blob(qctx), index_input_dir=index_input_dir
+    )
+    if named_period_rows:
+        qctx = _augment_context_with_named_period_docs(qctx, named_period_rows)
 
     requirements = detect_query_requirements(question, known_sku_names=known_sku_names(data_dir))
 
@@ -602,6 +652,7 @@ def answer_question(
     answer_fn: AnswerFn = generate_answer,
     retry_fn: RetryFn = regenerate_answer,
     data_dir: Path | None = None,
+    index_input_dir: Path | None = None,
 ) -> PipelineResult:
     """Real-world entry point: builds retrieval context against a live
     index (1 embedding API call) and runs the guard pipeline on top of it.
@@ -610,7 +661,10 @@ def answer_question(
     hitting the index/API at all. `data_dir` is forwarded to run_pipeline()
     (default: sku_evidence.DEFAULT_DATA_DIR) -- see that function's
     docstring; unrelated to index_root/output_dir, which are GraphRAG's own
-    paths, not this project's data/ directory.
+    paths, not this project's data/ directory. `index_input_dir` is also
+    forwarded (default: named_period_evidence.DEFAULT_INDEX_INPUT_DIR, i.e.
+    this pilot's own indexed input .txt files) -- see that module's
+    docstring.
     """
     qctx = build_query_context(
         index_root=index_root,
@@ -620,7 +674,9 @@ def answer_question(
         response_type=response_type,
         reporting_dir=reporting_dir,
     )
-    result = run_pipeline(question, qctx, answer_fn=answer_fn, retry_fn=retry_fn, data_dir=data_dir)
+    result = run_pipeline(
+        question, qctx, answer_fn=answer_fn, retry_fn=retry_fn, data_dir=data_dir, index_input_dir=index_input_dir
+    )
     # +1 for the embedding call build_query_context always makes, which
     # run_pipeline() doesn't know about since it only sees the QueryContext
     # after the fact.

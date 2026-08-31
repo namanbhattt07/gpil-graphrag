@@ -1154,6 +1154,51 @@ def test_no_glossary_rows_merged_for_a_question_naming_no_known_term():
     assert not any(str(i).startswith("glossary-") for i in sources["id"])
 
 
+# ---------------------------------------------------------------------------
+# Named-period document completion (retrieval-recall fix): GraphRAG's own
+# retrieval doesn't guarantee it returns every state+period a question
+# explicitly names, even when that document is genuinely indexed. See
+# named_period_evidence.py's module docstring for the live 3-period
+# failure this closes.
+# ---------------------------------------------------------------------------
+
+
+def test_missing_named_period_document_is_injected_before_generation(tmp_path):
+    (tmp_path / "Gujarat_2026-04.txt").write_text(
+        "State: Gujarat\nPeriod: April 2026\n\nService Level for Gujarat in April 2026 was 92.0%.",
+        encoding="utf-8",
+    )
+    # GraphRAG's own retrieval only found June -- April is missing.
+    qctx = make_query_context([("Gujarat", "June 2026", {"Service Level": 90.8})])
+    capturing = make_capturing_answer_fn(
+        "Gujarat's Service Level was 92.0% in April 2026 and 90.8% in June 2026 [Data: Sources (0)]."
+    )
+    run_pipeline(
+        "Gujarat's Service Level in April 2026 versus June 2026 -- why did it change?",
+        qctx, answer_fn=capturing, retry_fn=forbidden_retry_fn, index_input_dir=tmp_path,
+    )
+    sources = capturing.calls[0]["context_result"].context_records["sources"]
+    ids = set(sources["id"])
+    assert any(str(i).startswith("named-period-doc-") for i in ids)
+    blob = "\n".join(str(t) for t in sources["text"])
+    assert "April 2026" in blob and "92.0%" in blob
+
+
+def test_already_retrieved_named_period_is_not_duplicated(tmp_path):
+    (tmp_path / "Gujarat_2026-06.txt").write_text(
+        "State: Gujarat\nPeriod: June 2026\n\nService Level for Gujarat in June 2026 was 90.8%.",
+        encoding="utf-8",
+    )
+    qctx = make_query_context([("Gujarat", "June 2026", {"Service Level": 90.8})])
+    capturing = make_capturing_answer_fn("Gujarat's Service Level was 90.8% in June 2026 [Data: Sources (0)].")
+    run_pipeline(
+        "Gujarat's Service Level in June 2026 -- why?",
+        qctx, answer_fn=capturing, retry_fn=forbidden_retry_fn, index_input_dir=tmp_path,
+    )
+    sources = capturing.calls[0]["context_result"].context_records["sources"]
+    assert not any(str(i).startswith("named-period-doc-") for i in sources["id"])
+
+
 def test_local_search_narrows_sources_to_the_named_state_before_generation():
     """Live bug regression: a question naming exactly one state
     (local_search-shaped) must not hand the generation model OTHER
@@ -1292,6 +1337,21 @@ def test_state_level_metric_question_unaffected_by_category_ambiguity_check():
     )
     assert len(capturing.calls) == 1
     assert result.final_decision == "pass_through"
+
+
+def test_named_period_not_in_pilot_corpus_leaves_pipeline_unaffected(tmp_path):
+    """Gujarat July 2026 isn't one of the pilot's 62 indexed documents --
+    nothing should be injected, and the pipeline must fall back to its
+    normal insufficient-data handling rather than reaching outside the
+    pilot's own scope."""
+    qctx = make_query_context([("Gujarat", "June 2026", {"Service Level": 90.8})])
+    capturing = make_capturing_answer_fn("Gujarat's Service Level was 90.8% in June 2026 [Data: Sources (0)].")
+    run_pipeline(
+        "Gujarat's Service Level in July 2026 -- why?",
+        qctx, answer_fn=capturing, retry_fn=forbidden_retry_fn, index_input_dir=tmp_path,
+    )
+    sources = capturing.calls[0]["context_result"].context_records["sources"]
+    assert not any(str(i).startswith("named-period-doc-") for i in sources["id"])
 
 
 # ---------------------------------------------------------------------------
