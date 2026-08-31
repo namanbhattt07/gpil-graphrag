@@ -1154,6 +1154,146 @@ def test_no_glossary_rows_merged_for_a_question_naming_no_known_term():
     assert not any(str(i).startswith("glossary-") for i in sources["id"])
 
 
+def test_local_search_narrows_sources_to_the_named_state_before_generation():
+    """Live bug regression: a question naming exactly one state
+    (local_search-shaped) must not hand the generation model OTHER
+    states' distributor-deviation sentences -- a live run had the model
+    borrow an unrelated state's '20.0% vs. 8.0%' figure for a Gujarat
+    distributor because 7 other states' documents sat in the same
+    retrieved context."""
+    qctx = make_query_context([
+        ("Gujarat", "June 2026", {"Service Level": 90.8}),
+        ("Odisha", "January 2026", {"Service Level": 88.0}),
+        ("Chhattisgarh", "June 2025", {"Service Level": 91.0}),
+    ])
+    capturing = make_capturing_answer_fn("Gujarat's Service Level was 90.8% in June 2026 [Data: Sources (0)].")
+    run_pipeline(
+        "Why did Baxter, Thomas and Williams in Gujarat show a deviation in June 2026?",
+        qctx, answer_fn=capturing, retry_fn=forbidden_retry_fn,
+    )
+    sources = capturing.calls[0]["context_result"].context_records["sources"]
+    states_seen = {str(t).splitlines()[0] for t in sources["text"]}
+    assert states_seen == {"State: Gujarat"}
+
+
+def test_global_search_question_does_not_narrow_sources():
+    """A broad/global-shaped question (names a state but uses recurring/
+    pattern language) must keep the full, naturally wide retrieved set --
+    narrowing to one state would be exactly the wrong direction for a
+    cross-time/cross-entity scan."""
+    qctx = make_query_context([
+        ("Gujarat", "April 2026", {"Service Level": 92.0}),
+        ("Gujarat", "June 2026", {"Service Level": 90.8}),
+        ("Odisha", "January 2026", {"Service Level": 88.0}),
+    ])
+    capturing = make_capturing_answer_fn(
+        "Gujarat's Service Level was 92.0% in April 2026 and 90.8% in June 2026 [Data: Sources (0), Sources (1)]."
+    )
+    run_pipeline(
+        "Is there a recurring pattern in Gujarat's Service Level over time?",
+        qctx, answer_fn=capturing, retry_fn=forbidden_retry_fn,
+    )
+    sources = capturing.calls[0]["context_result"].context_records["sources"]
+    state_docs = [t for t in sources["text"] if str(t).startswith("State:")]
+    assert len(state_docs) == 3  # nothing dropped, including the Odisha row
+
+
+def test_no_state_named_question_does_not_narrow_sources():
+    qctx = make_query_context([
+        ("Gujarat", "June 2026", {"Service Level": 90.8}),
+        ("Odisha", "January 2026", {"Service Level": 88.0}),
+    ])
+    capturing = make_capturing_answer_fn("Service Level figures are shown above [Data: Sources (0), Sources (1)].")
+    run_pipeline(
+        "What was the Service Level in June 2026?",
+        qctx, answer_fn=capturing, retry_fn=forbidden_retry_fn,
+    )
+    sources = capturing.calls[0]["context_result"].context_records["sources"]
+    state_docs = [t for t in sources["text"] if str(t).startswith("State:")]
+    assert len(state_docs) == 2  # nothing dropped, including the Odisha row
+
+
+# ---------------------------------------------------------------------------
+# Category-ambiguity short-circuit ("Missing categories are NEVER guessed
+# from retrieved evidence"): a category-scoped-ONLY metric (Out-of-Stock
+# Rate/Numeric Distribution/ACV/Range Billing) asked with no category
+# named must report every category's real value, never arbitrarily lead
+# with whichever one sits nearest in the retrieved text.
+# ---------------------------------------------------------------------------
+
+_GOA_CATEGORY_BLOCK_TEXT = (
+    "State: Goa\nPeriod: June 2025\n\n"
+    "For the GPI category (franchises: GPI_Franchise_1) in Goa during June 2025: "
+    "Numeric Distribution was 45.9%, ACV (definition pending) was 45.8%, Out-of-Stock rate was 6.9%, "
+    "and average Range Billing (definition pending) was 4.7%.\n"
+    "For the IPM category (franchises: Marlboro) in Goa during June 2025: "
+    "Numeric Distribution was 55.8%, ACV (definition pending) was 55.8%, Out-of-Stock rate was 6.2%, "
+    "and average Range Billing (definition pending) was 32.6%.\n"
+    "For the Ferrero category (franchises: TicTac) in Goa during June 2025: "
+    "Numeric Distribution was 10.5%, ACV (definition pending) was 10.5%, Out-of-Stock rate was 6.6%, "
+    "and average Range Billing (definition pending) was 15.6%.\n"
+    "For the Candy category (franchises: Candy_Franchise_1) in Goa during June 2025: "
+    "Numeric Distribution was 10.0%, ACV (definition pending) was 10.0%, Out-of-Stock rate was 11.0%, "
+    "and average Range Billing (definition pending) was 15.3%.\n"
+)
+
+
+def test_category_ambiguous_oos_question_reports_all_four_categories_zero_llm_calls():
+    """Live bug regression: 'What was the out of stock in Goa in June
+    2025?' silently answered with just Candy's figure (11.0%), arbitrarily
+    -- must instead report all 4 categories' real values with zero LLM
+    calls, never guessing one."""
+    qctx = make_query_context_from_text("0", _GOA_CATEGORY_BLOCK_TEXT)
+    result = run_pipeline(
+        "What was the out of stock in Goa in June 2025?",
+        qctx, answer_fn=forbidden_answer_fn, retry_fn=forbidden_retry_fn,
+    )
+    assert result.final_decision == "needs_clarification"
+    assert result.llm_calls_made == 0
+    for label, value in [("GPI", "6.9"), ("IPM", "6.2"), ("Ferrero", "6.6"), ("Candy", "11.0")]:
+        assert label in result.final_text and value in result.final_text
+
+
+def test_category_explicitly_named_bypasses_the_breakdown_short_circuit():
+    """'...for Candy in Goa in June 2025' explicitly names a category --
+    must proceed to normal generation, not the breakdown short-circuit."""
+    qctx = make_query_context_from_text("0", _GOA_CATEGORY_BLOCK_TEXT)
+    capturing = make_capturing_answer_fn("Candy's Out-of-Stock Rate in Goa was 11.0% in June 2025 [Data: Sources (0)].")
+    result = run_pipeline(
+        "What was the out of stock for Candy in Goa in June 2025?",
+        qctx, answer_fn=capturing, retry_fn=forbidden_retry_fn,
+    )
+    assert len(capturing.calls) == 1
+    assert result.final_decision == "pass_through"
+
+
+def test_category_ambiguous_but_no_matching_evidence_falls_through_normally():
+    """No category-level facts exist for this state+period at all (e.g. it
+    genuinely wasn't retrieved/indexed) -- the short-circuit must return
+    None and let the normal pipeline (which will correctly find nothing)
+    handle it, not silently do nothing and crash or hang."""
+    qctx = make_query_context([("Bihar", "October 2025", {"Productivity": 85.5})])
+    capturing = make_capturing_answer_fn("No category-level Out-of-Stock data is available [Data: Sources (0)].")
+    result = run_pipeline(
+        "What was the out of stock in Bihar in October 2025?",
+        qctx, answer_fn=capturing, retry_fn=forbidden_retry_fn,
+    )
+    assert len(capturing.calls) == 1  # fell through to normal generation, not the short-circuit
+
+
+def test_state_level_metric_question_unaffected_by_category_ambiguity_check():
+    """An ordinary state-level (category-agnostic) metric question must
+    never trigger the category short-circuit at all."""
+    qctx = make_query_context([("Bihar", "October 2025", {"Service Level": 94.3})])
+    capturing = make_capturing_answer_fn("Bihar's Service Level was 94.3% in October 2025 [Data: Sources (0)].")
+    result = run_pipeline(
+        "What was Bihar's Service Level in October 2025?",
+        qctx, answer_fn=capturing, retry_fn=forbidden_retry_fn,
+    )
+    assert len(capturing.calls) == 1
+    assert result.final_decision == "pass_through"
+
+
 # ---------------------------------------------------------------------------
 # Evidence-triggered glossary merge (2026-08-23, SKU live validation pass):
 # "Did the top-selling SKU in Gujarat change between April 2026 and June

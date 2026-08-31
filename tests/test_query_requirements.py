@@ -6,7 +6,7 @@ never touch context_records, a data_dir, or an index.
 
 import pytest
 
-from src.inference.query_requirements import detect_query_requirements
+from src.inference.query_requirements import classify_query_intent, detect_query_requirements
 
 
 def test_sku_word_triggers_sku_granularity():
@@ -330,3 +330,50 @@ def test_space_underscore_normalization_does_not_cause_false_positive_matches():
         "Why did Bihar's Service Level decline in November 2025?", known_sku_names=_KNOWN_NAMES
     )
     assert req.required_granularity is None
+
+
+# ---------------------------------------------------------------------------
+# classify_query_intent(): basic_search / local_search / global_search
+# ---------------------------------------------------------------------------
+
+
+def test_named_state_with_no_broad_signal_is_local_search():
+    assert classify_query_intent("Why did Gujarat's Service Level decline in June 2026?", "Gujarat") == "local_search"
+
+
+def test_no_state_no_broad_signal_is_basic_search():
+    assert classify_query_intent("What was the Service Level in June 2026?", None) == "basic_search"
+
+
+@pytest.mark.parametrize(
+    "question",
+    [
+        "Tell me all the decline in productivity in 2025.",
+        "Does Gujarat's Productivity spike every October-November, a recurring pattern?",
+        "Is Gamble-Wright's situation chronically unstable or improving over time?",
+        "Is there a single dominant cause behind most of Gujarat's problems, or are they independent issues?",
+        "How often does this kind of reversal happen across the dataset?",
+    ],
+)
+def test_broad_scope_words_force_global_search_even_with_a_named_state(question):
+    assert classify_query_intent(question, "Gujarat") == "global_search"
+
+
+def test_two_named_states_forces_global_search_even_without_a_broad_word():
+    assert classify_query_intent("Compare Bihar and Gujarat Service Level in June 2026.", "Bihar") == "global_search"
+
+
+def test_broad_word_with_no_state_named_is_still_global_search():
+    assert classify_query_intent("What is the overall trend in Out-of-Stock rates?", None) == "global_search"
+
+
+def test_detect_query_requirements_populates_query_intent():
+    req = detect_query_requirements("Why did Gujarat's Service Level decline in June 2026?")
+    assert req.query_intent == "local_search"
+    assert req.target_state == "Gujarat"
+
+    req_global = detect_query_requirements("Tell me all the decline in productivity in 2025.")
+    assert req_global.query_intent == "global_search"
+
+    req_basic = detect_query_requirements("What was the Service Level in June 2026?")
+    assert req_basic.query_intent == "basic_search"

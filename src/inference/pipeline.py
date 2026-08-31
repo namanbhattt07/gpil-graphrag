@@ -45,6 +45,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import re
 from pathlib import Path
 from typing import Awaitable, Callable
 
@@ -53,7 +54,7 @@ from graphrag.query.context_builder.builders import ContextBuilderResult
 
 from src.inference.answer import generate_answer, regenerate_answer
 from src.inference.context import QueryContext, build_query_context
-from src.inference.fact_structuring import SKU_METRIC_FIELDS
+from src.inference.fact_structuring import SKU_METRIC_FIELDS, extract_atomic_facts
 from src.inference.grounding_check import check_grounding, resolve_claim_sources
 from src.inference.knowledge_layer import build_glossary_source_rows
 from src.inference.premise_check import check_premise
@@ -153,6 +154,94 @@ def _augment_context_with_glossary(qctx: QueryContext, glossary_rows: list[dict]
         context_records=merged_records,
     )
     return QueryContext(engine=qctx.engine, context_result=new_context_result)
+
+
+_SOURCE_STATE_HEADER_RE = re.compile(r"^State:\s*(?P<state>[^\n]+)")
+
+
+def _scope_sources_to_state(qctx: QueryContext, target_state: str) -> QueryContext:
+    """Drop retrieved Sources rows whose OWN 'State: X' header names a
+    DIFFERENT state than `target_state` -- local_search query-scope
+    narrowing (see QueryRequirements.query_intent's docstring). A live run
+    asking about one specific Gujarat distributor had GraphRAG return 10
+    Sources rows, only 3 of them about Gujarat -- the other 7 (Odisha,
+    Chhattisgarh, Uttarakhand) sat in the same prompt as harmless-looking
+    but structurally-identical distributor-deviation sentences ("...showed
+    a significant deviation on Out-of-Stock Rate...: 20.0% vs. the state
+    average of 8.0%..."), and the model borrowed one of THEIR numbers for
+    a Gujarat distributor. Narrowing to the named state before generation
+    removes that distractor pool entirely, rather than relying only on
+    grounding to catch the misattribution after the fact.
+
+    Never drops a row with NO parseable state header at all (glossary-/
+    sku-/named-period-doc- synthetic rows, or a malformed/chunked row that
+    lost its header) -- those aren't real competing-state documents, and
+    dropping them would silently break the SKU/glossary/named-period-doc
+    evidence mechanisms, which already scope themselves correctly on their
+    own. Never narrows to zero rows: if filtering would remove every row
+    (the named state genuinely wasn't retrieved at all), this returns qctx
+    UNCHANGED -- premise_check's own existing "no evidence for this state"
+    handling already covers that case correctly; silently emptying
+    Sources here would just turn a normal insufficient-data outcome into a
+    confusing crash-adjacent state."""
+    sources = qctx.context_records.get("sources")
+    if sources is None or sources.empty or "text" not in sources.columns:
+        return qctx
+
+    def _keep(text: str) -> bool:
+        m = _SOURCE_STATE_HEADER_RE.match(str(text))
+        return m is None or m.group("state").strip() == target_state
+
+    mask = sources["text"].map(_keep)
+    if not mask.any():
+        return qctx
+    filtered_sources = sources[mask].reset_index(drop=True)
+    if len(filtered_sources) == len(sources):
+        return qctx
+
+    merged_records = {**qctx.context_records, "sources": filtered_sources}
+    new_context_result = ContextBuilderResult(
+        context_chunks=qctx.context_result.context_chunks,
+        context_records=merged_records,
+    )
+    return QueryContext(engine=qctx.engine, context_result=new_context_result)
+
+
+def _render_category_breakdown(
+    qctx: QueryContext, state: str, period: str, metric: str
+) -> str | None:
+    """Deterministic, zero-cost text for a category-scoped-ONLY metric
+    (Out-of-Stock Rate/Numeric Distribution/ACV/Range Billing) asked about
+    with NO category named -- e.g. "What was the out of stock in Goa in
+    June 2025?". This metric genuinely has no single state-wide value in
+    this corpus (it's measured per GPI/IPM/Ferrero/Candy category, always)
+    -- per the "Missing categories are NEVER guessed from retrieved
+    evidence" rule, this reports every category's ACTUAL retrieved value
+    side by side instead of the model arbitrarily leading with whichever
+    category happened to be nearest in the retrieved text (a live run did
+    exactly that -- silently answered with just Candy's figure).
+
+    Returns None (never an empty/misleading string) when no matching
+    category-level Atomic Facts exist for this exact state+period+metric
+    in the retrieved evidence -- callers must fall through to the normal
+    pipeline (premise/generation/grounding) in that case, since this isn't
+    a "nothing exists" situation this function can speak to; it only
+    handles "evidence exists but is split across categories"."""
+    facts = [
+        f
+        for f in extract_atomic_facts(qctx.context_records)
+        if f.kind == "category" and f.state == state and f.period == period and f.metric == metric
+    ]
+    if not facts:
+        return None
+    lines = [
+        f"{metric} is only measured per product category in this system, not as a single "
+        f"state-wide figure -- the question named no category, so every category's actual "
+        f"retrieved value for {state} in {period} is reported below rather than picking one:",
+    ]
+    for f in sorted(facts, key=lambda x: x.category or ""):
+        lines.append(f"- {f.category}: {f.value}%")
+    return "\n".join(lines)
 
 
 def _render_clarification(requirements: QueryRequirements) -> str:
@@ -325,6 +414,46 @@ def run_pipeline(
         qctx = _augment_context_with_glossary(qctx, glossary_rows)
 
     requirements = detect_query_requirements(question, known_sku_names=known_sku_names(data_dir))
+
+    # LOCAL_SEARCH QUERY-SCOPE NARROWING (basic/local/global routing):
+    # only when the question is local_search-shaped (one named state, not
+    # a broad/cross-state/trend-shaped question -- see
+    # QueryRequirements.query_intent's docstring) do we narrow retrieved
+    # Sources evidence down to that one state. global_search/basic_search
+    # questions are left exactly as GraphRAG's own retrieval returned them
+    # -- a broad question needs that natural breadth, not a single state's
+    # worth of evidence. See _scope_sources_to_state()'s own docstring for
+    # the live misattribution failure this fixes.
+    if requirements.query_intent == "local_search" and requirements.target_state:
+        qctx = _scope_sources_to_state(qctx, requirements.target_state)
+
+    # CATEGORY-AMBIGUITY SHORT-CIRCUIT (Missing categories are NEVER
+    # guessed): a category-scoped-ONLY metric (Out-of-Stock Rate/Numeric
+    # Distribution/ACV/Range Billing) named with NO explicit category, but
+    # WITH a specific state+period to look up -- deterministically report
+    # every category's real retrieved value instead of letting generation
+    # arbitrarily lead with whichever category's sentence sits nearest in
+    # the retrieved text. Zero LLM calls. Requires target_state AND at
+    # least one target_period to even attempt a lookup (matches
+    # _render_category_breakdown()'s own state+period-scoped contract);
+    # without both, this falls straight through to the normal pipeline
+    # unchanged -- there's no single state+period to break down.
+    if requirements.category_ambiguous and requirements.target_state and requirements.target_periods:
+        breakdown = _render_category_breakdown(
+            qctx, requirements.target_state, requirements.target_periods[0], requirements.category_scoped_metric
+        )
+        if breakdown is not None:
+            return PipelineResult(
+                question=question,
+                premise_check=_placeholder_premise_for_clarification(),
+                answer=None,
+                grounding_check=None,
+                final_decision="needs_clarification",
+                final_text=breakdown,
+                llm_calls_made=0,
+                query_requirements=requirements,
+            )
+
     evidence_sufficiency: EvidenceSufficiencyResult | None = None
 
     if requirements.required_granularity == "sku":
@@ -367,6 +496,7 @@ def run_pipeline(
             final_text=_render_clarification(requirements),
             llm_calls_made=0,
             evidence_sufficiency=evidence_sufficiency,
+            query_requirements=requirements,
         )
 
     premise = check_premise(question, qctx.context_records)
@@ -381,6 +511,7 @@ def run_pipeline(
             final_text=_render_granularity_gap(evidence_sufficiency),
             llm_calls_made=0,
             evidence_sufficiency=evidence_sufficiency,
+            query_requirements=requirements,
         )
 
     if premise.status in ("contradicted", "unsupported", "insufficient_data", "undefined_metric"):
@@ -394,6 +525,7 @@ def run_pipeline(
             final_text=_render_hedge(premise),
             llm_calls_made=0,
             evidence_sufficiency=evidence_sufficiency,
+            query_requirements=requirements,
         )
 
     # premise.status is "no_claim" or "supported" -- safe to generate.
@@ -412,6 +544,7 @@ def run_pipeline(
             final_text=answer.text,
             llm_calls_made=answer.llm_calls,
             evidence_sufficiency=evidence_sufficiency,
+            query_requirements=requirements,
             sources=resolve_claim_sources(answer.claims, qctx.context_records),
         )
 
@@ -438,6 +571,7 @@ def run_pipeline(
             final_text=retry_answer.text,
             llm_calls_made=completion_calls,
             evidence_sufficiency=evidence_sufficiency,
+            query_requirements=requirements,
             sources=resolve_claim_sources(retry_answer.claims, qctx.context_records),
         )
 
@@ -454,6 +588,7 @@ def run_pipeline(
         final_text=_render_retry_failure(grounding, retry_grounding),
         llm_calls_made=completion_calls,
         evidence_sufficiency=evidence_sufficiency,
+        query_requirements=requirements,
     )
 
 

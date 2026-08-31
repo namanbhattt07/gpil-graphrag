@@ -74,7 +74,9 @@ import re
 from typing import Iterable
 
 from src.inference.fact_structuring import SKU_METRIC_FIELDS, resolve_sku_ranking_metric_synonym
+from src.inference.knowledge_layer import detect_glossary_terms
 from src.inference.premise_check import (
+    INDIAN_STATES,
     extract_all_periods_from_question,
     extract_period_from_question,
     extract_state_from_question,
@@ -150,6 +152,36 @@ _RANKING_WORDS_RE = re.compile(
 
 _BARE_YEAR_RE = re.compile(r"\b(20\d{2})\b")
 
+# Signals this project treats as "global_search"-shaped, per the fixed
+# three-way classification (basic_search / local_search / global_search)
+# -- cross-state, broad-historical, "all"/"every", trend/recurring/pattern
+# language, or a multi-month/multi-year scan. Deliberately word-list-based
+# (same "grammar, not guessing" discipline every other detector in this
+# module already follows), not an LLM classifier -- this only ever
+# controls retrieval SCOPE (see pipeline.py's _scope_sources_to_state()),
+# never gates which pipeline stage runs, so an imperfect edge case has low
+# blast radius by design.
+_GLOBAL_SCOPE_WORDS_RE = re.compile(
+    r"\b(all|every|across states|across the country|nationwide|country[- ]wide|"
+    r"trend|trends|recurring|recurrence|pattern|patterns|history|historical|historically|"
+    r"chronic|chronically|unstable|instability|"
+    r"how often|how frequently|frequency|commonly|"
+    r"getting better|getting worse|over time|over the years|"
+    r"multi[- ]year|multi[- ]month|year[- ]over[- ]year|\byoy\b|"
+    r"single dominant|dominant cause|independent issues)\b",
+    re.IGNORECASE,
+)
+
+# Cross-state comparison shape ("X compared to Y", "X vs Y", "X and Y")
+# naming two DIFFERENT real states -- also global_search-shaped even
+# without hitting a word above, since it spans more than the one state a
+# single-state question would otherwise narrow retrieval to. Reuses
+# premise_check.INDIAN_STATES (imported above) rather than a third copy of
+# the state list.
+def _names_multiple_states(question: str) -> bool:
+    matched = {name for name in INDIAN_STATES if re.search(rf"\b{re.escape(name)}\b", question, re.IGNORECASE)}
+    return len(matched) >= 2
+
 
 def _extract_target_year(question: str) -> int | None:
     """A bare 4-digit year ('...in 2025') ONLY when the question does not
@@ -224,6 +256,75 @@ def _extract_ranking_metric(question: str) -> str | None:
     return None
 
 
+# Category-scoped-ONLY metrics (fact_structuring.py's own
+# _CATEGORY_METRIC_FIELDS naming) -- these are only ever measured per
+# product category (GPI/IPM/Ferrero/Candy) in this corpus, never as a
+# single state-wide figure, unlike Service Level/Productivity/Dropsize/
+# Inventory Turns/Inventory Days (state-level, category-agnostic). Longest
+# phrase first so "out of stock" doesn't shadow "range billing" etc. (not
+# actually order-sensitive here since none overlap, but matches this
+# module's own established convention).
+_CATEGORY_SCOPED_METRIC_ALIASES: tuple[tuple[re.Pattern, str], ...] = (
+    (re.compile(r"\bout[- ]of[- ]stock(?:\s+rate)?\b", re.IGNORECASE), "Out-of-Stock Rate"),
+    (re.compile(r"\boos%?\b", re.IGNORECASE), "Out-of-Stock Rate"),
+    (re.compile(r"\bnumeric distribution\b", re.IGNORECASE), "Numeric Distribution"),
+    (re.compile(r"\bacv\b", re.IGNORECASE), "ACV"),
+    (re.compile(r"\brange billing\b", re.IGNORECASE), "Range Billing"),
+)
+
+# The 4 GPIL_GLOSSARY term_ids that name a real product category -- reused
+# (not re-derived) from knowledge_layer.py, the single source of truth for
+# how "GPI"/"IPM"/"Ferrero"/"Candy" surface forms are recognized in a
+# question, so this can never drift out of sync with what the Knowledge
+# Layer itself already matches.
+_CATEGORY_TERM_IDS = frozenset({"gpi", "ipm", "ferrero", "candy"})
+
+
+def _extract_category_scoped_metric(question: str) -> str | None:
+    """The exact category-scoped metric label the question names, or None
+    if it names none of the 4. Checked independently of whether a category
+    is also named -- see detect_query_requirements()'s category_ambiguous
+    computation for how the two combine."""
+    for pattern, label in _CATEGORY_SCOPED_METRIC_ALIASES:
+        if pattern.search(question):
+            return label
+    return None
+
+
+def _question_names_explicit_category(question: str) -> bool:
+    """True if the question names GPI/GPIL, IPM, Ferrero, or Candy by any
+    of knowledge_layer.py's own recognized surface forms."""
+    return any(entry.term_id in _CATEGORY_TERM_IDS for entry in detect_glossary_terms(question))
+
+
+def classify_query_intent(question: str, target_state: str | None) -> str:
+    """"basic_search" / "local_search" / "global_search" -- deterministic,
+    controls retrieval SCOPE only (see QueryRequirements.query_intent's
+    docstring and pipeline.py's _scope_sources_to_state()), never gates
+    which pipeline stage runs.
+
+    global_search wins over local_search whenever EITHER a global-scope
+    word (_GLOBAL_SCOPE_WORDS_RE) appears OR the question names 2+
+    different real states -- both are "broader than one state's worth of
+    evidence" signals regardless of whether target_state also resolved to
+    something (e.g. "Gujarat's Baxter keeps showing up... is a pattern
+    developing?" names Gujarat AND uses "developing"/no explicit global
+    word, but "Gujarat's history of recurring distributor issues" would
+    hit "recurring"/"history" -- global wins in that case even though
+    Gujarat is the only state named, since the question is asking for an
+    open-ended scan, not a bounded fact/comparison).
+
+    local_search is target_state being resolved (a single named state) AND
+    no global signal. basic_search is the residual case -- no state named,
+    no global signal -- a plain direct-fact question with nothing to scope
+    retrieval to or broaden it for."""
+    if _GLOBAL_SCOPE_WORDS_RE.search(question) or _names_multiple_states(question):
+        return "global_search"
+    if target_state:
+        return "local_search"
+    return "basic_search"
+
+
 def detect_query_requirements(
     question: str, known_sku_names: Iterable[str] | None = None
 ) -> QueryRequirements:
@@ -248,13 +349,27 @@ def detect_query_requirements(
         single = extract_period_from_question(question)
         target_periods = [single] if single else []
 
+    target_state = extract_state_from_question(question)
+
+    # Gated on required_granularity is None: a SKU-ranking question named
+    # BY Out-of-Stock Rate ("Bottom 2 SKUs by Out-of-Stock Rate in Gujarat
+    # in April 2026") also names this same metric word, but is a
+    # completely different, already-handled evidence path
+    # (sku_evidence.py's per-SKU ranking) -- it must never be preempted by
+    # this state/category-grain short-circuit.
+    category_scoped_metric = _extract_category_scoped_metric(question) if required_granularity is None else None
+    category_ambiguous = category_scoped_metric is not None and not _question_names_explicit_category(question)
+
     return QueryRequirements(
         required_granularity=required_granularity,
-        target_state=extract_state_from_question(question),
+        target_state=target_state,
         target_periods=target_periods,
         target_year=_extract_target_year(question),
         is_ranking=bool(_RANKING_WORDS_RE.search(question)),
         rank_n=_extract_rank_n(question),
         ranking_metric=_extract_ranking_metric(question) if required_granularity == "sku" else None,
         rank_direction=_extract_rank_direction(question),
+        query_intent=classify_query_intent(question, target_state),
+        category_ambiguous=category_ambiguous,
+        category_scoped_metric=category_scoped_metric if category_ambiguous else None,
     )

@@ -350,7 +350,26 @@ class QueryRequirements:
     a pile of SKU facts and trusting it to rank them correctly itself. See
     query_requirements.py's _extract_rank_direction() for the exact word
     lists (mirrors grounding_check.py's own post-hoc ranking-verification
-    word sets, so both stages agree on what "top"/"bottom" mean)."""
+    word sets, so both stages agree on what "top"/"bottom" mean).
+
+    query_intent ("basic_search" / "local_search" / "global_search"):
+    deterministic classification of retrieval SCOPE/STRATEGY only -- never
+    a hard gate, never changes which stages run. "local_search" (a
+    specific named state, entity, or category, bounded to the periods the
+    question itself names) narrows retrieved Sources evidence to that
+    state before generation (see pipeline.py's _scope_sources_to_state()),
+    cutting the cross-state noise that otherwise sits alongside the real
+    evidence and increases misattribution risk (a live run had the model
+    borrow an unrelated state's distributor deviation numbers because nine
+    other states' documents were sitting in the same retrieved context).
+    "global_search" (cross-state, "all"/"every", trend/recurring/pattern,
+    multi-month/multi-year scan, or a broad comparison) explicitly SKIPS
+    that narrowing, since a broad question needs the naturally wide set of
+    documents GraphRAG's own top-k retrieval already returns, not a single
+    state's worth. "basic_search" (no state named, not broad-shaped -- a
+    plain direct-fact question) also skips narrowing, since there's no
+    single state to narrow to. See query_requirements.py's
+    classify_query_intent()."""
 
     required_granularity: Literal["sku", None]
     target_state: str | None
@@ -360,6 +379,22 @@ class QueryRequirements:
     rank_n: int | None = None
     ranking_metric: str | None = None
     rank_direction: Literal["top", "bottom", None] = None
+    query_intent: Literal["basic_search", "local_search", "global_search"] = "basic_search"
+    # True when the question names a category-scoped-ONLY metric (Numeric
+    # Distribution / ACV / Out-of-Stock Rate / Range Billing -- these are
+    # only ever measured per product category in this corpus, never as a
+    # single state-wide figure) but names NO explicit category (GPI/IPM/
+    # Ferrero/Candy). See pipeline.py's category-breakdown short-circuit:
+    # "Missing categories are NEVER guessed from retrieved evidence" --
+    # a live "What was the out of stock in Goa in June 2025?" run silently
+    # answered with just the Candy figure, arbitrarily, with no signal to
+    # the user that 3 other categories' figures existed and differed.
+    category_ambiguous: bool = False
+    # The exact category-scoped metric label (fact_structuring.py's
+    # _CATEGORY_METRIC_FIELDS naming: "Numeric Distribution"/"ACV"/
+    # "Out-of-Stock Rate"/"Range Billing") the question names, when
+    # category_ambiguous is True; None otherwise.
+    category_scoped_metric: str | None = None
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -484,6 +519,11 @@ class PipelineResult:
     # (Problem 2) -- always [] when no generation call was made (hedged/
     # insufficient_evidence with no draft), never fabricated.
     sources: list[SourceCitation] = field(default_factory=list)
+    # Deterministic question-text requirements, including query_intent
+    # (basic_search/local_search/global_search) -- always populated by
+    # run_pipeline() (computed before every other stage), surfaced here
+    # purely for observability/debugging, never re-derived by a caller.
+    query_requirements: "QueryRequirements | None" = None
 
     def to_dict(self) -> dict:
         return {
@@ -499,4 +539,5 @@ class PipelineResult:
             "llm_calls_made": self.llm_calls_made,
             "evidence_sufficiency": self.evidence_sufficiency.to_dict() if self.evidence_sufficiency else None,
             "sources": [s.to_dict() for s in self.sources],
+            "query_requirements": self.query_requirements.to_dict() if self.query_requirements else None,
         }
